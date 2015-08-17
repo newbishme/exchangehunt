@@ -18,6 +18,8 @@ ALTER USER exchangehunt CREATEDB;
 #### Rails setup 
 
 ```sh
+bundle install
+npm install
 rake db:create
 rake db:setup
 rails server # => http://localhost:3000
