@@ -16,3 +16,4 @@
 //= require_tree ./react_components
 
 foo = require("./react_components/foo");
+React = require("react");
