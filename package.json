@@ -1,7 +1,7 @@
 {
   "name": "exchangehunt",
-  "dependencies" : {
-    "browserify": "~> 10.2.4",
+  "dependencies": {
+    "browserify": "^10.2.6",
     "browserify-incremental": "^3.0.1"
   },
   "license": "MIT",
