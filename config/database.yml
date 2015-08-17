@@ -1,0 +1,23 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: exchangehunt_development
+  pool: 5
+  username: exchangehunt
+  password: exchangehunt
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: exchangehunt_test
+  pool: 5
+  username: exchangehunt
+  password: exchangehunt
+
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: exchangehunt_production
+  pool: 5
+  username: ENV["pg_username"]
+  password: ENV["pg_password"]
