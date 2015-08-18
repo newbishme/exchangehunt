@@ -15,6 +15,8 @@ gem 'omniauth-facebook'
 gem 'dotenv-rails', :groups => [:development, :test]
 
 group :development, :test do
+  gem 'guard-rspec', require: false
+  gem 'rspec-rails', '~> 3.0'
   gem 'guard-rails'
   gem 'guard-livereload'
   gem 'byebug' # Call 'byebug' anywhere in the code to stop execution and get a debugger console
