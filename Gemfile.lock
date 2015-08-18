@@ -40,11 +40,12 @@ GEM
     bcrypt (3.1.10)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
-    browserify-rails (1.1.0)
+    browserify-rails (1.4.0)
       railties (>= 4.0.0, < 5.0)
+      sprockets (> 3.0.2)
+      tilt (>= 1.1, < 3)
     builder (3.2.2)
-    byebug (5.0.0)
-      columnize (= 0.9.0)
+    byebug (6.0.0)
     coderay (1.1.0)
     coffee-rails (4.1.0)
       coffee-script (>= 2.2.0)
@@ -53,7 +54,6 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.9.1.1)
-    columnize (0.9.0)
     debug_inspector (0.0.2)
     devise (3.5.2)
       bcrypt (~> 3.0)
@@ -63,11 +63,14 @@ GEM
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
     dotenv (2.0.2)
+    dotenv-rails (2.0.2)
+      dotenv (= 2.0.2)
+      railties (~> 4.0)
     em-websocket (0.5.1)
       eventmachine (>= 0.12.9)
       http_parser.rb (~> 0.6.0)
     erubis (2.7.0)
-    eventmachine (1.0.7)
+    eventmachine (1.0.8)
     execjs (2.6.0)
     faraday (0.9.1)
       multipart-post (>= 1.2, < 3)
@@ -89,7 +92,7 @@ GEM
       em-websocket (~> 0.5)
       guard (~> 2.8)
       multi_json (~> 1.8)
-    guard-rails (0.7.1)
+    guard-rails (0.7.2)
       guard (~> 2.11)
       guard-compat (~> 1.0)
     hashie (3.4.2)
@@ -104,7 +107,7 @@ GEM
     listen (3.0.3)
       rb-fsevent (>= 0.9.3)
       rb-inotify (>= 0.9)
-    loofah (2.0.2)
+    loofah (2.0.3)
       nokogiri (>= 1.5.9)
     lumberjack (1.0.9)
     mail (2.6.3)
@@ -217,7 +220,7 @@ DEPENDENCIES
   byebug
   coffee-rails (~> 4.1.0)
   devise
-  dotenv
+  dotenv-rails
   guard-livereload
   guard-rails
   jquery-rails
