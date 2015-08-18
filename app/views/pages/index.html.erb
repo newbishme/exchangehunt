@@ -6,3 +6,11 @@
 <button type="submit">Search</button>
 
 <hr />
+
+<% if user_signed_in? && Rails.env == "development" %>
+  ID: <%= current_user.id %> <br />
+  Facebook ID: <%= current_user.uid %> <br />
+  Email: <%= current_user.email %> <br />
+<% end %>
+
+<hr />
