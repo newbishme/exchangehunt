@@ -13,6 +13,7 @@ gem 'devise'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'dotenv-rails', :groups => [:development, :test]
+gem 'rails_12factor'
 
 group :development, :test do
   gem 'guard-rails'
