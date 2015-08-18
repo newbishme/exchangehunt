@@ -6,6 +6,7 @@
 
 - nodejs / npm
 - ruby
+- postgresql
 
 #### Database setup
 
@@ -13,6 +14,13 @@
 # in psql
 CREATE USER exchangehunt WITH PASSWORD 'exchangehunt'; 
 ALTER USER exchangehunt CREATEDB;
+```
+
+#### Environment setup
+
+```sh
+cp .env.sample .env
+# fill up .env with the relevant info
 ```
 
 #### Rails setup 
@@ -23,13 +31,6 @@ npm install
 rake db:create
 rake db:setup
 rails server # => http://localhost:3000
-```
-
-#### Environment setup
-
-```sh
-cp .env.sample .env
-# fill up .env with the relevant info
 ```
 
 ## Deployment
