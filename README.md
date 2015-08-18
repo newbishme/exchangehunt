@@ -25,6 +25,13 @@ rake db:setup
 rails server # => http://localhost:3000
 ```
 
+#### Environment setup
+
+```sh
+cp .env.sample .env
+# fill up .env with the relevant info
+```
+
 ## Deployment
 
 ```sh
