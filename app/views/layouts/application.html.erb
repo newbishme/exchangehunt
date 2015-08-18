@@ -19,6 +19,12 @@
       data-show-faces="true">
     </div>
 
+    <hr />
+
+    <% if user_signed_in? %>
+      <%= link_to "Log Out", destroy_user_session_path, :method => :delete %>
+    <% end %>
+
     <%= yield %>
 
     <!--  Facebook SDK -->

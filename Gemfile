@@ -13,7 +13,6 @@ gem 'devise'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'dotenv-rails', :groups => [:development, :test]
-gem 'rails_12factor'
 
 group :development, :test do
   gem 'guard-rails'
@@ -21,4 +20,8 @@ group :development, :test do
   gem 'byebug' # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'web-console', '~> 2.0' # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'spring' # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+end
+
+group :production do
+  gem 'rails_12factor'
 end
