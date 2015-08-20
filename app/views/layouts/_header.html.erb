@@ -1,16 +1,15 @@
-<nav class="teal lighten-2" role="navigation">
+<nav class="teal" role="navigation">
   <div class="nav-wrapper container">
-    <a id="logo-container" href="#" class="brand-logo">ExchangeHunt</a>
+    <%= link_to "ExchangeHunt", root_path, id: "logo-container", class: "brand-logo" %>
 
     <ul class="right hide-on-med-and-down">
-      <li>
-        <% if user_signed_in? %>
-          <%= link_to "Log Out", destroy_user_session_path, :method => :delete %>
-        <% else %>
-          <%= link_to "Sign up/Log in", new_user_registration_path %>
-        <% end %>
-
-      </li>
+      <% if user_signed_in? %>
+        <li><%= link_to current_user.username, user_path(current_user.username) %></li>
+        <li><%= link_to "Log Out", destroy_user_session_path, :method => :delete %></li>
+      <% else %>
+        <li><%= link_to "Sign up", new_user_registration_path %></li>
+        <li><%= link_to "Log in", new_user_session_path %></li>
+      <% end %>
     </ul>
 
     <ul id="nav-mobile" class="side-nav">

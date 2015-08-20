@@ -30,6 +30,12 @@ p {
   }
 }
 
+.nav-wrapper {
+  a {
+    color: white;
+  }
+}
+
 @media only screen and (max-width : 992px) {
   .parallax-container .section {
     position: absolute;

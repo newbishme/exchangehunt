@@ -1,12 +1,3 @@
-<% if user_signed_in? && Rails.env == "development" %>
-  <hr />
-  ID: <%= current_user.id %> <br />
-  Facebook ID: <%= current_user.uid %> <br />
-  Email: <%= current_user.email %> <br />
-  Admin Role: <%= current_user.admin? %> <br />
-  <hr />
-<% end %>
-
 <div id="index-banner" class="parallax-container">
   <div class="section no-pad-bot">
     <div class="container">
