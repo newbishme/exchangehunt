@@ -2,32 +2,20 @@
 <html>
   <head>
     <title>ExchangeHunt</title>
+
+    <%= stylesheet_link_tag "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css", :cache => true %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 
-    <!-- Zurb Foundation -->
-    <%= stylesheet_link_tag "https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.2/css/foundation.min.css", :cache => true %>
-    <%= javascript_include_tag "https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.2/js/foundation.min.js" %>
-
+    <%= javascript_include_tag "https://code.jquery.com/jquery-2.1.4.min.js" %>
+    <%= javascript_include_tag "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js" %>
     <%= csrf_meta_tags %>
   </head>
+
   <body>
-
-    <h1>ExchangeHunt</h1>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-
-    <% if user_signed_in? %>
-      <hr />
-      <%= link_to "Log Out", destroy_user_session_path, :method => :delete %>
-      <hr />
-    <% end %>
-
+    <%= render 'layouts/header'%>
     <%= yield %>
-
-    <hr />
-
-    <div class="fb-like" data-share="true" data-width="450" data-show-faces="true" />
+    <%= render 'layouts/footer'%>
 
     <!--  Facebook SDK -->
     <script>
@@ -47,5 +35,6 @@
         fjs.parentNode.insertBefore(js, fjs);
       }(document, 'script', 'facebook-jssdk'));
     </script>
+
   </body>
 </html>

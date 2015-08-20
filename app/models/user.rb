@@ -9,6 +9,9 @@ class User < ActiveRecord::Base
     self.email = email.downcase if self.email
   end
 
+  has_one :department
+  has_many :exchanges
+
   validates_presence_of :uid
   validates_uniqueness_of :username, :uid, :email, :case_sensitive => false
 
