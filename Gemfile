@@ -13,6 +13,7 @@ gem 'devise'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'dotenv-rails', :groups => [:development, :test]
+gem 'material_icons'
 
 group :development, :test do
   gem 'guard-rspec', require: false
