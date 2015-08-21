@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
+  devise :confirmable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, :omniauth_providers => [:facebook]
 
@@ -14,6 +14,12 @@ class User < ActiveRecord::Base
 
   validates_presence_of :uid
   validates_uniqueness_of :username, :uid, :email, :case_sensitive => false
+
+  delegate :confirmation_sent_at, :confirmed_at, :confirmation_token, to: :confirm_institution_email
+
+  def confirm_institution_email
+    user.email # FIXME: should be user.institution_email
+  end
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
@@ -32,5 +38,7 @@ class User < ActiveRecord::Base
   def full_name
     "#{self.first_name} #{self.last_name}"
   end
+
+
 
 end
