@@ -2,35 +2,15 @@
 <html>
   <head>
     <title>ExchangeHunt</title>
-
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
   </head>
-
   <body>
     <%= render 'layouts/header'%>
     <%= yield %>
     <%= render 'layouts/footer'%>
-
-    <!--  Facebook SDK -->
-    <script>
-      window.fbAsyncInit = function() {
-        FB.init({
-          appId      : <%= ENV['FACEBOOK_APP_ID'] %>,
-          xfbml      : true,
-          version    : 'v2.4'
-        });
-      };
-
-      (function(d, s, id){
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) {return;}
-        js = d.createElement(s); js.id = id;
-        js.src = "//connect.facebook.net/en_US/sdk.js";
-        fjs.parentNode.insertBefore(js, fjs);
-      }(document, 'script', 'facebook-jssdk'));
-    </script>
-
+    <%= render 'shared/facebook_sdk' %>
+    <%= render('shared/google_analytics') if Rails.env.production? %>
   </body>
 </html>

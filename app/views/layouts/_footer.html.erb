@@ -4,8 +4,6 @@
       <div class="col l6 s12">
         <h5 class="white-text">About</h5>
         <p class="grey-text text-lighten-4">ExchangeHunt is a social platform specially for student exchangers to connect with one and another.</p>
-
-
       </div>
       <div class="col l3 s12">
         <h5 class="white-text">Settings</h5>
@@ -25,20 +23,18 @@
   </div>
   <div class="footer-copyright">
     <div class="container">
-      Made by <a class="brown-text text-lighten-3" href="http://materializecss.com">Materialize</a>
+      Made with &hearts; for CS3216.
     </div>
   </div>
 
   <script src="/js/init.js"></script>
 
-<% if user_signed_in? && Rails.env == "development" %>
-  <hr />
-  ID: <%= current_user.id %> <br />
-  Facebook ID: <%= current_user.uid %> <br />
-  Email: <%= current_user.email %> <br />
-  Admin Role: <%= current_user.admin? %> <br />
-  <hr />
-<% end %>
-
-
+  <% if user_signed_in? && Rails.env == "development" %>
+    <hr />
+    ID: <%= current_user.id %> <br />
+    Facebook ID: <%= current_user.uid %> <br />
+    Email: <%= current_user.email %> <br />
+    Admin Role: <%= current_user.admin? %> <br />
+    <hr />
+  <% end %>
 </footer>
