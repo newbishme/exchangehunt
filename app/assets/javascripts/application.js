@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require materialize-sprockets
 //= require_tree ./react_components
 
 foo = require("./react_components/foo");

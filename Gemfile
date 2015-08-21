@@ -13,6 +13,7 @@ gem 'devise'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'dotenv-rails', :groups => [:development, :test]
+gem 'materialize-sass'
 gem 'material_icons'
 
 group :development, :test do

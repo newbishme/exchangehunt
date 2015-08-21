@@ -6,6 +6,12 @@
  * Made By MaterializeCSS.com
  */
 
+@import "materialize/components/color";
+
+.primary-color {
+  @extend .indigo;
+}
+
 nav ul a,
 nav .brand-logo {
   color: #444;
@@ -40,21 +46,23 @@ p {
   .parallax-container .section {
     position: absolute;
     top: 40%;
-}
-#index-banner .section {
-  top: 10%;
-}
+  }
+
+  #index-banner .section {
+    top: 10%;
+  }
 }
 
 @media only screen and (max-width : 600px) {
   #index-banner .section {
     top: 0;
-}
+  }
 }
 
 .icon-block {
   padding: 0 15px;
 }
+
 .icon-block .material-icons {
   font-size: inherit;
 }
