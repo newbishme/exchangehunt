@@ -16,6 +16,7 @@ gem 'materialize-sass'
 gem 'material_icons'
 gem 'unicorn'
 gem 'unicorn-rails'
+gem 'react-rails'
 
 group :development do
   gem "better_errors"

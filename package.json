@@ -3,7 +3,8 @@
   "dependencies": {
     "browserify": "^10.2.6",
     "browserify-incremental": "^3.0.1",
-    "react": "^0.13.3"
+    "react": "^0.13.3",
+    "reactify": "^1.1.1"
   },
   "license": "MIT",
   "engines": {

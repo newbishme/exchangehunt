@@ -6,3 +6,4 @@ else
 end
 
 timeout 30
+listen "0.0.0.0:3000"
