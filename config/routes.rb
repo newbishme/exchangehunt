@@ -7,8 +7,6 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => { :omniauth_callbacks => 'callbacks' }
   root 'pages#index'
 
+  get 'users/username/:id', to: 'users#username'
   resources :users
-
-  # Redirect unknown paths to root
-  get '*path' => redirect('/') unless Rails.env.development?
 end

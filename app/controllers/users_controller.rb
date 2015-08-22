@@ -2,8 +2,15 @@ class UsersController < ApplicationController
   before_action :authenticate_user!, only: [:update]
   before_action :ensure_complete_registration, only: [:show]
 
-  before_action :set_user_by_username, only: :show
+  before_action :set_user_by_username, only: [:show, :username]
   before_action :set_user_by_id, only: :update
+
+  # check existence for username
+  def username
+    respond_to do |format|
+      format.json { render :ok, json: @user.username.to_json }
+    end
+  end
 
   def show
     respond_to do |format|
@@ -20,7 +27,7 @@ class UsersController < ApplicationController
   private
 
   def set_user_by_username
-    @user = User.find_by_username(params[:id])
+    @user = User.find_by_username(params[:id].downcase)
     raise ActionController::RoutingError.new('Not Found') if @user.nil?
   end
 
