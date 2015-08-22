@@ -1,7 +1,9 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user!, only: [:update]
+  before_action :ensure_complete_registration, only: [:show]
+
   before_action :set_user_by_username, only: :show
   before_action :set_user_by_id, only: :update
-  before_action :authenticate_user!, only: [:update]
 
   def show
     respond_to do |format|
