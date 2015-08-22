@@ -14,9 +14,11 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'materialize-sass'
 gem 'material_icons'
+gem 'unicorn'
+gem 'unicorn-rails'
 
 group :development do
-    gem "better_errors"
+  gem "better_errors"
 end
 
 group :development, :test do
