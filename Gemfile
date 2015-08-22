@@ -12,11 +12,15 @@ gem 'browserify-rails'
 gem 'devise'
 gem 'omniauth'
 gem 'omniauth-facebook'
-gem 'dotenv-rails', :groups => [:development, :test]
 gem 'materialize-sass'
 gem 'material_icons'
 
+group :development do
+    gem "better_errors"
+end
+
 group :development, :test do
+  gem 'dotenv-rails'
   gem 'guard-rspec', require: false
   gem 'rspec-rails', '~> 3.0'
   gem 'guard-rails'
