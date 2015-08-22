@@ -77,4 +77,5 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   config.action_mailer.default_url_options = { host: 'exchangehunt.herokuapp.com', port: 80 }
+  config.assets.paths << Rails.root.join('/app/assets/fonts')
 end

@@ -1,20 +1,33 @@
 <div id="index-banner" class="parallax-container">
   <div class="section no-pad-bot" id="main-banner">
     <div class="container">
-      <br /><br />
-      <h1 class="header center text-lighten-2">TRAVEL THE WORLD</h1>
-      <div class="row center">
-        <h5 class="header col s12 light">A modern responsive front-end framework based on Material Design</h5>
+      <div class="row center reset-margins">
+        <%= image_tag "exchangehunt_logo_white.png", id: "main-banner-logo" %>
       </div>
       <div class="row center">
-        <a href="http://materializecss.com/getting-started.html" id="download-button" class="btn-large waves-effect waves-light primary-color lighten-1">Get Started</a>
+        <h5 class="header col s12 light avenir-45">where global exchangers meet and connect</h5>
+      </div>
+      <div class="row center">
+        <a href="http://materializecss.com/getting-started.html" id="download-button" class="btn-large waves-effect waves-light primary-color lighten-1">put search bar here</a>
       </div>
       <br /><br />
     </div>
   </div>
   <div class="parallax">
-    <img src="assets/background1.png" alt="Main banner">
-    <div class="dimmed"></div>
+    <div class="overlay">
+    </div>
+      <img src="assets/background1.png" alt="Main banner">
+  </div>
+</div>
+
+<div class="container">
+  <div class="section">
+    <div class="row center">
+      <h2 class="primary-text-color"><span class="avenir-65">What is exchange</span><span class="avenir-85">hunt</span><span class="avenir-65">?</span></h2>
+    </div>
+    <div class="row center">
+      <h5 class="avenir-45">ExchangeHunt is a trusted community for student <br /> exchangers all around the world to connect with each <br /> other and build friendships.</h5>
+    </div>
   </div>
 </div>
 
@@ -25,28 +38,34 @@
     <div class="row">
       <div class="col s12 m4">
         <div class="icon-block">
-          <h2 class="center brown-text"><i class="material-icons">flash_on</i></h2>
-          <h5 class="center">Speeds up development</h5>
+          <div class="center">
+            <%= image_tag "landing_page_find", class: "responsive-img" %>
+          </div>
+          <h5 class="center avenir-95">FIND</h5>
 
-          <p class="light">We did most of the heavy lifting for you to provide a default stylings that incorporate our custom components. Additionally, we refined animations and transitions to provide a smoother experience for developers.</p>
+          <p class="avenir-55 center-align">find your fellow exchangers in <br /> your region to travel together,<br /> crash at each other’s couches,<br /> or simply to ask about his exchange’s experience!</p>
         </div>
       </div>
 
       <div class="col s12 m4">
         <div class="icon-block">
-          <h2 class="center brown-text"><i class="material-icons">group</i></h2>
-          <h5 class="center">User Experience Focused</h5>
+          <div class="center">
+            <%= image_tag "landing_page_connect", class: "responsive-img"%>
+          </div>
+          <h5 class="center avenir-95">CONNECT</h5>
 
-          <p class="light">By utilizing elements and principles of Material Design, we were able to create a framework that incorporates components and animations that provide more feedback to users. Additionally, a single underlying responsive system across all platforms allow for a more unified user experience.</p>
+          <p class="avenir-55 center-align">connect with them by sending <br /> them a “hello” message!</p>
         </div>
       </div>
 
       <div class="col s12 m4">
         <div class="icon-block">
-          <h2 class="center brown-text"><i class="material-icons">settings</i></h2>
-          <h5 class="center">Easy to work with</h5>
+          <div class="center">
+            <%= image_tag "landing_page_build", class: "responsive-img" %>
+          </div>
+          <h5 class="center avenir-95">BUILD</h5>
 
-          <p class="light">We have provided detailed documentation as well as specific code examples to help new users get started. We are also always open to feedback and can answer any questions a user may have about Materialize.</p>
+          <p class="avenir-55 center-align">build international friendships <br /> and lasting memories in your<br /> once-in-a-lifetime exchange experience</p>
         </div>
       </div>
     </div>

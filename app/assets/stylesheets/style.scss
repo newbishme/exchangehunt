@@ -8,8 +8,46 @@
 
 @import "materialize/components/color";
 
+* {
+  font-family: "Avenir LT Std 65 Medium"
+}
+
 .primary-color {
-  @extend .indigo;
+  @extend .green;
+  @extend .darken-3;
+}
+
+.primary-text-color {
+  @extend .green-text;
+  @extend .text-darken-3;
+}
+
+.avenir-45 {
+  font-family: "Avenir LT Std 45 Book"
+}
+
+.avenir-55 {
+  font-family: "Avenir LT Std 55 Roman"
+}
+
+.avenir-65 {
+  font-family: "Avenir LT Std 65 Medium"
+}
+
+.avenir-85 {
+  font-family: "Avenir LT Std 85 Heavy"
+}
+
+.avenir-95 {
+  font-family: "Avenir LT Std 95 Black"
+}
+
+.reset-margins {
+  margin: 0;
+}
+
+nav {
+
 }
 
 nav ul a,
@@ -42,24 +80,30 @@ p {
   }
 }
 
-.dimmed {
-  position: relative;
-}
-
-.dimmed:after {
-  content: " ";
-  z-index: 10;
-  display: block;
+div.overlay {
   position: absolute;
-  height: 100%;
   top: 0;
   left: 0;
   right: 0;
-  background: rgba(255, 0, 0, 0.5);
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.55);
+  z-index: 9999;
+  color: black;
 }
 
 #main-banner {
   height: 40vh;
+}
+
+#main-banner-logo {
+  margin-top: 5em;
+  height: auto;
+  max-width: 40%;
+}
+
+#index-banner {
+  padding-top: 7em;
+  padding-bottom: 7em;
 }
 
 @media only screen and (max-width : 992px) {

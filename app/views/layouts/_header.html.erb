@@ -1,21 +1,23 @@
-<nav class="primary-color" role="navigation">
-  <div class="nav-wrapper container">
-    <%= link_to "ExchangeHunt", root_path, id: "logo-container", class: "brand-logo" %>
+<div>
+  <nav class="primary-color" role="navigation">
+    <div class="nav-wrapper container">
+      <%= link_to "ExchangeHunt", root_path, id: "logo-container", class: "brand-logo" %>
 
-    <ul class="right hide-on-med-and-down">
-      <% if user_signed_in? %>
-        <% if current_user.username? %>
-          <li><%= link_to current_user.full_name, user_path(current_user.username) %></li>
+      <ul class="right hide-on-med-and-down">
+        <% if user_signed_in? %>
+          <% if current_user.username? %>
+            <li><%= link_to current_user.full_name, user_path(current_user.username) %></li>
+          <% end %>
+          <li><%= link_to "Log Out", destroy_user_session_path, :method => :delete %></li>
+        <% else %>
+          <li><%= link_to "Log In with Facebook", user_omniauth_authorize_path(:facebook) %></li>
         <% end %>
-        <li><%= link_to "Log Out", destroy_user_session_path, :method => :delete %></li>
-      <% else %>
-        <li><%= link_to "Log In with Facebook", user_omniauth_authorize_path(:facebook) %></li>
-      <% end %>
-    </ul>
+      </ul>
 
-    <ul id="nav-mobile" class="side-nav">
-      <li><a href="#">Navbar Link</a></li>
-    </ul>
-    <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
-  </div>
-</nav>
+      <ul id="nav-mobile" class="side-nav">
+        <li><a href="#">Navbar Link</a></li>
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+</div>

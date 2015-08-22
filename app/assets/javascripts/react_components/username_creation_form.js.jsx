@@ -37,19 +37,7 @@ var UsernameCreationForm = React.createClass({
   },
 
   validateUsername: function(username) {
-    this.renderValidUsername();
-
-    if (username === "") {
-      this.renderBlankUsername("");
-      return;
-    }
-    this.renderValidUsername();
-
-    if (!/^\w+$/.test(username)) {
-      this.renderInvalidCharactersUsername();
-      return;
-    }    
-    this.renderValidUsername();
+    $(React.findDOMNode(this.refs.createUsernameButton)).addClass("disabled");
 
     var request = new XMLHttpRequest();
     request.open('GET', "/users/username/" + username, true);
@@ -58,6 +46,19 @@ var UsernameCreationForm = React.createClass({
         this.renderUsernameTaken();
       } else {
         this.renderValidUsername();
+
+        if (username === "") {
+          this.renderBlankUsername("");
+          return;
+        }
+        this.renderValidUsername();
+
+        if (!/^\w+$/.test(username)) {
+          this.renderInvalidCharactersUsername();
+          return;
+        }
+        this.renderValidUsername();
+
       }
     }.bind(this);
 
