@@ -5,3 +5,15 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+require 'csv'
+
+def seed_institutions
+  csv_text = File.read("db/institutions.csv")
+  csv = CSV.parse(csv_text, :headers => true)
+  csv.each do |row|
+    Institution.create!(row.to_hash)
+  end
+end
+
+seed_institutions

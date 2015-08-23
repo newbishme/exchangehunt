@@ -73,13 +73,18 @@ var UsernameCreationForm = React.createClass({
 
   handleSubmitButtonClick: function() {
     var username = React.findDOMNode(this.refs.usernameField).value;
+    var homeInstitution = React.findDOMNode(this.refs.homeInstitutionField).value;
+    var exchangeInstitution = React.findDOMNode(this.refs.exchangeInstitutionField).value;
+
     if (username === "") {
       return;
     } else {
       $.ajax({
         url: "/users/" + this.props.user_id,
         type: "PUT",
-        data: { user: { username: username } },
+        data: { user: { username: username, 
+                        home_institution: homeInstitution, 
+                        exchange_institution: exchangeInstitution} },
         success: function(response) {
           window.location.href = "/users/" + response
         }.bind(this)
@@ -89,26 +94,54 @@ var UsernameCreationForm = React.createClass({
 
   render: function() {
     return (
-      <div className="row">
-        <br />
-        <h3>Choose your username</h3>
-        <h5><span>Your profile URL: exchangehunt.com/users/</span><span ref="profilePathExample"></span></h5>
-        <h6><span className="red-text hide" ref="blankUsernameMessage">Username cannot be blank.</span></h6>
-        <h6><span className="red-text hide" ref="usernameTakenMessage">Username in use, please choose another username.</span></h6>
-        <h6><span className="red-text hide" ref="invalidCharactersMessage">Username can only contain alphanumeric characters and underscore: A-Z 0-9 _</span></h6>
-        <form className="col s12">
-          <div className="row">
-            <div className="input-field col s12">
-              <i className="material-icons prefix">account_circle</i>
-              <input id="icon_prefix" type="text" className="validate" onChange={this.handleTextAreaChange} ref="usernameField"></input>
-              <label htmlFor="icon_prefix">Username</label>
+      <div>
+        <div className="row">
+          <br />
+          <h3>Complete your profile</h3>
+          <h5><span>Your profile URL: exchangehunt.com/users/</span><span ref="profilePathExample"></span></h5>
+          <h6><span className="red-text hide" ref="blankUsernameMessage">Username cannot be blank.</span></h6>
+          <h6><span className="red-text hide" ref="usernameTakenMessage">Username in use, please choose another username.</span></h6>
+          <h6><span className="red-text hide" ref="invalidCharactersMessage">Username can only contain alphanumeric characters and underscore: A-Z 0-9 _</span></h6>
+          <form className="col s12">
+            <div className="row">
+              <div className="input-field col s12">
+                <i className="material-icons prefix">account_circle</i>
+                <input id="icon_prefix" type="text" className="validate" onChange={this.handleTextAreaChange} ref="usernameField"></input>
+                <label htmlFor="icon_prefix">Username</label>
+              </div>
             </div>
-          </div>
-        </form>
-        <button className="btn waves-effect waves-light btn-large disabled"
-          ref="createUsernameButton"
-          type="submit"
-          onClick={this.handleSubmitButtonClick}><i className="material-icons left">send</i>Create</button>
+          </form>
+            </div>
+        <div className="row">
+          <h5 className="inline">Enter your home institution</h5><span className="inline">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span className="inline">Send a request to include your institution</span>
+          <form className="col s12">
+            <div className="row">
+              <div className="input-field col s12">
+                <i className="material-icons prefix">home</i>
+                <label htmlFor="icon_prefix">Home Institution</label>
+                <input id="icon_prefix" type="text" className="validate" ref="homeInstitutionField"></input>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div className="row">
+          <h5 className="inline">Enter your exchange institution</h5><span className="inline">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span className="inline">Send a request to include your institution</span>
+          <form className="col s12">
+            <div className="row">
+              <div className="input-field col s12">
+                <i className="material-icons prefix">school</i>
+                <label htmlFor="icon_prefix">Exchange Institution</label>
+                <input id="icon_prefix" type="text" className="validate" ref="exchangeInstitutionField"></input>
+              </div>
+            </div>
+          </form>
+        </div>
+          <div className="row">
+          <button className="btn waves-effect waves-light btn-large disabled"
+            ref="createUsernameButton"
+            type="submit"
+            onClick={this.handleSubmitButtonClick}><i className="material-icons left">send</i>Create</button>
+        </div>
       </div>
     );
   }
