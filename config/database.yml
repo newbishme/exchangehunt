@@ -18,7 +18,7 @@ production:
   adapter: postgresql
   encoding: unicode
   database: exchangehunt_production
-  host: "172.17.0.131"
+  host: ENV["pg_host"]
   pool: 5
   username: ENV["pg_username"]
   password: ENV["pg_password"]
