@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get 'institutions/new'
+  get 'institutions/show'
 
   get 'welcome/index'
 
