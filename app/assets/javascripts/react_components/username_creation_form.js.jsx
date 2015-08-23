@@ -92,7 +92,7 @@ var UsernameCreationForm = React.createClass({
       <div>
         <div className="row">
           <br />
-          <h3>Choose your username</h3>
+          <h3>Complete your profile</h3>
           <h5><span>Your profile URL: exchangehunt.com/users/</span><span ref="profilePathExample"></span></h5>
           <h6><span className="red-text hide" ref="blankUsernameMessage">Username cannot be blank.</span></h6>
           <h6><span className="red-text hide" ref="usernameTakenMessage">Username in use, please choose another username.</span></h6>
@@ -108,7 +108,7 @@ var UsernameCreationForm = React.createClass({
           </form>
             </div>
         <div className="row">
-          <h5>Enter your home institution</h5>
+          <h5 className="inline">Enter your home institution</h5><span className="inline">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span className="inline">Send a request to include your institution</span>
           <form className="col s12">
             <div className="row">
               <div className="input-field col s12">
@@ -120,7 +120,7 @@ var UsernameCreationForm = React.createClass({
           </form>
         </div>
         <div className="row">
-          <h5>Enter your exchange institution</h5>
+          <h5 className="inline">Enter your exchange institution</h5><span className="inline">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span className="inline">Send a request to include your institution</span>
           <form className="col s12">
             <div className="row">
               <div className="input-field col s12">
@@ -130,6 +130,8 @@ var UsernameCreationForm = React.createClass({
               </div>
             </div>
           </form>
+        </div>
+          <div className="row">
           <button className="btn waves-effect waves-light btn-large disabled"
             ref="createUsernameButton"
             type="submit"
