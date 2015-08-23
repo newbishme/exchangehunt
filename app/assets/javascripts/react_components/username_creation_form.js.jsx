@@ -89,26 +89,52 @@ var UsernameCreationForm = React.createClass({
 
   render: function() {
     return (
-      <div className="row">
-        <br />
-        <h3>Choose your username</h3>
-        <h5><span>Your profile URL: exchangehunt.com/users/</span><span ref="profilePathExample"></span></h5>
-        <h6><span className="red-text hide" ref="blankUsernameMessage">Username cannot be blank.</span></h6>
-        <h6><span className="red-text hide" ref="usernameTakenMessage">Username in use, please choose another username.</span></h6>
-        <h6><span className="red-text hide" ref="invalidCharactersMessage">Username can only contain alphanumeric characters and underscore: A-Z 0-9 _</span></h6>
-        <form className="col s12">
-          <div className="row">
-            <div className="input-field col s12">
-              <i className="material-icons prefix">account_circle</i>
-              <input id="icon_prefix" type="text" className="validate" onChange={this.handleTextAreaChange} ref="usernameField"></input>
-              <label htmlFor="icon_prefix">Username</label>
+      <div>
+        <div className="row">
+          <br />
+          <h3>Choose your username</h3>
+          <h5><span>Your profile URL: exchangehunt.com/users/</span><span ref="profilePathExample"></span></h5>
+          <h6><span className="red-text hide" ref="blankUsernameMessage">Username cannot be blank.</span></h6>
+          <h6><span className="red-text hide" ref="usernameTakenMessage">Username in use, please choose another username.</span></h6>
+          <h6><span className="red-text hide" ref="invalidCharactersMessage">Username can only contain alphanumeric characters and underscore: A-Z 0-9 _</span></h6>
+          <form className="col s12">
+            <div className="row">
+              <div className="input-field col s12">
+                <i className="material-icons prefix">account_circle</i>
+                <input id="icon_prefix" type="text" className="validate" onChange={this.handleTextAreaChange} ref="usernameField"></input>
+                <label htmlFor="icon_prefix">Username</label>
+              </div>
             </div>
-          </div>
-        </form>
-        <button className="btn waves-effect waves-light btn-large disabled"
-          ref="createUsernameButton"
-          type="submit"
-          onClick={this.handleSubmitButtonClick}><i className="material-icons left">send</i>Create</button>
+          </form>
+            </div>
+        <div className="row">
+          <h5>Enter your home institution</h5>
+          <form className="col s12">
+            <div className="row">
+              <div className="input-field col s12">
+                <i className="material-icons prefix">home</i>
+                <label htmlFor="icon_prefix">Home Institution</label>
+                <input id="icon_prefix" type="text" className="validate" ref="homeInstitutionField"></input>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div className="row">
+          <h5>Enter your exchange institution</h5>
+          <form className="col s12">
+            <div className="row">
+              <div className="input-field col s12">
+                <i className="material-icons prefix">school</i>
+                <label htmlFor="icon_prefix">Exchange Institution</label>
+                <input id="icon_prefix" type="text" className="validate" ref="exchangeInstitutionField"></input>
+              </div>
+            </div>
+          </form>
+          <button className="btn waves-effect waves-light btn-large disabled"
+            ref="createUsernameButton"
+            type="submit"
+            onClick={this.handleSubmitButtonClick}><i className="material-icons left">send</i>Create</button>
+        </div>
       </div>
     );
   }
