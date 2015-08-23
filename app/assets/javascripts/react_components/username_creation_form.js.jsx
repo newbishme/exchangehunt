@@ -73,13 +73,18 @@ var UsernameCreationForm = React.createClass({
 
   handleSubmitButtonClick: function() {
     var username = React.findDOMNode(this.refs.usernameField).value;
+    var homeInstitution = React.findDOMNode(this.refs.homeInstitutionField).value;
+    var exchangeInstitution = React.findDOMNode(this.refs.exchangeInstitutionField).value;
+
     if (username === "") {
       return;
     } else {
       $.ajax({
         url: "/users/" + this.props.user_id,
         type: "PUT",
-        data: { user: { username: username } },
+        data: { user: { username: username, 
+                        home_institution: homeInstitution, 
+                        exchange_institution: exchangeInstitution} },
         success: function(response) {
           window.location.href = "/users/" + response
         }.bind(this)
