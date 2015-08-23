@@ -18,7 +18,7 @@ production:
   adapter: postgresql
   encoding: unicode
   database: exchangehunt_production
-  host: ENV["pg_host"]
+  host: <%= ENV["pg_host"] %>
   pool: 5
-  username: ENV["pg_username"]
-  password: ENV["pg_password"]
+  username: <%= ENV["pg_username"] %>
+  password: <%= ENV["pg_password"] %>
