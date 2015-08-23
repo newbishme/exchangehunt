@@ -2,8 +2,10 @@
   <div class="section">
     <div class="row">
       <div class="col s12 offset-m8 m4">
-        <%= link_to "Sign up with Facebook", user_omniauth_authorize_path(:facebook), class: "waves-effect waves-light btn primary-color", id: "main-login-button" %>
-        <%= link_to "Log in", user_omniauth_authorize_path(:facebook), class: "waves-effect waves-light btn btn-flat white-text", id: "main-login-button" %>
+        <% if !user_signed_in? %>
+          <%= link_to "Sign up with Facebook", user_omniauth_authorize_path(:facebook), class: "waves-effect waves-light btn primary-color", id: "main-login-button" %>
+          <%= link_to "Log in", user_omniauth_authorize_path(:facebook), class: "waves-effect waves-light btn btn-flat white-text", id: "main-login-button" %>
+        <% end %>
       </div>
     </div>
   </div>

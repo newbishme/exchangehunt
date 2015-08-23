@@ -1,12 +1,24 @@
-<div>
+<div class="navbar-fixed">
   <nav class="primary-color" role="navigation">
     <div class="nav-wrapper container">
-      <%= link_to "ExchangeHunt", root_path, id: "logo-container", class: "brand-logo" %>
+      <ul class="left hide-on-med-and-down valign-wrapper">
+        <li><%= link_to image_tag("exchangehunt_logo_mascot_white.png", :alt => "Exchange Hunt Mascot Icon", :class => "valign"), root_path %></li>
+        <!--<li><%= link_to "Home", root_path, class: "truncate" %></li>-->
+        <% if user_signed_in? %>
+          <% if current_user.home_institution? %>
+            <li class="<%= 'active' if params[:controller] == 'institutions' %>"><%= link_to current_user.home_institution, user_path(current_user.home_institution), class: "truncate" %></li>
+          <% end %>
+          <% if current_user.exchange_institution? %>
+            <li class="<%= 'active' if params[:controller] == 'institutions' %>"><%= link_to current_user.exchange_institution, user_path(current_user.exchange_institution), class: "truncate" %></li>
+          <% end %>
+        <% end %>
+      </ul>
 
       <ul class="right hide-on-med-and-down">
         <% if user_signed_in? %>
+          <li class="<%= 'active' if params[:controller] == 'messages' %>"><%= link_to "Messages", user_path(current_user.username) %></li>
           <% if current_user.username? %>
-            <li><%= link_to current_user.full_name, user_path(current_user.username) %></li>
+            <li class="<%= 'active' if params[:controller] == 'users' %>"><%= link_to current_user.full_name, user_path(current_user.username), class: "truncate" %></li>
           <% end %>
           <li><%= link_to "Log Out", destroy_user_session_path, :method => :delete %></li>
         <% else %>
