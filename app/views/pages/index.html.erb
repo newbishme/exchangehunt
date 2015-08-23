@@ -1,22 +1,35 @@
 <div id="index-banner" class="parallax-container">
-  <div class="section no-pad-bot" id="main-banner">
+  <div class="section">
+    <div class="row">
+      <div class="col s12 offset-m8 m4">
+        <%= link_to "Sign up with Facebook", user_omniauth_authorize_path(:facebook), class: "waves-effect waves-light btn primary-color", id: "main-login-button" %>
+        <%= link_to "Log in", user_omniauth_authorize_path(:facebook), class: "waves-effect waves-light btn btn-flat white-text", id: "main-login-button" %>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="main-banner">
     <div class="container">
       <div class="row center reset-margins">
         <%= image_tag "exchangehunt_logo_white.png", id: "main-banner-logo" %>
       </div>
       <div class="row center">
-        <h5 class="header col s12 light avenir-45">where global exchangers meet and connect</h5>
+        <h4 class="header col s12 light avenir-45">where global exchangers meet and connect</h4>
       </div>
+
       <div class="row center">
-        <a href="http://materializecss.com/getting-started.html" id="download-button" class="btn-large waves-effect waves-light primary-color lighten-1">put search bar here</a>
+        <form class="col offset-s2 s8 offset-m2 m8">
+          <div class="input-field" id="main-search-bar">
+            <i class="material-icons prefix">search</i>
+            <input type="text" class="validate" >
+            <label for="searchText"  id="search-bar-overlay" class="clickthrough">Search for a university</label>
+          </div>
+        </form>
       </div>
-      <br /><br />
     </div>
   </div>
   <div class="parallax">
-    <div class="overlay">
-    </div>
-      <img src="assets/background1.png" alt="Main banner">
+    <div class="overlay-black"></div>
+    <img src="assets/background1.png" alt="Main banner">
   </div>
 </div>
 
@@ -26,24 +39,22 @@
       <h2 class="primary-text-color"><span class="avenir-65">What is exchange</span><span class="avenir-85">hunt</span><span class="avenir-65">?</span></h2>
     </div>
     <div class="row center">
-      <h5 class="avenir-45">ExchangeHunt is a trusted community for student <br /> exchangers all around the world to connect with each <br /> other and build friendships.</h5>
+      <h5 class="avenir-45"><span class="avenir-65">exchange</span><span class="avenir-85">hunt</span> is a trusted community for student <br /> exchangers all around the world to connect with each <br /> other and build friendships.</h5>
     </div>
   </div>
 </div>
 
 <div class="container">
   <div class="section">
-
-    <!--   Icon Section   -->
     <div class="row">
+
       <div class="col s12 m4">
         <div class="icon-block">
           <div class="center">
             <%= image_tag "landing_page_find", class: "responsive-img" %>
           </div>
           <h5 class="center avenir-95">FIND</h5>
-
-          <p class="avenir-55 center-align">find your fellow exchangers in <br /> your region to travel together,<br /> crash at each other’s couches,<br /> or simply to ask about his exchange’s experience!</p>
+          <p class="avenir-55 center-align">your fellow exchangers in <br /> your region to travel together,<br /> crash at each other’s couches,<br /> or simply to ask about his exchange’s experience!</p>
         </div>
       </div>
 
@@ -53,8 +64,7 @@
             <%= image_tag "landing_page_connect", class: "responsive-img"%>
           </div>
           <h5 class="center avenir-95">CONNECT</h5>
-
-          <p class="avenir-55 center-align">connect with them by sending <br /> them a “hello” message!</p>
+          <p class="avenir-55 center-align">with them by sending <br /> them a “hello” message!</p>
         </div>
       </div>
 
@@ -64,48 +74,48 @@
             <%= image_tag "landing_page_build", class: "responsive-img" %>
           </div>
           <h5 class="center avenir-95">BUILD</h5>
-
-          <p class="avenir-55 center-align">build international friendships <br /> and lasting memories in your<br /> once-in-a-lifetime exchange experience</p>
+          <p class="avenir-55 center-align">international friendships <br /> and lasting memories in your<br /> once-in-a-lifetime exchange experience</p>
         </div>
       </div>
-    </div>
-
-  </div>
-</div>
 
 
-<div class="parallax-container valign-wrapper">
-  <div class="section no-pad-bot">
-    <div class="container">
-      <div class="row center">
-        <h5 class="header col s12 light">A modern responsive front-end framework based on Material Design</h5>
+      <div class="col s12 m12">
+        <div class="center">
+          <%= link_to "Sign up with Facebook", user_omniauth_authorize_path(:facebook), class: "waves-effect waves-light btn-large btn-cta primary-color" %>
+        </div>
       </div>
+
     </div>
   </div>
-  <div class="parallax"><img src="assets/background2.jpg" alt="Unsplashed background img 2"></div>
 </div>
+
 
 <div class="container">
   <div class="section">
 
     <div class="row">
       <div class="col s12 center">
-        <h3><i class="mdi-content-send brown-text"></i></h3>
-        <h4>Contact Us</h4>
-        <p class="left-align light">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam scelerisque id nunc nec volutpat. Etiam pellentesque tristique arcu, non consequat magna fermentum ac. Cras ut ultricies eros. Maecenas eros justo, ullamcorper a sapien id, viverra ultrices eros. Morbi sem neque, posuere et pretium eget, bibendum sollicitudin lacus. Aliquam eleifend sollicitudin diam, eu mattis nisl maximus sed. Nulla imperdiet semper molestie. Morbi massa odio, condimentum sed ipsum ac, gravida ultrices erat. Nullam eget dignissim mauris, non tristique erat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;</p>
+        <h5>Participating Universities</h5>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col s12 m4">
+        <div class="center">
+          <%= image_tag "logo_nus.png" %>
+        </div>
+      </div>
+      <div class="col s12 m4">
+        <div class="center">
+          <%= image_tag "logo_ntu.png" %>
+        </div>
+      </div>
+      <div class="col s12 m4">
+        <div class="center">
+          <%= image_tag "logo_smu.png" %>
+        </div>
       </div>
     </div>
 
   </div>
-</div>
-
-<div class="parallax-container valign-wrapper">
-  <div class="section no-pad-bot">
-    <div class="container">
-      <div class="row center">
-        <h5 class="header col s12 light">A modern responsive front-end framework based on Material Design</h5>
-      </div>
-    </div>
-  </div>
-  <div class="parallax"><img src="assets/background3.jpg" alt="Unsplashed background img 3"></div>
 </div>

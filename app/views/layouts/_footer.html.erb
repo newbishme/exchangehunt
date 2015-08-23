@@ -1,22 +1,24 @@
 <footer class="page-footer primary-color">
   <div class="container">
     <div class="row">
-      <div class="col l6 s12">
-        <h5 class="white-text">About</h5>
-        <p class="grey-text text-lighten-4">ExchangeHunt is a social platform specially for student exchangers to connect with one and another.</p>
+      <%= image_tag "exchangehunt_logo_white.png", id: "footer-logo" %>
+    </div>
+    <div class="row">
+      <div class="col l8 s12">
+        <h5 class="white-text">About us</h5>
+        <p class="grey-text text-lighten-4">Exchangehunt is a trusted community for student exchangers all around the world to connect with each other and build friendships.</p>
       </div>
-      <div class="col l3 s12">
-        <h5 class="white-text">Settings</h5>
+      <div class="col offset-l2 l2 s12">
         <ul>
-          <li><a class="white-text" href="#!">Link 1</a></li>
-          <li><a class="white-text" href="#!">Link 2</a></li>
-        </ul>
-      </div>
-      <div class="col l3 s12">
-        <h5 class="white-text">Connect</h5>
-        <ul>
-          <li><a class="white-text" href="#!">Link 1</a></li>
-          <li><a class="white-text" href="#!">Link 2</a></li>
+          <li>
+            <%= link_to "Privacy", "/privacy_policy", class: "white-text" %>
+          </li>
+          <li>
+          <%= link_to "FAQ", "/faq", class: "white-text" %>
+          </li>
+          <li>
+          <%= link_to "Contact us", "/support", class: "white-text" %>
+          </li>
         </ul>
       </div>
     </div>

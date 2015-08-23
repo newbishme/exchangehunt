@@ -22,6 +22,14 @@
   @extend .text-darken-3;
 }
 
+.clickthrough {
+  pointer-events: none;
+}
+
+.width-50vw {
+  max-width: 50vw;
+}
+
 .avenir-45 {
   font-family: "Avenir LT Std 45 Book"
 }
@@ -42,14 +50,6 @@
   font-family: "Avenir LT Std 95 Black"
 }
 
-.reset-margins {
-  margin: 0;
-}
-
-nav {
-
-}
-
 nav ul a,
 nav .brand-logo {
   color: #444;
@@ -65,7 +65,6 @@ p {
 
 .parallax-container {
   min-height: 380px;
-  line-height: 0;
   height: auto;
   color: rgba(255,255,255,.9);
 
@@ -86,9 +85,23 @@ div.overlay {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.55);
   z-index: 9999;
-  color: black;
+}
+
+div.overlay-black {
+  @extend div.overlay;
+  background-color: rgba(0, 0, 0, 0.75);
+}
+
+div.overlay-white {
+  @extend div.overlay;
+  background-color: rgba(255, 255, 255, 0.35);
+}
+
+// Landing page
+
+#main-login-button {
+  margin-top: -3em;
 }
 
 #main-banner {
@@ -98,12 +111,30 @@ div.overlay {
 #main-banner-logo {
   margin-top: 5em;
   height: auto;
-  max-width: 40%;
+  max-width: 50%;
+}
+
+#footer-logo {
+  height: auto;
+  max-width: 30%;
 }
 
 #index-banner {
-  padding-top: 7em;
-  padding-bottom: 7em;
+  padding-top: 2.2em;
+  padding-bottom: 2.2em;
+}
+
+.btn-cta {
+  margin-top: 1.5em;
+  width: 25vw;
+  min-width: 300px;
+  max-width: 400px;
+  margin-bottom: 1.5em;
+}
+
+.right-vertical-line {
+  border-right: solid white;
+  border-width: 2px;
 }
 
 @media only screen and (max-width : 992px) {
