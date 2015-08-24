@@ -5,40 +5,15 @@
       	<div class="row">
       		<!-- empty row for spacer -->
       	</div>
-
       	<!-- left side nav -->
-      	<div class="row s11">
-      	  <div class="col s11">
-      	  	<!-- page navigation buttons -->
-      	  	<div class="collection">
-      	  	<a href="#general" class="waves-effect waves-light btn collection-item primary-text-color" style="display:block">General</a>
-
-      	  	<a href="#privacy" class="waves-effect waves-light btn collection-item primary-text-color" style="display:block">Privacy</a>
-      	  	</div>
-      	  </div>
-      	</div>
-
       	<div class="row">
-      		<!-- empty row for spacer -->
-      	</div>
-      	<div class="row">
-      		<!-- empty row for spacer -->
-      	</div>
-      	<div class="row">
-      		<!-- empty row for spacer -->
-      	</div>
-      	<div class="row">
-      		<!-- empty row for spacer -->
-      	</div>
-
-      	<div class="row">
-      	  <div class="col s11">
-      	    <span class="avenir-55">Any burning questions?</span>
-      	<div class="collection">
-      	<a href="support" class="waves-effect waves-light btn collection-item primary-text-color" style="display:block">Contact us</a>
-      	</div>
-      	  </div>
-      	</div>
+               <div class="col s12">
+                    <!-- page navigation buttons -->
+                    <a href="#general" class="waves-effect waves-teal btn-flat primary-text-color" style="display:block">General</a>
+                    <a href="#privacy" class="waves-effect waves-teal btn-flat primary-text-color" style="display:block">Privacy</a>
+                    <a href="#support" class="waves-effect waves-teal btn-flat primary-text-color" style="display:block">Support</a>
+              </div>
+        </div>
       </div>
       <div class="col s9">
       	<!-- right side content -->
@@ -157,7 +132,28 @@
       	    		This is to authenticate users’ identities.
       	    	</blockquote>
       	    </div>
-		</span>
+
+		    <a name="support"></a>
+
+                <div class="row">
+                  <!-- empty row for spacing -->
+                </div>
+
+                <div class="row">
+                  <h4>
+                        SUPPORT
+                  </h4>
+                </div>
+                <div class="row">
+                  <span class="avenir-85">
+                        Still have a burning question? 
+                  </span>
+                </div>
+                <div class="row">
+                  <blockquote>
+                        <%= link_to "Contact us now!", support_path %>
+                  </blockquote>
+                </div>
       	  </div>
       	</div>
       </div>
