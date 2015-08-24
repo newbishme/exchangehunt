@@ -1,10 +1,14 @@
 <div id="index-banner" class="parallax-container">
   <div class="section">
     <div class="row">
-      <div class="col s12 offset-m8 m4">
+      <div class="col offset-l8 l4 hide-on-med-and-down">
         <% if !user_signed_in? %>
-          <%= link_to "Sign up with Facebook", user_omniauth_authorize_path(:facebook), class: "waves-effect waves-light btn primary-color", id: "main-login-button" %>
-          <%= link_to "Log in", user_omniauth_authorize_path(:facebook), class: "waves-effect waves-light btn btn-flat white-text", id: "main-login-button" %>
+          <div class="col m6">
+            <%= link_to "Sign up with Facebook", user_omniauth_authorize_path(:facebook), class: "waves-effect waves-light btn primary-color", id: "main-login-button" %>
+          </div>
+          <div class="col m6">
+            <%= link_to "Log in", user_omniauth_authorize_path(:facebook), class: "waves-effect waves-light btn btn-flat white-text", id: "main-login-button" %>
+          </div>
         <% end %>
       </div>
     </div>
@@ -117,8 +121,8 @@
 
 <script type="text/javascript" charset="utf-8">
   (function() {
-      React.render(React.createElement(
-            SearchBar, {}),
-            document.getElementById("search-bar"));
-      })();
-</script>
+   React.render(React.createElement(
+         SearchBar, {}),
+       document.getElementById("search-bar"));
+   })();
+ </script>

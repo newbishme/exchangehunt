@@ -7,9 +7,9 @@
     <%= csrf_meta_tags %>
   </head>
   <body>
-    <%= render 'layouts/header' unless current_page?(root_path) && current_user == nil %>
+    <%= render 'layouts/header' unless current_page?(root_path) && current_user.nil? %>
     <%= yield %>
-    <%= render 'layouts/footer'%>
+    <%= render 'layouts/footer' %>
     <%= render 'shared/facebook_sdk' %>
     <%= render('shared/google_analytics') if Rails.env.production? %>
   </body>
