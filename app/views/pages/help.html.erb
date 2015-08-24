@@ -112,7 +112,7 @@
       	    </div>
       	    <div class="row">
       	    	<blockquote>
-      	    		Yes. At Exchangehunt, we want to create a trusted community of exchange students without minimal barrier. However, if you are doubtful of the sender’s identity, you can choose not to respond or report to us.
+      	    		Yes. At Exchangehunt, we want to create a trusted community of exchange students with minimal barrier. However, if you are doubtful of the sender’s identity, you can choose not to respond or <%= link_to "report the sender's inappropriate activity to us", support_path %>.
       	    	</blockquote>
       	    </div>
       	    <div class="row">
@@ -144,7 +144,7 @@
       	    </div>
       	    <div class="row">
       	    	<blockquote>
-      	    		We use a two steps user authentication— Facebook and user’s home university to confirm its student identity. Also, users can only change their profile picture from Facebook. We operate on trust, and have a report system for users to report other users’ fake identity. Users can report suspicious identities by writing [Link to contact form page] to us.
+      	    		We use a two steps user authentication— Facebook and user’s home university to confirm its student identity. Also, users can only change their profile picture from Facebook. We operate on trust, and have a report system for users to report other users’ fake identity. Users can report suspicious identities by <%= link_to "contacting us", support_path %>.
       	    	</blockquote>
       	    </div>
       	    <div class="row">
@@ -164,3 +164,4 @@
     </div>
   </div>
 </div>
+<%= render 'pages/help_scripts' %>
