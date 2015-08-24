@@ -1,5 +1,29 @@
 <div class="container">
-  This is the profile page for <%= @user.full_name %>
-  <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-  <%= image_tag @user.image_url %>
+  <div class="section">
+    <div class="row valign-wrapper">
+      <div class="col s3">
+        <%= image_tag @user.image_url, class: "circle responsive-img right" %>
+      </div>
+      <div class="col s7 primary-text-color">
+      	<h2 class="avenir-65">
+      	  <span><%= @user.first_name %></span>
+      	</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s6 offset-s3">
+      	  <span>SINGAPOREAN</span><br/>
+      	  <span>COMPUTER SCIENCE</span><br/>
+      	  <span>NATIONAL UNIVERSITY OF SINGAPORE</span><br/>
+      	  <br/>
+      	  <span class="avenir-85">Visiting:</span><br/>
+      	  <span>NANYANG TECHNOLOGICAL UNIVERSITY</span><br/>
+      	  <span>2015-2016</span><br/>
+      	  <br/>
+      	  <span>Drop a message</span><br/>
+      	  <br/>
+      	  <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In felis arcu, porttitor in mauris eget, iaculis lobortis tortor. Etiam pretium molestie lacus. Fusce ultrices eget elit et auctor.</span><br/>
+      </div>
+    </div>
+  </div>
 </div>
