@@ -1,12 +1,16 @@
 <div id="index-banner" class="parallax-container">
   <div class="section">
-    <div class="row">
-      <div class="col s12 offset-m8 m4">
+    <div class="nav-wrapper container right hide-on-med-and-down">
         <% if !user_signed_in? %>
-          <%= link_to "Sign up with Facebook", user_omniauth_authorize_path(:facebook), class: "waves-effect waves-light btn primary-color", id: "main-login-button" %>
-          <%= link_to "Log in", user_omniauth_authorize_path(:facebook), class: "waves-effect waves-light btn btn-flat white-text", id: "main-login-button" %>
+          <ul class="right valign-wrapper">
+            <li class="valign right">
+              <%= link_to "Sign up with Facebook", user_omniauth_authorize_path(:facebook), class: "waves-effect waves-light btn primary-color", id: "main-signup-button" %>
+            </li>
+            <li>
+              <%= link_to "Log in", user_omniauth_authorize_path(:facebook), class: "waves-effect waves-light btn btn-flat white-text", id: "main-login-button" %>
+            </li>
+          </ul>
         <% end %>
-      </div>
     </div>
   </div>
   <div class="section" id="main-banner">
@@ -15,7 +19,7 @@
         <%= image_tag "exchangehunt_logo_white.png", id: "main-banner-logo" %>
       </div>
       <div class="row center">
-        <h4 class="header col s12 light avenir-45">where global exchangers meet and connect</h4>
+        <h4 class="flow-text header col s12 light avenir-45">where global exchangers meet and connect</h4>
       </div>
       <div class="row center">
         <div id="search-bar"></div>
@@ -117,8 +121,8 @@
 
 <script type="text/javascript" charset="utf-8">
   (function() {
-      React.render(React.createElement(
-            SearchBar, {}),
-            document.getElementById("search-bar"));
-      })();
-</script>
+   React.render(React.createElement(
+         SearchBar, {}),
+       document.getElementById("search-bar"));
+   })();
+ </script>
