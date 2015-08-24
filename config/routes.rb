@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
+  get 'privacy_policy' => 'pages#privacy_policy'
+  get 'faq' => 'pages#help'
+  get 'help' => 'pages#help'
+  get 'about' => 'pages#about'
+  get 'home' => 'pages#index'
   get 'institutions/show'
-
   get 'welcome/index'
 
   # The priority is based upon order of creation: first created -> highest priority.
