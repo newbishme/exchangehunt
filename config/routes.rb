@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'support' => 'pages#support'
+
   get 'privacy_policy' => 'pages#privacy_policy'
   get 'faq' => 'pages#help'
   get 'help' => 'pages#help'
