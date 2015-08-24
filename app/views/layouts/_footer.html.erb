@@ -1,43 +1,41 @@
-<footer class="page-footer primary-color">
+<div class="container">
+  <div class="row">
+    <%= image_tag "exchangehunt_logo_white.png", id: "footer-logo" %>
+  </div>
+  <div class="row">
+    <div class="col l8 s12">
+      <h5 class="white-text">About us</h5>
+      <p class="grey-text text-lighten-4">ExchangeHunt is a trusted community for student exchangers all around the world to connect with each other and build friendships.</p>
+      <div class="fb-like" data-href="https://facebook.com/exchangehunt.io" data-layout="standard" data-action="like" data-show-faces="true" data-share="false"></div>
+    </div>
+    <div class="col offset-l2 l2 s12">
+      <ul>
+        <li>
+          <%= link_to "Privacy", "/privacy_policy", class: "white-text" %>
+        </li>
+        <li>
+        <%= link_to "FAQ", "/faq", class: "white-text" %>
+        </li>
+        <li>
+        <%= link_to "Contact us", "/support", class: "white-text" %>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="footer-copyright">
   <div class="container">
-    <div class="row">
-      <%= image_tag "exchangehunt_logo_white.png", id: "footer-logo" %>
-    </div>
-    <div class="row">
-      <div class="col l8 s12">
-        <h5 class="white-text">About us</h5>
-        <p class="grey-text text-lighten-4">ExchangeHunt is a trusted community for student exchangers all around the world to connect with each other and build friendships.</p>
-        <div class="fb-like" data-href="https://facebook.com/exchangehunt.io" data-layout="standard" data-action="like" data-show-faces="true" data-share="false"></div>
-      </div>
-      <div class="col offset-l2 l2 s12">
-        <ul>
-          <li>
-            <%= link_to "Privacy", "/privacy_policy", class: "white-text" %>
-          </li>
-          <li>
-          <%= link_to "FAQ", "/faq", class: "white-text" %>
-          </li>
-          <li>
-          <%= link_to "Contact us", "/support", class: "white-text" %>
-          </li>
-        </ul>
-      </div>
-    </div>
+    Made with &hearts; for CS3216.
   </div>
-  <div class="footer-copyright">
-    <div class="container">
-      Made with &hearts; for CS3216.
-    </div>
-  </div>
+</div>
 
-  <script src="/js/init.js"></script>
+<script src="/js/init.js"></script>
 
-  <% if user_signed_in? && Rails.env == "development" %>
-    <hr />
-    ID: <%= current_user.id %> <br />
-    Facebook ID: <%= current_user.uid %> <br />
-    Email: <%= current_user.email %> <br />
-    Admin Role: <%= current_user.admin? %> <br />
-    <hr />
-  <% end %>
-</footer>
+<% if user_signed_in? && Rails.env == "development" %>
+  <hr />
+  ID: <%= current_user.id %> <br />
+  Facebook ID: <%= current_user.uid %> <br />
+  Email: <%= current_user.email %> <br />
+  Admin Role: <%= current_user.admin? %> <br />
+  <hr />
+<% end %>
