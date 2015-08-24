@@ -1,16 +1,16 @@
 <div id="index-banner" class="parallax-container">
   <div class="section">
-    <div class="row">
-      <div class="col offset-l8 l4 hide-on-med-and-down">
+    <div class="nav-wrapper container right hide-on-med-and-down">
         <% if !user_signed_in? %>
-          <div class="col m6">
-            <%= link_to "Sign up with Facebook", user_omniauth_authorize_path(:facebook), class: "waves-effect waves-light btn primary-color", id: "main-login-button" %>
-          </div>
-          <div class="col m6">
-            <%= link_to "Log in", user_omniauth_authorize_path(:facebook), class: "waves-effect waves-light btn btn-flat white-text", id: "main-login-button" %>
-          </div>
+          <ul class="right valign-wrapper">
+            <li class="valign right">
+              <%= link_to "Sign up with Facebook", user_omniauth_authorize_path(:facebook), class: "waves-effect waves-light btn primary-color", id: "main-signup-button" %>
+            </li>
+            <li>
+              <%= link_to "Log in", user_omniauth_authorize_path(:facebook), class: "waves-effect waves-light btn btn-flat white-text", id: "main-login-button" %>
+            </li>
+          </ul>
         <% end %>
-      </div>
     </div>
   </div>
   <div class="section" id="main-banner">

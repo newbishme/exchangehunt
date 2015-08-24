@@ -118,6 +118,11 @@ div.overlay-white {
 
 // Landing page
 
+#main-signup-button {
+  line-height: 2.7;
+  min-width: 260px;
+}
+
 #main-login-button {
   line-height: 2.7;
 }
@@ -162,7 +167,7 @@ div.overlay-white {
   }
 
   #index-banner .section {
-    top: 10%;
+    top: 0;
   }
 }
 
