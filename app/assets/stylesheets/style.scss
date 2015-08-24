@@ -26,6 +26,10 @@
   pointer-events: none;
 }
 
+.reset-margins {
+  margin: 0;
+}
+
 .width-50vw {
   max-width: 50vw;
 }
@@ -105,7 +109,6 @@ div.overlay-white {
 // Landing page
 
 #main-login-button {
-  margin-top: -3em;
 }
 
 #main-banner {
@@ -113,7 +116,7 @@ div.overlay-white {
 }
 
 #main-banner-logo {
-  margin-top: 5em;
+  margin-top: 4em;
   height: auto;
   max-width: 50%;
 }
@@ -124,8 +127,8 @@ div.overlay-white {
 }
 
 #index-banner {
-  padding-top: 2.2em;
-  padding-bottom: 2.2em;
+  height: auto;
+  padding-bottom: 4.2em;
 }
 
 .btn-cta {

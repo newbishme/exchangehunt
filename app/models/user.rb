@@ -13,7 +13,8 @@ class User < ActiveRecord::Base
   has_many :exchanges
 
   validates_presence_of :uid
-  validates_uniqueness_of :username, :uid, :email, :case_sensitive => false
+  validates_uniqueness_of :uid, :email, :case_sensitive => false
+  validates_uniqueness_of :username, :case_sensitive => false, :allow_nil => true
   validates_format_of :username, :with => /\A\w+$\z/, :allow_blank => true
 
   def self.from_omniauth(auth)

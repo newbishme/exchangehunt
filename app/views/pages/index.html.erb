@@ -17,15 +17,8 @@
       <div class="row center">
         <h4 class="header col s12 light avenir-45">where global exchangers meet and connect</h4>
       </div>
-
       <div class="row center">
-        <form class="col offset-s2 s8 offset-m2 m8">
-          <div class="input-field" id="main-search-bar">
-            <i class="material-icons prefix">search</i>
-            <input type="text" class="validate" >
-            <label for="searchText"  id="search-bar-overlay" class="clickthrough">Search for a university</label>
-          </div>
-        </form>
+        <div id="search-bar"></div>
       </div>
     </div>
   </div>
@@ -121,3 +114,11 @@
 
   </div>
 </div>
+
+<script type="text/javascript" charset="utf-8">
+  (function() {
+      React.render(React.createElement(
+            SearchBar, {}),
+            document.getElementById("search-bar"));
+      })();
+</script>
