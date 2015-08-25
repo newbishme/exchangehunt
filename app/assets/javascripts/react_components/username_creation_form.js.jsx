@@ -99,38 +99,38 @@ var UsernameCreationForm = React.createClass({
           <br />
           <h3>Complete your profile</h3>
           <h5><span>Your profile URL: exchangehunt.com/users/</span><span ref="profilePathExample"></span></h5>
-          <h6><span className="red-text hide" ref="blankUsernameMessage">Username cannot be blank.</span></h6>
-          <h6><span className="red-text hide" ref="usernameTakenMessage">Username in use, please choose another username.</span></h6>
-          <h6><span className="red-text hide" ref="invalidCharactersMessage">Username can only contain alphanumeric characters and underscore: A-Z 0-9 _</span></h6>
-          <form className="col s12">
+          <h6><span className="red-text hide flow-text" ref="blankUsernameMessage">Username cannot be blank.</span></h6>
+          <h6><span className="red-text hide flow-text" ref="usernameTakenMessage">Username in use, please choose another username.</span></h6>
+          <h6><span className="red-text hide flow-text" ref="invalidCharactersMessage">Username can only contain alphanumeric characters and underscore: A-Z 0-9 _</span></h6>
+          <form className="col s12 m8">
             <div className="row">
-              <div className="input-field col s12">
+              <div className="input-field">
                 <i className="material-icons prefix">account_circle</i>
                 <input id="icon_prefix" type="text" className="validate" onChange={this.handleTextAreaChange} ref="usernameField"></input>
-                <label htmlFor="icon_prefix">Username</label>
+                <label htmlFor="icon_prefix" className="flow-text">Username</label>
               </div>
             </div>
           </form>
             </div>
         <div className="row">
-          <h5 className="inline">Enter your home institution</h5><span className="inline">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span className="inline">Send a request to include your institution</span>
-          <form className="col s12">
+          <h5 className="inline">Enter your home institution email</h5><span className="inline">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+          <form className="col s12 m8">
             <div className="row">
-              <div className="input-field col s12">
+              <div className="input-field">
                 <i className="material-icons prefix">home</i>
-                <label htmlFor="icon_prefix">Home Institution</label>
+                <label htmlFor="icon_prefix" className="flow-text">Home institution email</label>
                 <input id="icon_prefix" type="text" className="validate" ref="homeInstitutionField"></input>
               </div>
             </div>
           </form>
         </div>
         <div className="row">
-          <h5 className="inline">Enter your exchange institution</h5><span className="inline">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span className="inline">Send a request to include your institution</span>
-          <form className="col s12">
+          <h5 className="inline">Enter your exchange institution email, if you have one</h5><span className="inline">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+          <form className="col s12 m8">
             <div className="row">
               <div className="input-field col s12">
                 <i className="material-icons prefix">school</i>
-                <label htmlFor="icon_prefix">Exchange Institution</label>
+                <label htmlFor="icon_prefix" className="flow-text">Exchange institution email</label>
                 <input id="icon_prefix" type="text" className="validate" ref="exchangeInstitutionField"></input>
               </div>
             </div>

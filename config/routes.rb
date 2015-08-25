@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   get 'support' => 'pages#support'
 
   get 'privacy_policy' => 'pages#privacy_policy'
@@ -6,8 +7,7 @@ Rails.application.routes.draw do
   get 'help' => 'pages#help'
   get 'about' => 'pages#about'
   get 'home' => 'pages#index'
-  get 'institutions/show'
-  get 'welcome/index'
+  get 'welcome/index' 
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -17,4 +17,7 @@ Rails.application.routes.draw do
 
   get 'users/username/:id', to: 'users#username'
   resources :users
+
+  resources :institutions
+
 end
