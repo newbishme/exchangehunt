@@ -35,4 +35,14 @@ class User < ActiveRecord::Base
     "#{self.first_name} #{self.last_name}"
   end
 
+  def home_institution
+    # Institution.find_by (..)
+    nil
+  end
+
+  def exchange_institution
+    # Institution.find_by (..)
+    nil
+  end
+
 end
