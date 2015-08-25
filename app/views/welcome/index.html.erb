@@ -2,10 +2,17 @@
   <div id="username-creation-form"></div>
 </div>
 <script type="text/javascript" charset="utf-8">
-  (function() {
-      React.render(React.createElement(
-            UsernameCreationForm, {"user_id": <%= current_user.id %>}),
-            document.getElementById("username-creation-form")
-            );
-      })();
+  if (window.location.hash == '#_=_'){
+    history.replaceState
+      ? history.replaceState(null, null, window.location.href.split('#')[0])
+      : window.location.hash = '';
+  }
 </script>
+<script type="text/javascript" charset="utf-8">
+  (function() {
+   React.render(React.createElement(
+         UsernameCreationForm, {"user_id": <%= current_user.id %>}),
+       document.getElementById("username-creation-form")
+       );
+   })();
+ </script>
