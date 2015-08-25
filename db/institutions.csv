@@ -1,17 +1,1 @@
-name,country,state,language
-National University of Singapore,Singapore,Singapore,English
-Nanyang Technological University,Singapore,Singapore,English
-Singapore Management University,Singapore,Singapore,English
-Singapore University of Technology and Design,Singapore,Singapore,English
-Harvard University,United States,Massachusetts,English
-Stanford University,United States,California,English
-Massachusetts Institute of Technology,United States,Massachusetts,English
-University of Michigan,United States,Wisconsin,English
-University of Pennsylvania,United States,Ohio,English
-University of California Los Angeles UCLA,United States,California,English
-University of California Berkeley,United States,California,English
-Columbia University New York,United States,New York,English
-Cornell University,United States,New York,English
-University of Minnesota,United States,Minnesota,English
-Pennsylvania State University,United States,Ohio,English
-University of Texas Austin,United States,Texas,English
+name,country,state,languageNational University of Singapore,Singapore,Singapore,EnglishNanyang Technological University,Singapore,Singapore,EnglishSingapore Management University,Singapore,Singapore,EnglishSingapore University of Technology and Design,Singapore,Singapore,EnglishHarvard University,United States,Massachusetts,EnglishStanford University,United States,California,EnglishMassachusetts Institute of Technology,United States,Massachusetts,EnglishUniversity of Michigan,United States,Wisconsin,EnglishUniversity of Pennsylvania,United States,Ohio,EnglishUniversity of California Los Angeles UCLA,United States,California,EnglishUniversity of California Berkeley,United States,California,EnglishColumbia University New York,United States,New York,EnglishCornell University,United States,New York,EnglishUniversity of Minnesota,United States,Minnesota,EnglishPennsylvania State University,United States,Ohio,EnglishUniversity of Texas Austin,United States,Texas,English
