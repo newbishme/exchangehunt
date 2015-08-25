@@ -11,10 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150823135053) do
+ActiveRecord::Schema.define(version: 20150825093650) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "departments", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "user_id"
+    t.integer  "institution_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "departments", ["institution_id"], name: "index_departments_on_institution_id", using: :btree
+  add_index "departments", ["user_id"], name: "index_departments_on_user_id", using: :btree
 
   create_table "exchanges", force: :cascade do |t|
     t.integer  "user_id"
@@ -24,6 +35,16 @@ ActiveRecord::Schema.define(version: 20150823135053) do
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end
+
+  create_table "institution_emails", force: :cascade do |t|
+    t.integer  "institution_id"
+    t.string   "instn_domain",   null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "institution_emails", ["institution_id", "instn_domain"], name: "index_institution_emails_on_institution_id_and_instn_domain", unique: true, using: :btree
+  add_index "institution_emails", ["institution_id"], name: "index_institution_emails_on_institution_id", using: :btree
 
   create_table "institutions", force: :cascade do |t|
     t.string   "name",             null: false
