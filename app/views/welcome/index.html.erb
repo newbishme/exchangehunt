@@ -10,9 +10,8 @@
 </script>
 <script type="text/javascript" charset="utf-8">
   (function() {
-   React.render(React.createElement(
-         UsernameCreationForm, {"user_id": <%= current_user.id %>}),
-       document.getElementById("username-creation-form")
-       );
+   React.render(
+       React.createElement(UsernameCreationForm, {"user_id": <%= current_user.id %>}),
+       document.getElementById("username-creation-form"));
    })();
  </script>
