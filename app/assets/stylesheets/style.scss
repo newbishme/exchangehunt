@@ -43,13 +43,18 @@ html {
 
 
 .primary-color {
-  @extend .green;
+  @extend .blue;
+  @extend .darken-4;
+}
+
+.footer-color {
+  @extend .grey;
   @extend .darken-3;
 }
 
 .primary-text-color {
-  @extend .green-text;
-  @extend .text-darken-3;
+  @extend .deep-orange-text;
+  @extend .text-darken-4;
 }
 
 .clickthrough {
