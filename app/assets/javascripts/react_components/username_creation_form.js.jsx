@@ -73,7 +73,7 @@ var UsernameCreationForm = React.createClass({
 
   handleSubmitButtonClick: function() {
     var username = React.findDOMNode(this.refs.usernameField).value;
-    var homeInstitution = React.findDOMNode(this.refs.homeInstitutionField).value;
+    var homeInstitutionEmail = React.findDOMNode(this.refs.homeInstitutionEmailField).value;
     var exchangeInstitution = React.findDOMNode(this.refs.exchangeInstitutionField).value;
 
     if (username === "") {
@@ -83,8 +83,7 @@ var UsernameCreationForm = React.createClass({
         url: "/users/" + this.props.user_id,
         type: "PUT",
         data: { user: { username: username, 
-                        home_institution: homeInstitution, 
-                        exchange_institution: exchangeInstitution} },
+                        email: homeInstitutionEmail } },
         success: function(response) {
           window.location.href = "/users/" + response
         }.bind(this)
@@ -113,19 +112,20 @@ var UsernameCreationForm = React.createClass({
           </form>
             </div>
         <div className="row">
-          <h5 className="inline">Enter your home institution</h5><span className="inline">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span className="inline">Send a request to include your institution</span>
+          <h5 className="inline">Enter your home institution email</h5>
           <form className="col s12">
             <div className="row">
               <div className="input-field col s12">
                 <i className="material-icons prefix">home</i>
-                <label htmlFor="icon_prefix">Home Institution</label>
-                <input id="icon_prefix" type="text" className="validate" ref="homeInstitutionField"></input>
+                <label htmlFor="icon_prefix">Home Institution Email</label>
+                <input id="icon_prefix" type="text" className="validate" ref="homeInstitutionEmailField"></input>
+                <h5><span>Your home institution: </span><span ref="homeInstitutionName"></span></h5>
               </div>
             </div>
           </form>
         </div>
         <div className="row">
-          <h5 className="inline">Enter your exchange institution</h5><span className="inline">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span className="inline">Send a request to include your institution</span>
+          <h5 className="inline">Select your exchange institution</h5>
           <form className="col s12">
             <div className="row">
               <div className="input-field col s12">

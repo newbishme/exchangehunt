@@ -11,19 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150825061339) do
+ActiveRecord::Schema.define(version: 20150825093650) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "exchanges", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "department_id"
-    t.date     "start_date"
-    t.date     "end_date"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+  create_table "institution_emails", force: :cascade do |t|
+    t.integer  "institution_id"
+    t.string   "instn_domain",   null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
+
+  add_index "institution_emails", ["institution_id", "instn_domain"], name: "index_institution_emails_on_institution_id_and_instn_domain", unique: true, using: :btree
+  add_index "institution_emails", ["institution_id"], name: "index_institution_emails_on_institution_id", using: :btree
 
   create_table "institutions", force: :cascade do |t|
     t.string   "name",             null: false
@@ -62,8 +63,6 @@ ActiveRecord::Schema.define(version: 20150825061339) do
     t.string   "gender"
     t.string   "image_url"
     t.string   "username"
-    t.string   "home_institution"
-    t.string   "exchange_institution"
     t.string   "course"
     t.string   "bio"
     t.string   "citizenship"
@@ -73,4 +72,5 @@ ActiveRecord::Schema.define(version: 20150825061339) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree
 
+  add_foreign_key "institution_emails", "institutions"
 end
