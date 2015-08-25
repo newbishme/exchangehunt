@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  # The priority is based upon order of creation: first created -> highest priority.
+  # See how all your routes lay out with "rake routes".
 
   get 'support' => 'pages#support'
 
@@ -9,8 +11,7 @@ Rails.application.routes.draw do
   get 'home' => 'pages#index'
   get 'welcome/index' 
 
-  # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
+  get 'heartbeat' => 'application#heartbeat'
 
   devise_for :users, :controllers => { :omniauth_callbacks => 'callbacks' }
   root 'pages#index'
