@@ -22,7 +22,9 @@
         <h4 class="flow-text header col s12 light avenir-45">where global exchangers meet and connect</h4>
       </div>
       <div class="row center">
-        <div id="search-bar"></div>
+        <div id="the-basics">
+          <input class="typeahead" type="text" placeholder="Search for an institution">
+        </div>
       </div>
     </div>
   </div>
@@ -127,3 +129,5 @@
        document.getElementById("search-bar"));
    })();
  </script>
+
+ <%= render 'shared/typeahead' %>

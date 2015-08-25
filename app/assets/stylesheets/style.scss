@@ -247,3 +247,54 @@ footer.page-footer {
 .input-field .prefix.active {
   color: #ffffff;
 }
+
+
+/* typeahead */
+.twitter-typeahead .tt-input, /* UPDATE: newer versions use tt-input instead of tt-query */
+.twitter-typeahead .tt-hint {
+    width: 450px !important;
+    height: 30px !important;
+    padding: 8px 12px;
+    font-size: 24px;
+    line-height: 30px;
+    border: 1px solid #ffffff !important;
+    border-radius: 6px !important;
+    outline: none;
+}
+
+.twitter-typeahead .tt-input { /* UPDATE: newer versions use tt-input instead of tt-query */
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+}
+
+.twitter-typeahead .tt-hint {
+    color: #999 !important;
+}
+
+.twitter-typeahead .tt-menu { /* UPDATE: newer versions use tt-menu instead of tt-dropdown-menu */
+    width: 450px !important;
+    margin-top: 12px;
+    padding: 8px 0;
+    opacity: 0 !important;
+    background-color: #fff !important;
+    border: 1px solid #ccc;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    box-shadow: 0 5px 10px rgba(0,0,0,.2);
+}
+
+.twitter-typeahead .tt-suggestion {
+    padding: 3px 20px !important;
+    font-size: 18px;
+    line-height: 24px;
+    color: #000000 !important
+}
+
+.twitter-typeahead .tt-suggestion.tt-cursor { /* UPDATE: newer versions use .tt-suggestion.tt-cursor */
+    color: #ccc !important;
+    background-color: #0097cf !important;
+
+}
+
+.twitter-typeahead .tt-suggestion p {
+    margin: 0 !important;
+}
