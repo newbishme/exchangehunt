@@ -83,10 +83,10 @@ var UsernameCreationForm = React.createClass({
         url: "/users/" + this.props.user_id,
         type: "PUT",
         data: { user: { username: username, 
-                        email: homeInstitutionEmail } },
-        success: function(response) {
-          window.location.href = "/users/" + response
-        }.bind(this)
+          email: homeInstitutionEmail } },
+          success: function(response) {
+            window.location.href = "/users/" + response
+          }.bind(this)
       });
     }
   },
@@ -97,7 +97,7 @@ var UsernameCreationForm = React.createClass({
         <div className="row">
           <br />
           <h3>Complete your profile</h3>
-          <h5><span>Your profile URL: exchangehunt.com/users/</span><span ref="profilePathExample"></span></h5>
+          <h5><span>This will be your profile URL: exchangehunt.com/users/</span><span ref="profilePathExample"></span></h5>
           <h6><span className="red-text hide flow-text" ref="blankUsernameMessage">Username cannot be blank.</span></h6>
           <h6><span className="red-text hide flow-text" ref="usernameTakenMessage">Username in use, please choose another username.</span></h6>
           <h6><span className="red-text hide flow-text" ref="invalidCharactersMessage">Username can only contain alphanumeric characters and underscore: A-Z 0-9 _</span></h6>
@@ -110,10 +110,10 @@ var UsernameCreationForm = React.createClass({
               </div>
             </div>
           </form>
-            </div>
+        </div>
         <div className="row">
           <h5 className="inline">Enter your home institution email</h5>
-          <form className="col s12">
+          <form className="col s12 m8">
             <div className="row">
               <div className="input-field">
                 <i className="material-icons prefix">home</i>
@@ -136,7 +136,7 @@ var UsernameCreationForm = React.createClass({
             </div>
           </form>
         </div>
-          <div className="row">
+        <div className="row">
           <button className="btn waves-effect waves-light btn-large disabled"
             ref="createUsernameButton"
             type="submit"

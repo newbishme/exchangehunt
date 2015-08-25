@@ -36,13 +36,15 @@ class User < ActiveRecord::Base
   end
 
   def home_institution
-    # Institution.find_by (..)
-    nil
+    Institution.first
   end
 
   def exchange_institution
-    # Institution.find_by (..)
-    nil
+    Institution.second
+  end
+
+  def completed_profile?
+    self.username?
   end
 
 end

@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   private
 
   def ensure_complete_registration
-    if user_signed_in? && current_user.username.nil?
+    if user_signed_in? && current_user.username.nil? && request[:controller] != "pages"
       redirect_to "/welcome/index"
     end
   end
