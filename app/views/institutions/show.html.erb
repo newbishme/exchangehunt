@@ -1,1 +1,15 @@
-Hello world institutions#show
+<style>
+  #map {
+    width: 100%;
+    height: 300px;
+  }
+</style>
+<script src="https://maps.googleapis.com/maps/api/js"></script>
+<div id="institution-app"></div>
+<script type="text/javascript" charset="utf-8">
+  (function() {
+   React.render(React.createElement(
+         InstitutionApp, {institution_id: <%= @institution.id %>}),
+       document.getElementById("institution-app"));
+   })();
+</script>

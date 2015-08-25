@@ -8,14 +8,14 @@
         <% if user_signed_in? %>
           <% if current_user.home_institution? %>
             <li class="<%= 'active' if params[:controller] == 'institutions' %>">
-              <%= link_to current_user.home_institution, user_path(current_user.home_institution), class: "truncate" %>
+              <%= link_to current_user.home_institution, institution_path(current_user.home_institution), class: "truncate" %>
             </li>
           <% else %>
             <li>&nbsp;</li>
           <% end %>
           <% if current_user.exchange_institution? %>
             <li class="<%= 'active' if params[:controller] == 'institutions' %>">
-              <%= link_to current_user.exchange_institution, user_path(current_user.exchange_institution), class: "truncate" %>
+              <%= link_to current_user.exchange_institution, institution_path(current_user.exchange_institution), class: "truncate" %>
             </li>
           <% end %>
         <% else %>
