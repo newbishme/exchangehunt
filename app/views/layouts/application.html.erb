@@ -11,6 +11,7 @@
       <%= render 'layouts/header' unless current_page?(root_path) && current_user.nil? %>
     </header>
     <main class="site-content">
+      <%= render 'shared/complete_profile_banner' unless current_user.nil? || current_user.completed_profile? || current_page?(welcome_index_path) %>
       <%= yield %>
     </main>
     <footer class="page-footer footer-color">

@@ -35,4 +35,16 @@ class User < ActiveRecord::Base
     "#{self.first_name} #{self.last_name}"
   end
 
+  def home_institution
+    Institution.first
+  end
+
+  def exchange_institution
+    Institution.second
+  end
+
+  def completed_profile?
+    self.username?
+  end
+
 end

@@ -6,14 +6,16 @@
           <%= link_to image_tag("exchangehunt_logo_mascot.png", :alt => "Exchange Hunt Mascot Icon", :class => "valign"), root_path %>
         </li>
         <% if user_signed_in? %>
-          <% if current_user.home_institution? %>
+          <% unless current_user.home_institution.nil? %>
             <li class="<%= 'active' if params[:controller] == 'institutions' %>">
-              <%= link_to current_user.home_institution, institution_path(current_user.home_institution), class: "truncate" %>
+              <%= link_to current_user.home_institution.name, institution_path(current_user.home_institution), class: "truncate" %>
             </li>
+          <% else %>
+            <li>&nbsp;</li>
           <% end %>
-          <% if current_user.exchange_institution? %>
+          <% unless current_user.exchange_institution.nil? %>
             <li class="<%= 'active' if params[:controller] == 'institutions' %>">
-              <%= link_to current_user.exchange_institution, institution_path(current_user.exchange_institution), class: "truncate" %>
+              <%= link_to current_user.exchange_institution.name, institution_path(current_user.exchange_institution), class: "truncate" %>
             </li>
           <% end %>
         <% else %>
@@ -33,11 +35,13 @@
       </ul>
     </div>
 
-    <div class="nav-wrapper container show-on-med-and-down">
-      <ul id="nav-mobile" class="side-nav">
-        <li><a href="#">Navbar Link</a></li>
-      </ul>
-      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
-    </div>
+    <%# <div class="nav-wrapper container"> %>
+    <%#   <ul id="nav-mobile" class="side-nav"> %>
+    <%#     <li><a href="#">Navbar Link</a></li> %>
+    <%#   </ul> %>
+    <%#   <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a> %>
+    <%# </div> %>
   </nav>
+
 </div>
+

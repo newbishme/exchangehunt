@@ -16,4 +16,17 @@ def seed_institutions
   end
 end
 
+def seed_institution_emails
+  csv_text = File.read("db/institutions_email.csv")
+  csv = CSV.parse(csv_text, :headers => true)
+  csv.each do |row|
+    row_value = row.to_hash
+    id = row_value["institution_id"]
+    i = Institution.find(id)
+    i.institution_emails.create(instn_domain: row_value["instn_domain"])
+    i.save
+  end
+end
+
 seed_institutions
+seed_institution_emails

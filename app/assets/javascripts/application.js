@@ -17,3 +17,4 @@
 //= require react_ujs
 //= require components
 //= require materialize-sprockets
+//= require "./google_maps.js"

@@ -73,7 +73,7 @@ var UsernameCreationForm = React.createClass({
 
   handleSubmitButtonClick: function() {
     var username = React.findDOMNode(this.refs.usernameField).value;
-    var homeInstitution = React.findDOMNode(this.refs.homeInstitutionField).value;
+    var homeInstitutionEmail = React.findDOMNode(this.refs.homeInstitutionEmailField).value;
     var exchangeInstitution = React.findDOMNode(this.refs.exchangeInstitutionField).value;
 
     if (username === "") {
@@ -83,11 +83,10 @@ var UsernameCreationForm = React.createClass({
         url: "/users/" + this.props.user_id,
         type: "PUT",
         data: { user: { username: username, 
-                        home_institution: homeInstitution, 
-                        exchange_institution: exchangeInstitution} },
-        success: function(response) {
-          window.location.href = "/users/" + response
-        }.bind(this)
+          email: homeInstitutionEmail } },
+          success: function(response) {
+            window.location.href = "/users/" + response
+          }.bind(this)
       });
     }
   },
@@ -98,7 +97,7 @@ var UsernameCreationForm = React.createClass({
         <div className="row">
           <br />
           <h3>Complete your profile</h3>
-          <h5><span>Your profile URL: exchangehunt.com/users/</span><span ref="profilePathExample"></span></h5>
+          <h5><span>This will be your profile URL: exchangehunt.com/users/</span><span ref="profilePathExample"></span></h5>
           <h6><span className="red-text hide flow-text" ref="blankUsernameMessage">Username cannot be blank.</span></h6>
           <h6><span className="red-text hide flow-text" ref="usernameTakenMessage">Username in use, please choose another username.</span></h6>
           <h6><span className="red-text hide flow-text" ref="invalidCharactersMessage">Username can only contain alphanumeric characters and underscore: A-Z 0-9 _</span></h6>
@@ -111,22 +110,23 @@ var UsernameCreationForm = React.createClass({
               </div>
             </div>
           </form>
-            </div>
+        </div>
         <div className="row">
-          <h5 className="inline">Enter your home institution email</h5><span className="inline">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+          <h5 className="inline">Enter your home institution email</h5>
           <form className="col s12 m8">
             <div className="row">
               <div className="input-field">
                 <i className="material-icons prefix">home</i>
-                <label htmlFor="icon_prefix" className="flow-text">Home institution email</label>
-                <input id="icon_prefix" type="text" className="validate" ref="homeInstitutionField"></input>
+                <label htmlFor="icon_prefix">Home Institution Email</label>
+                <input id="icon_prefix" type="text" className="validate" ref="homeInstitutionEmailField"></input>
+                <h5><span>Your home institution: </span><span ref="homeInstitutionName"></span></h5>
               </div>
             </div>
           </form>
         </div>
         <div className="row">
-          <h5 className="inline">Enter your exchange institution email, if you have one</h5><span className="inline">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-          <form className="col s12 m8">
+          <h5 className="inline">Select your exchange institution</h5>
+          <form className="col s12">
             <div className="row">
               <div className="input-field col s12">
                 <i className="material-icons prefix">school</i>
@@ -136,7 +136,7 @@ var UsernameCreationForm = React.createClass({
             </div>
           </form>
         </div>
-          <div className="row">
+        <div className="row">
           <button className="btn waves-effect waves-light btn-large disabled"
             ref="createUsernameButton"
             type="submit"
