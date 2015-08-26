@@ -273,26 +273,26 @@ footer.page-footer {
 }
 
 .twitter-typeahead .tt-menu { 
-    width: 0px !important;
-    margin-top: 12px;
-    padding: 8px 0;
+    width: 450px !important;
+    margin-top: 0px;
+    padding: 8px 12px;
     opacity: 0 !important;
-    background-color: #fff !important;
-    border: 1px solid #ccc;
-    border: 1px solid rgba(0, 0, 0, 0.2);
-    border-radius: 8px;
-    box-shadow: 0 5px 10px rgba(0,0,0,.2);
+    background: rgba(0,0,0,0.5);
+    border-radius: 6px;
+    box-shadow: 0 5px 10px rgba(255,255,255,0.2);
 }
 
 .twitter-typeahead .tt-suggestion {
     padding: 3px 20px !important;
     font-size: 18px;
+    opacity: 1 !important;
     line-height: 24px;
-    color: #000000 !important
+    color: #ffffff !important;
+    text-shadow: 2px 2px #000000;
 }
 
 .twitter-typeahead .tt-suggestion .tt-cursor { 
-    color: #ccc !important;
+    color: #ffffff !important;
     background-color: #0097cf !important;
 }
 
