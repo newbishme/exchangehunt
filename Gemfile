@@ -17,6 +17,7 @@ gem 'material_icons'
 gem 'unicorn'
 gem 'unicorn-rails'
 gem 'react-rails'
+gem 'httparty'
 
 group :development do
   gem "better_errors"

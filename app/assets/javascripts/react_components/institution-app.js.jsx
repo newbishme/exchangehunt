@@ -80,6 +80,12 @@ var InstitutionApp = React.createClass({
                   Primary language: {this.state.institution.language}
                 </div>
               </div>
+
+              <div className="row">
+                <div className="col">
+                  {this.state.institution.extract}
+                </div>
+              </div>
             </div>
           </div>
 

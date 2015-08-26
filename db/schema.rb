@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150825093650) do
+ActiveRecord::Schema.define(version: 20150826073254) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 20150825093650) do
     t.string   "language",         null: false
     t.string   "facebook_pid"
     t.string   "facebook_img_url"
+    t.string   "extract"
   end
 
   add_index "institutions", ["country"], name: "index_institutions_on_country", using: :btree
