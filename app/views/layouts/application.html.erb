@@ -5,6 +5,10 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
+    <meta og:title="ExchangeHunt" />
+    <meta og:url="<%= request.original_url %>" />
+    <meta og:description="ExchangeHunt is a trusted community for student exchangers all around the world to connect with each other and build friendships." />
+    <meta og:image="/assets/exchangehunt_og_image.png" />
   </head>
   <body class="site">
     <header>

@@ -18,6 +18,7 @@ gem 'unicorn'
 gem 'unicorn-rails'
 gem 'react-rails'
 gem 'httparty'
+gem 'meta-tags'
 
 group :development do
   gem "better_errors"
