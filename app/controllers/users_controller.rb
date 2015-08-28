@@ -21,7 +21,7 @@ class UsersController < ApplicationController
   def update
     raise_404 unless authorized? @user
     if @user.update_attributes(user_params)
-      render status: 200, json: @user.username.to_json
+      render status: 200, json: @user.to_json.html_safe
     end
   end
 

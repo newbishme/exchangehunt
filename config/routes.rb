@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   root 'pages#index'
 
   get 'users/username/:id', to: 'users#username'
+  get 'institutions/mapping', to: 'institutions#mapping'
   resources :users
 
   resources :institutions

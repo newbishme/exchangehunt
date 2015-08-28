@@ -36,8 +36,16 @@ var UsernameCreationForm = React.createClass({
     $(React.findDOMNode(this.refs.createUsernameButton)).addClass("disabled");
   },
 
-  validateUsername: function(username) {
+  validateAndMapDomain: function(domain) {
+    $.get("/institutions/mapping?domain=" + domain,
+          {},
+          function(resp){
+            var span = React.findDOMNode(this.refs.institutionName)
+            span.innerHTML = resp["name"] + ' (<a href="/support">Incorrect?</a>)';
+          }.bind(this));
+  },
 
+  validateUsername: function(username) {
     if (username === "") {
       this.renderBlankUsername("");
       return;
@@ -61,10 +69,16 @@ var UsernameCreationForm = React.createClass({
     request.send();
   },
 
-  handleTextAreaChange: function() {
+  handleUsernameTextAreaChange: function() {
     var username = React.findDOMNode(this.refs.usernameField).value;
     React.findDOMNode(this.refs.profilePathExample).innerHTML = username;
     this.validateUsername(username)
+  },
+
+  handleHomeInstitutionTextAreaChange: function() {
+    var email = React.findDOMNode(this.refs.homeInstitutionEmailField).value;
+    var domain = email.replace(/.*@/, "");
+    this.validateAndMapDomain(domain);
   },
 
   handleSubmitButtonClick: function() {
@@ -77,10 +91,11 @@ var UsernameCreationForm = React.createClass({
       $.ajax({
         url: "/users/" + this.props.user_id,
         type: "PUT",
-        data: { user: { username: username, 
+        data: { user: { username: username,
           email: homeInstitutionEmail } },
           success: function(response) {
-            window.location.href = "/users/" + response
+            var username = response["username"];
+            window.location.href = "/users/" + username;
           }.bind(this)
       });
     }
@@ -101,16 +116,17 @@ var UsernameCreationForm = React.createClass({
               <h6><span className="red-text hide flow-text" ref="invalidCharactersMessage">Username can only contain alphanumeric characters and underscore: A-Z 0-9 _</span></h6>
               <div className="input-field">
                 <i className="material-icons prefix">account_circle</i>
-                <input id="username_field" type="text" className="validate" onChange={this.handleTextAreaChange} ref="usernameField"></input>
+                <input id="username_field" type="text" className="validate" onChange={this.handleUsernameTextAreaChange} ref="usernameField"></input>
                 <label htmlFor="username_field" className="flow-text">Username</label>
               </div>
             </div>
 
             <div className="row">
-              <h5 className="inline">Enter your home institution email</h5>
+              <h5 className="inline">Verify your home institution email</h5>
+              <div>Your institution: <span ref="institutionName"></span></div>
               <div className="input-field">
                 <i className="material-icons prefix">home</i>
-                <input id="home_email_field" type="text" className="validate" ref="homeInstitutionEmailField"></input>
+                <input id="home_email_field" type="text" className="validate" ref="homeInstitutionEmailField" onChange={this.handleHomeInstitutionTextAreaChange}></input>
                 <label htmlFor="home_email_field">Home Institution Email</label>
               </div>
             </div>
