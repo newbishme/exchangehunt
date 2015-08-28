@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150826073254) do
+ActiveRecord::Schema.define(version: 20150828070103) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -73,5 +73,21 @@ ActiveRecord::Schema.define(version: 20150826073254) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree
 
+  create_table "usr_instn_connects", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "institution_id"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.boolean  "is_home_institution", null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+  end
+
+  add_index "usr_instn_connects", ["institution_id"], name: "index_usr_instn_connects_on_institution_id", using: :btree
+  add_index "usr_instn_connects", ["user_id", "institution_id"], name: "index_usr_instn_connects_on_user_id_and_institution_id", unique: true, using: :btree
+  add_index "usr_instn_connects", ["user_id"], name: "index_usr_instn_connects_on_user_id", using: :btree
+
   add_foreign_key "institution_emails", "institutions"
+  add_foreign_key "usr_instn_connects", "institutions"
+  add_foreign_key "usr_instn_connects", "users"
 end
