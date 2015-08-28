@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
 
   has_one :department
   has_many :exchanges
+  has_many :usr_instn_connects
 
   validates_presence_of :uid
   validates_uniqueness_of :uid, :email, :case_sensitive => false
