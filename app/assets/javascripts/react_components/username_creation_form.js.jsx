@@ -95,7 +95,7 @@ var UsernameCreationForm = React.createClass({
               <h3>Complete your profile</h3>
             </div>
             <div className="row">
-              <h5><span>This will be your profile URL: exchangehunt.com/users/</span><span ref="profilePathExample"></span></h5>
+              <h5><span>This will be your profile URL:<br />exchangehunt.com/users/</span><span ref="profilePathExample"></span></h5>
               <h6><span className="red-text hide flow-text" ref="blankUsernameMessage">Username cannot be blank.</span></h6>
               <h6><span className="red-text hide flow-text" ref="usernameTakenMessage">Username in use, please choose another username.</span></h6>
               <h6><span className="red-text hide flow-text" ref="invalidCharactersMessage">Username can only contain alphanumeric characters and underscore: A-Z 0-9 _</span></h6>

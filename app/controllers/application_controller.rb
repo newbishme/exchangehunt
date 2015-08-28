@@ -9,6 +9,14 @@ class ApplicationController < ActionController::Base
 
   private
 
+  def authorized?(user)
+    user_signed_in? && (current_user == user || current_user.admin?)
+  end
+
+  def raise_404
+    raise ActionController::RoutingError.new('Not Found')
+  end
+
   def ensure_complete_registration
     if user_signed_in? && current_user.username.nil? && request[:controller] != "pages"
       redirect_to "/welcome/index"
