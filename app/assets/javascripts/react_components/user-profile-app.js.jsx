@@ -1,8 +1,9 @@
 var UserProfileApp = React.createClass({
-
-  componentDidMount: function() {
-    console.log(this.props.user);
-    console.log(this.props.is_users_profile);
+  componentWillMount: function() {
+    var url = "/users/" + this.props.username + ".json"
+    $.get(url, function(response) {
+      this.updateUserObject(response);
+    }.bind(this));
   },
 
   getInitialState: function() {
@@ -33,15 +34,20 @@ var UserProfileApp = React.createClass({
             </div>
             <div className="col s7 ">
             	<h2 className="avenir-65 inline">
-            	  <span className="primary-text-color inline">{this.state.user.first_name}</span>
+            	  <span className="primary-text-color inline">{this.state.user.first_name} {this.state.user.last_name}</span>
             	</h2>
             </div>
           </div>
-            <div className="row edit-profile">
-              <div className="col s5 offset-s3">
-                <a className="waves-effect waves-light btn"><i className="material-icons left">edit</i>Edit profile</a>
-              </div>
-            </div>
+          {function(){
+            if (this.props.is_users_profile) {
+              return (
+              <div className="row edit-profile">
+                <div className="col s5 offset-s3">
+                  <a className="waves-effect waves-light btn"><i className="material-icons left">edit</i>Edit profile</a>
+                </div>
+              </div>);
+            }
+          }.call(this)}
           <div className="row"></div>
           <div className="row">
             <div className="col s6 offset-s3">
@@ -54,9 +60,16 @@ var UserProfileApp = React.createClass({
           	  <span>2015-2016</span><br/>
               <div className="row"></div>
               <div className="row"></div>
-          	  <a className="waves-effect waves-light btn"><i className="material-icons left">mail</i>Drop a message</a>
-              <div className="row"></div>
-              <div className="row"></div>
+              {function(){
+                if (!this.props.is_users_profile) {
+                  return (
+              	  <div>
+                    <a className="waves-effect waves-light btn"><i className="material-icons left">mail</i>Drop a message</a>
+                    <div className="row"></div>
+                    <div className="row"></div>
+                  </div> );
+                }
+              }.call(this)}
           	  <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In felis arcu, porttitor in mauris eget, iaculis lobortis tortor. Etiam pretium molestie lacus. Fusce ultrices eget elit et auctor.</span><br/>
             </div>
           </div>
