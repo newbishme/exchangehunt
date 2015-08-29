@@ -1,5 +1,10 @@
 var UserProfileApp = React.createClass({
 
+  componentDidMount: function() {
+    console.log(this.props.user);
+    console.log(this.props.is_users_profile);
+  },
+
   getInitialState: function() {
     return {
       user: {}

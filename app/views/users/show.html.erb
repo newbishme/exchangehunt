@@ -1,8 +1,10 @@
 <div id="user-profile-app"></div>
 <script type="text/javascript" charset="utf-8">
   (function() {
+   var user = JSON.parse('<%= @user.to_json.html_safe %>')
+   var is_users_profile = JSON.parse('<%= is_users_profile? %>')
    React.render(React.createElement(
-         UserProfileApp, {user: <%= @user.to_json.html_safe %>, is_users_profile: <%= is_users_profile? %>}),
+         UserProfileApp, {user: user, is_users_profile: is_users_profile}),
        document.getElementById("user-profile-app"));
    })();
 </script>
