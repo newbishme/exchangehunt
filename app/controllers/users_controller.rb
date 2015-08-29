@@ -19,8 +19,9 @@ class UsersController < ApplicationController
   end
 
   def update
+    raise_404 unless authorized? @user
     if @user.update_attributes(user_params)
-      render status: 200, json: @user.username.to_json
+      render status: 200, json: @user.to_json.html_safe
     end
   end
 
@@ -28,12 +29,12 @@ class UsersController < ApplicationController
 
   def set_user_by_username
     @user = User.find_by_username(params[:id].downcase)
-    raise ActionController::RoutingError.new('Not Found') if @user.nil?
+    raise_404 unless @user
   end
 
   def set_user_by_id
     @user = User.find(params[:id])
-    raise ActionController::RoutingError.new('Not Found') if @user.nil?
+    raise_404 unless @user
   end
 
   def user_params

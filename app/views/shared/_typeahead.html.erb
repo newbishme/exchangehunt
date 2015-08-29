@@ -1,0 +1,37 @@
+<script>
+  var countries = new Bloodhound({
+    datumTokenizer: Bloodhound.tokenizers.whitespace,
+    queryTokenizer: Bloodhound.tokenizers.whitespace,
+    prefetch: 'json/countries.json'
+  });
+
+  var states = new Bloodhound({
+    datumTokenizer: Bloodhound.tokenizers.whitespace,
+    queryTokenizer: Bloodhound.tokenizers.whitespace,
+    prefetch: 'json/states.json'
+  });
+
+  var institutions = new Bloodhound({
+    datumTokenizer: Bloodhound.tokenizers.whitespace,
+    queryTokenizer: Bloodhound.tokenizers.whitespace,
+    prefetch: 'json/institutions.json'
+  });
+
+  $('#multiple-datasets .typeahead').typeahead({
+    hint: true,
+    highlight: true,
+    minLength: 1,
+  },
+  {
+    name: 'countries',
+    source: countries
+  },
+  {
+      name: 'states',
+      source: states
+  },
+  {
+    name: 'institutions',
+    source: institutions
+  });
+</script>
