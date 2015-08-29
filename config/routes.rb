@@ -18,8 +18,10 @@ Rails.application.routes.draw do
 
   get 'users/username/:id', to: 'users#username'
   get 'institutions/mapping', to: 'institutions#mapping'
+
+  post 'users/confirm', to: 'users#confirm'
+
   resources :users
 
   resources :institutions
-
 end

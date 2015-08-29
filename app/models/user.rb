@@ -29,6 +29,7 @@ class User < ActiveRecord::Base
       user.image_url = auth.info.image
       user.gender = auth.extra.raw_info.gender
       user.admin = false
+      user.home_institution_confirmed = false
     end
   end
 
