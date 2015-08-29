@@ -1,15 +1,23 @@
 <div class="container">
   <div class="section">
-    <div class="row valign-wrapper">
+    <div class="row valign-wrapper profile-image-row">
       <div class="col s3">
-        <%= image_tag @user.image_url, class: "circle responsive-img right" %>
+        <%= image_tag @user.image_url, class: "circle responsive-img right profile-image-size" %>
       </div>
-      <div class="col s7 primary-text-color">
-      	<h2 class="avenir-65">
-      	  <span><%= @user.first_name %></span>
+      <div class="col s7 ">
+      	<h2 class="avenir-65 inline">
+      	  <span class="primary-text-color inline"><%= @user.first_name + " " + @user.last_name %></span>
       	</h2>
       </div>
     </div>
+    <% if is_users_profile? %>
+    <div class="row edit-profile">
+      <div class="col s5 offset-s3">
+        <a class="waves-effect waves-light btn"><i class="material-icons left">edit</i>Edit profile</a>
+      </div>
+    </div>
+    <% end %>
+    <div class="row"></div>
     <div class="row">
       <div class="col s6 offset-s3">
       	  <span>SINGAPOREAN</span><br/>
