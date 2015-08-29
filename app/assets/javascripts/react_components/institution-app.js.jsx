@@ -28,7 +28,7 @@ var InstitutionApp = React.createClass({
 
   updateInstitutionObject: function(institution) {
     this.setState({
-      institution: institution 
+      institution: institution
     }, function() {
       this.updateView();
     }.bind(this));
@@ -37,7 +37,6 @@ var InstitutionApp = React.createClass({
   updateView: function() {
     $(React.findDOMNode(this.refs.loadingWrapper)).addClass("hide")
     $(React.findDOMNode(this.refs.wrapper)).removeClass("hide")
-    console.log(this.state.institution);
     this.forceUpdate();
     this.loadDisqus();
   },
@@ -98,6 +97,7 @@ var InstitutionApp = React.createClass({
                 </div>
                 <div className="col s12 m4">
                   <h4 className="avenir-65 primary-text-color deep-orange-text">RECENTLY JOINED</h4>
+                  <RecentlyJoined institution={this.state.institution} />
                 </div>
               </div>
             </div>
@@ -121,5 +121,58 @@ var InstitutionApp = React.createClass({
   }
 
 });
+
+var RecentlyJoined = React.createClass({
+
+  getInitialState: function() {
+    return {
+      recentlyJoinedUsers: []
+    };
+  },
+
+  componentDidUpdate: function(prevProps, prevState) {
+    if (prevProps.institution.id == undefined && this.props.institution.id) {
+      this.getRecentlyJoined();
+    }
+  },
+
+  getRecentlyJoined: function() {
+    var url = "/institutions/" + this.props.institution.id + "/recently_joined.json"
+    $.get(url, function(response) {
+      this.setState({ recentlyJoinedUsers: response });
+      this.forceUpdate();
+    }.bind(this));
+  },
+
+  generateList: function(users) {
+    if (users.length === 0) {
+      return <li className="collection-item">None :(</li>
+    }
+    var list = users.map(function(user){
+      return(
+        <li className="collection-item avatar" key={user.id}>
+          <img src={user.image_url} className="circle responsive-img" alt="User's profile image" />
+          <span className="title">{user.first_name} {user.last_name}</span>
+          <p>{user.course}</p>
+          <a href="#!" className="secondary-content"><i className="material-icons">email</i></a>
+        </li>
+      )
+    }.bind(this));
+    return list;
+  },
+
+  render: function() {
+    var list = this.generateList(this.state.recentlyJoinedUsers);
+    return(
+      <div className="row">
+        <div className="col s10">
+          <ul className="collection">
+            {list}
+          </ul>
+        </div>
+      </div>
+    )
+  }
+})
 
 module.exports = InstitutionApp;
