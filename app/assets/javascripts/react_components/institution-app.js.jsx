@@ -37,6 +37,8 @@ var InstitutionApp = React.createClass({
     Materialize.updateTextFields();
     this.forceUpdate();
     this.loadDisqus();
+    $('.collapsible').collapsible();
+    $('.materialboxed').materialbox();
   },
 
   loadDisqus: function() {
@@ -191,7 +193,3 @@ var RecentlyJoined = React.createClass({
 })
 
 module.exports = InstitutionApp;
-
-$(document).ready(function(){
-  $('.materialboxed').materialbox();
-});
