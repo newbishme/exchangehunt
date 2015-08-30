@@ -1,0 +1,8 @@
+<div class="container">
+  <h1>Search results</h1>
+  <ul>
+    <% @instn_results.each do |instn| %>
+      <h4><%= link_to instn.name, institution_path(instn) %></h4>
+    <% end %>
+  </ul>
+</div>
