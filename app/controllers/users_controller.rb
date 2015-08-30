@@ -28,13 +28,7 @@ class UsersController < ApplicationController
       return
     end
 
-    old_params = {
-      :home_email => @user.home_email,
-      :exchange_email => @user.exchange_email
-    }
-
     if @user.update_attributes(user_params)
-      @user.send_confirmation_email_if_changed?(user_params, old_params)
       render status: 200, json: @user.username.to_json.html_safe
     end
   end

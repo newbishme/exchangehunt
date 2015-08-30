@@ -5,9 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, :omniauth_providers => [:facebook]
 
-  before_save do
-    self.email = email.downcase if self.email
-  end
+  before_update :send_confirmation_email_if_emails_changed?, :downcase_email
 
   has_one :department
   has_many :exchanges
@@ -49,21 +47,34 @@ class User < ActiveRecord::Base
     self.username?
   end
 
-  def send_confirmation_email_if_changed?(new_params, old_params) 
-    new_home_email, old_home_email = new_params[:home_email], old_params[:home_email]
-    if new_home_email != old_home_email 
+  def send_confirmation_email_if_emails_changed?
+    if self.home_email_changed?
       self.home_institution_confirmation_token = Devise.friendly_token[0, 30]
-      self.home_email = new_home_email 
       self.home_institution_confirmed = false
-      self.save!
-      UserEmailConfirmationMailer.confirmation_email(self, :home).deliver_now
+      Thread.new do
+        UserEmailConfirmationMailer.confirmation_email(self, :home).deliver_now
+        ActiveRecord::Base.connection.close
+      end
+    end
+
+    if self.exchange_email_changed?
     end
   end
 
   def confirm_home_email!
     self.home_institution_confirmed = true
     self.home_institution_confirmation_token = nil
+    domain = Mail::Address.new(self.home_email).domain
+    UsrInstnConnect.create!(
+      :user_id => self.id,
+      :institution_id => InstitutionEmail.find_by_instn_domain(domain).id,
+      :is_home_institution => true
+    )
     self.save!
+  end
+
+  def downcase_email
+    self.email = email.downcase if self.email
   end
 
 end
