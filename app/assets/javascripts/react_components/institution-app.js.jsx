@@ -63,6 +63,11 @@ var InstitutionApp = React.createClass({
           <div className="section">
             <div className="container">
               <div className="row">
+                <div className="col s12">
+                  <img className="materialboxed" width="100%" src="https://fbcdn-sphotos-d-a.akamaihd.net/hphotos-ak-xft1/t31.0-8/11731663_10153501178508540_6995137222862994951_o.jpg" data-caption={this.state.institution.name}></img>
+                </div>
+              </div>
+              <div className="row">
                 <div className="col">
                   <h3 className="avenir-65 primary-text-color deep-orange-text">
                     {this.state.institution.name}
@@ -70,47 +75,34 @@ var InstitutionApp = React.createClass({
                 </div>
               </div>
               <div className="row">
-                <div className="col s12">
-                  <div className="slider">
-                    <ul className="slides">
-                      <li>
-                        <img src="http://lorempixel.com/580/250/nature/1"></img>
-                        <div className="caption center-align">
-                          <h3>{this.state.institution.name}</h3>
-                          <h5 className="light grey-text text-lighten-3">A very fun place to be in</h5>
-                        </div>
-                      </li>
-                    </ul>
+                <div className="institution-left-content col s12 m8">
+                  <div className="row">
+                    <div className="col s11">
+                      <h4 className="avenir-65 primary-text-color deep-orange-text">INFORMATION</h4>
+                      <ul className="collapsible" data-collapsible="accordion">
+                       <li>
+                         <div className="collapsible-header"><i className="material-icons">place</i>Location</div>
+                         <div className="collapsible-body"><p>{this.state.institution.state}, {this.state.institution.country}</p></div>
+                       </li>
+                       <li>
+                         <div className="collapsible-header"><i className="material-icons">language</i>Primary language</div>
+                         <div className="collapsible-body"><p>{this.state.institution.language}</p></div>
+                       </li>
+                       <li>
+                         <div className="collapsible-header"><i className="material-icons">info_outline</i>Description</div>
+                         <div className="collapsible-body"><p>{this.state.institution.extract}</p></div>
+                       </li>
+                     </ul>
+                    </div>
+                  </div>
+                  <div className="row">
+                    <div className="col s11">
+                      <h4 className="avenir-65 primary-text-color deep-orange-text">SHOUTOUT</h4>
+                      <div id="disqus_thread"></div>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div className="row">
-                <div className="col">
-                  Location: {this.state.institution.state}, {this.state.institution.country}
-                </div>
-              </div>
-              <div className="row">
-                <div className="col">
-                  Primary language: {this.state.institution.language}
-                </div>
-              </div>
-
-              <div className="row">
-                <div className="col">
-                  {this.state.institution.extract}
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="section">
-            <div className="container">
-              <div className="row">
-                <div className="col s12 m8">
-                  <h4 className="avenir-65 primary-text-color deep-orange-text">SHOUTOUT</h4>
-                  <div id="disqus_thread"></div>
-                </div>
-                <div className="col s12 m4">
+                <div className="institution-right-content col s12 m4">
                   <h4 className="avenir-65 primary-text-color deep-orange-text">RECENTLY JOINED</h4>
                   <RecentlyJoined institution={this.state.institution} />
                 </div>
