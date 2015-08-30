@@ -1,13 +1,10 @@
 var InstitutionApp = React.createClass({
-
-  componentWillMount: function() {
+  componentDidMount: function() {
     var url = "/institutions/" + this.props.institution_id + ".json"
     $.get(url, function(response) {
       this.updateInstitutionObject(response);
     }.bind(this));
-  },
 
-  componentDidMount: function() {
     function initialize() {
       var mapCanvas = document.getElementById('map');
       var mapOptions = {
@@ -37,6 +34,7 @@ var InstitutionApp = React.createClass({
   updateView: function() {
     $(React.findDOMNode(this.refs.loadingWrapper)).addClass("hide")
     $(React.findDOMNode(this.refs.wrapper)).removeClass("hide")
+    Materialize.updateTextFields();
     this.forceUpdate();
     this.loadDisqus();
   },
