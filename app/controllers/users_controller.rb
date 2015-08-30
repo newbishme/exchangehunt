@@ -70,8 +70,8 @@ class UsersController < ApplicationController
     restricted_hash[:first_name] = user_hash[:first_name]
     restricted_hash[:last_name] = user_hash[:last_name]
     restricted_hash[:image_url] = user_hash[:image_url]
-    restricted_hash[:home_institution] = user_hash.home_institution
-    restricted_hash[:exchange_institution] = user_hash.exchange_institution
+    restricted_hash[:home_institution] = user_hash.home_institution || Institution.new
+    restricted_hash[:exchange_institution] = user_hash.exchange_institution || Institution.new
     restricted_hash
   end
 

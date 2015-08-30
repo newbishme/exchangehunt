@@ -42,7 +42,7 @@ var UserProfileApp = React.createClass({
             <div className="col s6 offset-s3">
           	  <span>SINGAPOREAN</span><br/>
           	  <span>COMPUTER SCIENCE</span><br/>
-              <span>{this.props.user.home_institution.name.toUpperCase()}</span><br/>
+              <span>{this.props.user.home_institution.name}</span><br/>
               <div className="row"></div>
           	  <span className="avenir-85">Visiting:</span><br/>
           	  <span>NANYANG TECHNOLOGICAL UNIVERSITY</span><br/>
