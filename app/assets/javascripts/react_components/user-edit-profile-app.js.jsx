@@ -23,6 +23,12 @@ var UserEditProfileApp = React.createClass({
 
   updateView: function() {
     Materialize.updateTextFields();
+    $('select').material_select();
+    $('.datepicker').pickadate({
+      selectMonths: true, // Creates a dropdown to control month
+      selectYears: 1, // Creates a dropdown of 15 years to control year
+      min: -60
+    });
     this.forceUpdate();
   },
 
@@ -45,8 +51,13 @@ var UserEditProfileApp = React.createClass({
               <div className="row">
                 <div className="input-field col s8">
                   <i className="material-icons prefix">language</i>
-                  <input placeholder="Enter your citizenship" id="citizenship" type="text"></input>
-                  <label htmlFor="citizenship">Citizenship</label>
+                  <select>
+                    <option value="">Select your citizenship</option>
+                    <option value="SINGAPOREAN">SINGAPOREAN</option>
+                    <option value="AMERICAN">AMERICAN</option>
+                    <option value="ALL OTHERS">ALL OTHERS</option>
+                  </select>
+                  <label>Citizenship</label>
                 </div>
               </div>
               <div className="row">
@@ -78,15 +89,15 @@ var UserEditProfileApp = React.createClass({
               <div className="row">
                 <div className="input-field col s8">
                   <i className="material-icons prefix">today</i>
-                  <input placeholder="Starting period of exchange" id="start_date" type="text"></input>
-                  <label htmlFor="start_date">Starting date of exchange (Optional)</label>
+                  <input id="start_date" type="date" className="datepicker" placeholder="Start date"></input>
+                  <label className="active" htmlFor="start_date">Start date of exchange (Optional)</label>
                 </div>
               </div>
               <div className="row">
                 <div className="input-field col s8">
                   <i className="material-icons prefix">event</i>
-                  <input placeholder="Ending period of exchange" id="end_date" type="text"></input>
-                  <label htmlFor="end_date">Ending date of exchange (Optional)</label>
+                  <label className="active" htmlFor="end_date">End date of exchange (Optional)</label>
+                  <input id="end_date" type="date" className="datepicker" placeholder="End date"></input>
                 </div>
               </div>
               <div className="row">

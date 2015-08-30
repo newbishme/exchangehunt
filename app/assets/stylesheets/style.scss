@@ -342,3 +342,9 @@ footer.page-footer {
  border-bottom: 1px solid #000;
  box-shadow: 0 1px 0 0 #000;
 }
+/* input-field select icon prefix fix */
+.input-field .prefix ~ input, .input-field .prefix ~ textarea , .input-field .prefix ~ div.select-wrapper {
+    margin-left: 3rem;
+    width: 92%;
+    width: calc(100% - 3rem);
+}
