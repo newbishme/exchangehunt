@@ -65,7 +65,7 @@ var UserProfileApp = React.createClass({
               {this.renderDropMessageButton()}
 
               <div className="row"></div>
-              
+
               <span>{this.props.user.bio.toUpperCase()}</span><br/>
             </div>
           </div>

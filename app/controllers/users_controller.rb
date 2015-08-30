@@ -73,11 +73,11 @@ class UsersController < ApplicationController
     restricted_hash[:image_url] = user_hash[:image_url]
     restricted_hash[:home_email] = user_hash[:home_email]
     restricted_hash[:exchange_email] = user_hash[:exchange_email]
+    restricted_hash[:home_institution] = user_hash.home_institution || Institution.new
+    restricted_hash[:exchange_institution] = user_hash.exchange_institution || Institution.new
     restricted_hash[:citizenship] = user_hash[:citizenship]
     restricted_hash[:bio] = user_hash[:bio]
     restricted_hash[:course] = user_hash[:course]
-    restricted_hash[:home_institution] = user_hash.home_institution || Institution.new
-    restricted_hash[:exchange_institution] = user_hash.exchange_institution || Institution.new
     restricted_hash
   end
 
