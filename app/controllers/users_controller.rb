@@ -22,22 +22,30 @@ class UsersController < ApplicationController
   end
 
   def update
-    raise_404 unless authorized? @user
+    raise_400 and return unless authorized?(@user)
+    unless InstitutionEmail.valid_domain?(user_params[:home_email])
+      raise_400("Sorry, your institution is not one of the participating institutions.")
+      return
+    end
+
+    old_params = {
+      :home_email => @user.home_email,
+      :exchange_email => @user.exchange_email
+    }
+
     if @user.update_attributes(user_params)
-      @user.home_institution_confirmation_token = Devise.friendly_token[0, 20]
-      @user.save!
-      UserEmailConfirmationMailer.confirmation_email(@user).deliver_now
-      render status: 200, json: @user.to_json.html_safe
+      @user.send_confirmation_email_if_changed?(user_params, old_params)
+      render status: 200, json: @user.username.to_json.html_safe
     end
   end
 
   def confirm
     token = params[:t]
     user = User.find_by_home_institution_confirmation_token(token)
-    if user
-      user.home_institution_confirmed = true
-      user.save!
-      render :ok, json: token.to_json.html_safe
+    if user && user.confirm_home_email!
+      respond_to do |format|
+        format.html
+      end
     else
       raise_404
     end
@@ -59,7 +67,7 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:username, :home_institution, :exchange_institution)
+    params.require(:user).permit(:username, :home_email, :exchange_email)
   end
 
   def restrict_user_info(user_hash)

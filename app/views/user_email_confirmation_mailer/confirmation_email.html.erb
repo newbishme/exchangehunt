@@ -6,7 +6,7 @@
   <body>
     <h1>Welcome to ExchangeHunt, <%= @user.first_name %></h1>
     <p>
-      To confirm your email, please follow this link: <%= @confirmation_url %>
+      To confirm your email, please follow this link: <%= link_to @confirmation_url, @confirmation_url %>
     </p>
   </body>
 </html>

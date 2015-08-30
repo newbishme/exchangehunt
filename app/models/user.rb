@@ -49,4 +49,21 @@ class User < ActiveRecord::Base
     self.username?
   end
 
+  def send_confirmation_email_if_changed?(new_params, old_params) 
+    new_home_email, old_home_email = new_params[:home_email], old_params[:home_email]
+    if new_home_email != old_home_email 
+      self.home_institution_confirmation_token = Devise.friendly_token[0, 30]
+      self.home_email = new_home_email 
+      self.home_institution_confirmed = false
+      self.save!
+      UserEmailConfirmationMailer.confirmation_email(self, :home).deliver_now
+    end
+  end
+
+  def confirm_home_email!
+    self.home_institution_confirmed = true
+    self.home_institution_confirmation_token = nil
+    self.save!
+  end
+
 end
