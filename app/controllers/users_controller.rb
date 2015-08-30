@@ -28,13 +28,7 @@ class UsersController < ApplicationController
       return
     end
 
-    old_params = {
-      :home_email => @user.home_email,
-      :exchange_email => @user.exchange_email
-    }
-
     if @user.update_attributes(user_params)
-      @user.send_confirmation_email_if_changed?(user_params, old_params)
       render status: 200, json: @user.username.to_json.html_safe
     end
   end
@@ -42,7 +36,8 @@ class UsersController < ApplicationController
   def confirm
     token = params[:t]
     user = User.find_by_home_institution_confirmation_token(token)
-    if user && user.confirm_home_email!
+    if user
+      user.confirm_home_email!
       respond_to do |format|
         format.html
       end
@@ -76,7 +71,8 @@ class UsersController < ApplicationController
     restricted_hash[:first_name] = user_hash[:first_name]
     restricted_hash[:last_name] = user_hash[:last_name]
     restricted_hash[:image_url] = user_hash[:image_url]
-    restricted_hash[:home_institution] = user_hash[:home_institution]
+    restricted_hash[:home_institution] = user_hash.home_institution
+    restricted_hash[:exchange_institution] = user_hash.exchange_institution
     restricted_hash
   end
 
