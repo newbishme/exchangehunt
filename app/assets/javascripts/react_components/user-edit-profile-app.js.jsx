@@ -20,7 +20,7 @@ var UserEditProfileApp = React.createClass({
           {},
           function(resp){
             var span = React.findDOMNode(this.refs.homeInstitutionName)
-            span.innerHTML = resp["name"] + ' (<a href="/support">Incorrect?</a>)';
+            span.innerHTML = 'Your Home Institution: ' + resp["name"] + ' (<a href="/support">Incorrect?</a>)';
           }.bind(this));
   },
 
@@ -29,7 +29,7 @@ var UserEditProfileApp = React.createClass({
           {},
           function(resp){
             var span = React.findDOMNode(this.refs.exchangeInstitutionName)
-            span.innerHTML = resp["name"] + ' (<a href="/support">Incorrect?</a>)';
+            span.innerHTML = 'Visiting: ' + resp["name"] + ' (<a href="/support">Incorrect?</a>)';
           }.bind(this));
   },
 
@@ -139,7 +139,7 @@ var UserEditProfileApp = React.createClass({
 
               <div className="row">
                 <div className="col s8">
-                  <span className="avenir-85">Your Home Institution: <span ref="homeInstitutionName">{this.props.user.home_institution.name}</span></span>
+                  <span className="avenir-85" ref="homeInstitutionName"></span>
                 </div>
               </div>
               <div className="row">
@@ -154,7 +154,7 @@ var UserEditProfileApp = React.createClass({
 
               <div className="row">
                 <div className="col s8">
-                  <span className="avenir-85">Visiting: <span ref="exchangeInstitutionName"></span></span>
+                  <span className="avenir-85" ref="exchangeInstitutionName"></span>
                 </div>
               </div>
               <div className="row">
