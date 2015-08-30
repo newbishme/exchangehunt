@@ -40,15 +40,15 @@ var UserProfileApp = React.createClass({
           {this.renderEditProfileButton()}
           <div className="row">
             <div className="col s6 offset-s3">
-          	  <span>SINGAPOREAN</span><br/>
-          	  <span>COMPUTER SCIENCE</span><br/>
+          	  <span>{this.props.user.citizenship.toUpperCase()}</span><br/>
+          	  <span>{this.props.user.course.toUpperCase()}</span><br/>
               <span>{this.props.user.home_institution.name.toUpperCase()}</span><br/>
               <div className="row"></div>
           	  <span className="avenir-85">Visiting:</span><br/>
           	  <span>NANYANG TECHNOLOGICAL UNIVERSITY</span><br/>
           	  <span>2015-2016</span><br/>
-              {this.renderDropMessageButton()}
-          	  <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In felis arcu, porttitor in mauris eget, iaculis lobortis tortor. Etiam pretium molestie lacus. Fusce ultrices eget elit et auctor.</span><br/>
+              {this.renderDropMessageButton()}<br/>
+            <span>{this.props.user.bio.toUpperCase()}</span><br/>
             </div>
           </div>
         </div>

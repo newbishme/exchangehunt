@@ -99,7 +99,7 @@ var UsernameCreationForm = React.createClass({
           }
         },
         success: function(username) {
-          window.location.href = "/users/" + username;
+          window.location.href = "/users/" + username + "/edit";
         }.bind(this),
         error: function(response) {
           console.log(response);

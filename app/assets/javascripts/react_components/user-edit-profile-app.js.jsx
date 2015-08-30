@@ -1,25 +1,7 @@
 var UserEditProfileApp = React.createClass({
 
   componentDidMount: function() {
-    var url = "/users/" + this.props.username + ".json"
-    $.get(url, function(response) {
-      this.updateUserObject(response);
-    }.bind(this));
-  },
-
-  getInitialState: function() {
-    return {
-      user: {},
-      usr_instn_connect: {}
-    };
-  },
-
-  updateUserObject: function(user) {
-    this.setState({
-      user: user
-    }, function() {
-      this.updateView();
-    }.bind(this));
+    this.updateView();
   },
 
   updateView: function() {
@@ -72,13 +54,21 @@ var UserEditProfileApp = React.createClass({
     var endDate = React.findDOMNode(this.refs.endDateField).value;
     var bio = React.findDOMNode(this.refs.bioField).value;
 
-    if (citizenship === "" || course === "") {
+    if (citizenship === "") {
+      if (this.props.user.citizenship === "") {
+        return;
+      } else {
+        citizenship = this.props.user.citizenship;
+      }
+    }
+
+    if (course === "") {
       return;
     } else if (exchangeInstitutionEmail !== "" && (startDate === "" || endDate === "")){
       return;
     } else {
       $.ajax({
-        url: "/users/" + this.state.user.id,
+        url: "/users/" + this.props.user.id,
         type: "PUT",
         data: {
           user: {
@@ -88,9 +78,14 @@ var UserEditProfileApp = React.createClass({
             exchange_email: exchangeInstitutionEmail,
             bio: bio
           },
-          usr_instn_connect: {
-            user_id: this.state.user.id,
-            institution_id: 1,
+          usr_instn_connect_home: {
+            user_id: this.props.user.id,
+            institution_id: this.props.user.home_institution.id,
+            is_home_institution: true
+          },
+          usr_instn_connect_exchange: {
+            user_id: this.props.user.id,
+            institution_id: 2,
             start_date: startDate,
             end_date: endDate,
             is_home_institution: false
@@ -112,11 +107,11 @@ var UserEditProfileApp = React.createClass({
         <div className="section">
           <div className="row valign-wrapper profile-image-row">
             <div className="col s3">
-              <img src={this.state.user.image_url} className="circle responsive-img right profile-image-size" />
+              <img src={this.props.user.image_url} className="circle responsive-img right profile-image-size" />
             </div>
             <div className="col s7">
               <h2 className="avenir-65 inline">
-                <span className="primary-text-color inline">{this.state.user.first_name} {this.state.user.last_name}</span>
+                <span className="primary-text-color inline">{this.props.user.first_name} {this.props.user.last_name}</span>
               </h2>
             </div>
           </div>
@@ -125,7 +120,7 @@ var UserEditProfileApp = React.createClass({
               <div className="row">
                 <div className="input-field col s8">
                   <i className="material-icons prefix">language</i>
-                  <select ref="citizenshipField">
+                  <select ref="citizenshipField" defaultValue={this.props.user.citizenship}>
                     <option value="">Select your citizenship</option>
                     <option value="SINGAPOREAN">SINGAPOREAN</option>
                     <option value="AMERICAN">AMERICAN</option>
@@ -137,21 +132,21 @@ var UserEditProfileApp = React.createClass({
               <div className="row">
                 <div className="input-field col s8">
                   <i className="material-icons prefix">school</i>
-                  <input placeholder="Enter your field of study" value={this.state.user.course} id="course" type="text" ref="courseField"></input>
+                  <input placeholder="Enter your field of study" defaultValue={this.props.user.course} id="course" type="text" ref="courseField" onChange={this.handleChange}></input>
                   <label htmlFor="course">Field of Study</label>
                 </div>
               </div>
 
               <div className="row">
                 <div className="col s8">
-                  <span className="avenir-85">Your Home Institution: <span ref="homeInstitutionName"></span></span>
+                  <span className="avenir-85">Your Home Institution: <span ref="homeInstitutionName">{this.props.user.home_institution.name}</span></span>
                 </div>
               </div>
               <div className="row">
                 <div className="input-field col s8">
                   <div className="row">
                     <i className="material-icons prefix">home</i>
-                    <input placeholder="Enter your home institution's email" value={this.state.user.home_email} id="home_institution" type="text" ref="homeEmailField" className="validate" onChange={this.handleHomeInstitutionEmailInputFieldChange}></input>
+                    <input placeholder="Enter your home institution's email" defaultValue={this.props.user.home_email} id="home_institution" type="text" ref="homeEmailField" className="validate" onChange={this.handleHomeInstitutionEmailInputFieldChange}></input>
                     <label htmlFor="home_institution">Home institution email</label>
                   </div>
                 </div>
@@ -165,7 +160,7 @@ var UserEditProfileApp = React.createClass({
               <div className="row">
                 <div className="input-field col s8">
                   <i className="material-icons prefix">mail</i>
-                  <input placeholder="Enter your exchange institution's email" value={this.state.user.exchange_email} id="exchange_institution" type="text" ref="exchangeEmailField" className="validate" onChange={this.handleExchangeInstitutionEmailInputFieldChange}></input>
+                  <input placeholder="Enter your exchange institution's email" defaultValue={this.props.user.exchange_email} id="exchange_institution" type="text" ref="exchangeEmailField" className="validate" onChange={this.handleExchangeInstitutionEmailInputFieldChange}></input>
                   <label htmlFor="exchange_institution">Exchange institution email (Optional)</label>
                 </div>
               </div>
@@ -186,7 +181,7 @@ var UserEditProfileApp = React.createClass({
               <div className="row">
                 <div className="input-field col s8">
                   <i className="material-icons prefix">info_outline</i>
-                  <textarea placeholder="Enter something about yourself" value={this.state.user.bio} id="bio" type="text" className="materialize-textarea" ref="bioField"></textarea>
+                  <textarea placeholder="Enter something about yourself" defaultValue={this.props.user.bio} id="bio" type="text" className="materialize-textarea" ref="bioField"></textarea>
                   <label htmlFor="bio">Bio</label>
                 </div>
               </div>
