@@ -25,7 +25,7 @@ class User < ActiveRecord::Base
       user.email = auth.info.email || ""
       user.first_name = auth.info.first_name
       user.last_name = auth.info.last_name
-      user.password = Devise.friendly_token[0, 20]
+      user.password = Devise.friendly_token[0, 30]
       user.image_url = auth.info.image
       user.gender = auth.extra.raw_info.gender
       user.admin = false

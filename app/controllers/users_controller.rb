@@ -25,7 +25,7 @@ class UsersController < ApplicationController
     if @user.update_attributes(user_params)
       @user.home_institution_confirmation_token = Devise.friendly_token[0, 20]
       @user.save!
-      UserEmailConfirmationMailer.confirmation_email(@user).deliver_later
+      UserEmailConfirmationMailer.confirmation_email(@user).deliver_now
       render status: 200, json: @user.to_json.html_safe
     end
   end
