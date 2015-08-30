@@ -13,6 +13,15 @@ class InstitutionsController < ApplicationController
     end
   end
 
+  def recently_joined
+    id = params[:id]
+    user_ids = UsrInstnConnect.where("institution_id = #{id}").map { |x| x.user_id }
+    users = user_ids.map { |id| User.find(id) }.compact.sort_by(&:created_at).reverse.take(5)
+    respond_to do |format|
+      format.json { render json: users.to_json.html_safe}
+    end
+  end
+
   def show
     respond_to do |format|
       format.html

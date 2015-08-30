@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   get 'help' => 'pages#help'
   get 'about' => 'pages#about'
   get 'home' => 'pages#index'
-  get 'welcome/index' 
+  get 'welcome/index'
 
   get 'heartbeat' => 'application#heartbeat'
 
@@ -20,8 +20,9 @@ Rails.application.routes.draw do
   get 'institutions/mapping', to: 'institutions#mapping'
 
   get 'confirm', to: 'users#confirm'
-
   resources :users
 
+  get 'institutions/:id/recently_joined', to: 'institutions#recently_joined'
   resources :institutions
+
 end

@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!, only: [:update]
+  before_action :authenticate_user!, only: [:update, :edit]
   before_action :ensure_complete_registration, only: [:show]
 
-  before_action :set_user_by_username, only: [:show, :username]
+  before_action :set_user_by_username, only: [:show, :username, :edit]
   before_action :set_user_by_id, only: :update
 
   skip_before_filter :verify_authenticity_token, only: [:confirm]
@@ -17,6 +17,7 @@ class UsersController < ApplicationController
   def show
     respond_to do |format|
       format.html
+      format.json { render json: restrict_user_info(@user).to_json.html_safe }
     end
   end
 
@@ -42,6 +43,9 @@ class UsersController < ApplicationController
     end
   end
 
+  def edit
+  end
+
   private
 
   def set_user_by_username
@@ -56,6 +60,15 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:username, :home_institution, :exchange_institution)
+  end
+
+  def restrict_user_info(user_hash)
+    restricted_hash = {}
+    restricted_hash[:first_name] = user_hash[:first_name]
+    restricted_hash[:last_name] = user_hash[:last_name]
+    restricted_hash[:image_url] = user_hash[:image_url]
+    restricted_hash[:home_institution] = user_hash[:home_institution]
+    restricted_hash
   end
 
 end

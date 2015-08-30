@@ -16,7 +16,6 @@ namespace :institutions do
       inst.extract = extract unless extract.nil?
       inst.save
     end
-
   end
 
 end

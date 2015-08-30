@@ -14,9 +14,9 @@
 
 //  Bunch of CSS to make flex Sticky Footer work on Safari
 
-html { 
-  height: 100%; 
-} 
+html {
+  height: 100%;
+}
 
 .site {
   display: -webkit-box;
@@ -53,6 +53,11 @@ html {
 .primary-text-color {
   @extend .deep-orange-text;
   @extend .text-accent-3;
+}
+
+.btn {
+  @extend .blue;
+  @extend .darken-4;
 }
 
 .clickthrough {
@@ -213,7 +218,7 @@ footer.page-footer {
 }
 
 /* typeahead */
-.twitter-typeahead .tt-input, 
+.twitter-typeahead .tt-input,
 .twitter-typeahead .tt-hint {
     width: 450px !important;
     height: 30px !important;
@@ -225,7 +230,7 @@ footer.page-footer {
     outline: none;
 }
 
-.twitter-typeahead .tt-input { 
+.twitter-typeahead .tt-input {
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
     text-shadow: 2px 2px #000000;
 }
@@ -235,7 +240,7 @@ footer.page-footer {
     text-shadow: 1px 1px #000000;
 }
 
-.twitter-typeahead .tt-menu { 
+.twitter-typeahead .tt-menu {
     width: 450px !important;
     margin-top: 0px;
     padding: 8px 12px;
@@ -254,11 +259,73 @@ footer.page-footer {
     text-shadow: 2px 2px #000000;
 }
 
-.twitter-typeahead .tt-suggestion .tt-cursor { 
+.twitter-typeahead .tt-suggestion .tt-cursor {
     color: #ffffff !important;
     background-color: #0097cf !important;
 }
 
 .twitter-typeahead .tt-suggestion p {
     margin: 0 !important;
+}
+
+.profile-image-row {
+  height: 100px;
+}
+
+.profile-image-size {
+  height: 25%;
+  width: 25%
+}
+
+
+
+
+
+/* Materialize form colour */
+
+/* label color */
+.input-field label {
+ color: #000;
+}
+/* label focus color */
+.input-field input[type=text]:focus + label {
+ color: #000;
+}
+/* label underline focus color */
+.input-field input[type=text]:focus {
+ border-bottom: 1px solid #000;
+ box-shadow: 0 1px 0 0 #000;
+}
+/* valid color */
+.input-field input[type=text].valid {
+ border-bottom: 1px solid #000;
+ box-shadow: 0 1px 0 0 #000;
+}
+/* invalid color */
+.input-field input[type=text].invalid {
+ border-bottom: 1px solid #000;
+ box-shadow: 0 1px 0 0 #000;
+}
+/* icon prefix focus color */
+.input-field .prefix.active {
+ color: #000;
+}
+/* label focus color */
+.input-field textarea[type=text]:focus + label {
+ color: #000;
+}
+/* label underline focus color */
+.input-field textarea[type=text]:focus {
+ border-bottom: 1px solid #000;
+ box-shadow: 0 1px 0 0 #000;
+}
+/* valid color */
+.input-field textarea[type=text].valid {
+ border-bottom: 1px solid #000;
+ box-shadow: 0 1px 0 0 #000;
+}
+/* invalid color */
+.input-field textarea[type=text].invalid {
+ border-bottom: 1px solid #000;
+ box-shadow: 0 1px 0 0 #000;
 }

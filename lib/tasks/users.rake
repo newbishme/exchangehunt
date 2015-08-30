@@ -6,4 +6,10 @@ namespace :users do
     User.create!(uid: rand(100000000), first_name: "James", last_name: "Doe", username: "james", email: "james@doe.org", password: "12345678")
   end
 
+  task connect: :environment do
+    UsrInstnConnect.create!(user_id: 1, institution_id: 1, is_home_institution: false)
+    UsrInstnConnect.create!(user_id: 2, institution_id: 1, is_home_institution: false)
+    UsrInstnConnect.create!(user_id: 3, institution_id: 1, is_home_institution: false)
+  end
+
 end
