@@ -38,7 +38,7 @@ var InstitutionApp = React.createClass({
     this.forceUpdate();
     this.loadDisqus();
     $('.collapsible').collapsible();
-    $('.materialboxed').materialbox();
+    $('.parallax').parallax();
   },
 
   loadDisqus: function() {
@@ -62,9 +62,13 @@ var InstitutionApp = React.createClass({
         <div ref="wrapper" className="hide">
           <div className="section">
             <div className="container">
-              <div className="row">
-                <div className="col s12">
-                  <img className="materialboxed" width="100%" src={this.state.institution.facebook_img_url} data-caption={this.state.institution.name}></img>
+              <div id="index-banner" className="parallax-container">
+                <div className="row">
+                  <div className="col s12">
+                    <div className="parallax">
+                      <img src={this.state.institution.facebook_img_url} alt={this.state.institution.name}></img>
+                    </div>
+                  </div>
                 </div>
               </div>
               <div className="row">
