@@ -18,3 +18,4 @@
 //= require components
 //= require materialize-sprockets
 //= require "./google_maps.js"
+//= require "./typeahead.bundle.js"
