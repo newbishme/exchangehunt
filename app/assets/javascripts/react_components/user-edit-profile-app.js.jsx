@@ -9,7 +9,8 @@ var UserEditProfileApp = React.createClass({
 
   getInitialState: function() {
     return {
-      user: {}
+      user: {},
+      usr_instn_connect: {}
     };
   },
 
@@ -32,6 +33,79 @@ var UserEditProfileApp = React.createClass({
     this.forceUpdate();
   },
 
+  validateAndMapHomeDomain: function(domain) {
+    $.get("/institutions/mapping?domain=" + domain,
+          {},
+          function(resp){
+            var span = React.findDOMNode(this.refs.homeInstitutionName)
+            span.innerHTML = resp["name"] + ' (<a href="/support">Incorrect?</a>)';
+          }.bind(this));
+  },
+
+  validateAndMapExchangeDomain: function(domain) {
+    $.get("/institutions/mapping?domain=" + domain,
+          {},
+          function(resp){
+            var span = React.findDOMNode(this.refs.exchangeInstitutionName)
+            span.innerHTML = resp["name"] + ' (<a href="/support">Incorrect?</a>)';
+          }.bind(this));
+  },
+
+  handleHomeInstitutionEmailInputFieldChange: function() {
+    var email = React.findDOMNode(this.refs.homeEmailField).value;
+    var domain = email.replace(/.*@/, "");
+    this.validateAndMapHomeDomain(domain);
+  },
+
+  handleExchangeInstitutionEmailInputFieldChange: function() {
+    var email = React.findDOMNode(this.refs.exchangeEmailField).value;
+    var domain = email.replace(/.*@/, "");
+    this.validateAndMapExchangeDomain(domain);
+  },
+
+  handleSubmitButtonClick: function() {
+    var citizenship = React.findDOMNode(this.refs.citizenshipField).value;
+    var course = React.findDOMNode(this.refs.courseField).value;
+    var homeInstitutionEmail = React.findDOMNode(this.refs.homeEmailField).value;
+    var exchangeInstitutionEmail = React.findDOMNode(this.refs.exchangeEmailField).value;
+    var startDate = React.findDOMNode(this.refs.startDateField).value;
+    var endDate = React.findDOMNode(this.refs.endDateField).value;
+    var bio = React.findDOMNode(this.refs.bioField).value;
+
+    if (citizenship === "" || course === "") {
+      return;
+    } else if (exchangeInstitutionEmail !== "" && (startDate === "" || endDate === "")){
+      return;
+    } else {
+      $.ajax({
+        url: "/users/" + this.state.user.id,
+        type: "PUT",
+        data: {
+          user: {
+            citizenship: citizenship,
+            course: course,
+            home_email: homeInstitutionEmail,
+            exchange_email: exchangeInstitutionEmail,
+            bio: bio
+          },
+          usr_instn_connect: {
+            user_id: this.state.user.id,
+            institution_id: 1,
+            start_date: startDate,
+            end_date: endDate,
+            is_home_institution: false
+          }
+        },
+        success: function(username) {
+          window.location.href = "/users/" + username;
+        }.bind(this),
+        error: function(response) {
+          console.log(response);
+        }.bind(this)
+      });
+    }
+  },
+
   render: function() {
     return (
       <div className="container">
@@ -51,7 +125,7 @@ var UserEditProfileApp = React.createClass({
               <div className="row">
                 <div className="input-field col s8">
                   <i className="material-icons prefix">language</i>
-                  <select>
+                  <select ref="citizenshipField">
                     <option value="">Select your citizenship</option>
                     <option value="SINGAPOREAN">SINGAPOREAN</option>
                     <option value="AMERICAN">AMERICAN</option>
@@ -63,33 +137,42 @@ var UserEditProfileApp = React.createClass({
               <div className="row">
                 <div className="input-field col s8">
                   <i className="material-icons prefix">school</i>
-                  <input placeholder="Enter your field of study" id="course" type="text"></input>
+                  <input placeholder="Enter your field of study" value={this.state.user.course} id="course" type="text" ref="courseField"></input>
                   <label htmlFor="course">Field of Study</label>
+                </div>
+              </div>
+
+              <div className="row">
+                <div className="col s8">
+                  <span className="avenir-85">Your Home Institution: <span ref="homeInstitutionName"></span></span>
                 </div>
               </div>
               <div className="row">
                 <div className="input-field col s8">
-                  <i className="material-icons prefix">home</i>
-                  <input disabled placeholder="NATIONAL UNIVERSITY OF SINGAPORE" id="home_institution" type="text"></input>
-                  <label htmlFor="home_institution">Home institution</label>
+                  <div className="row">
+                    <i className="material-icons prefix">home</i>
+                    <input placeholder="Enter your home institution's email" value={this.state.user.home_email} id="home_institution" type="text" ref="homeEmailField" className="validate" onChange={this.handleHomeInstitutionEmailInputFieldChange}></input>
+                    <label htmlFor="home_institution">Home institution email</label>
+                  </div>
                 </div>
               </div>
+
               <div className="row">
                 <div className="col s8">
-                  <span className="avenir-85">Visiting:</span>
+                  <span className="avenir-85">Visiting: <span ref="exchangeInstitutionName"></span></span>
                 </div>
               </div>
               <div className="row">
                 <div className="input-field col s8">
                   <i className="material-icons prefix">mail</i>
-                  <input placeholder="Enter your exchange institution's email" id="exchange_institution" type="text"></input>
+                  <input placeholder="Enter your exchange institution's email" value={this.state.user.exchange_email} id="exchange_institution" type="text" ref="exchangeEmailField" className="validate" onChange={this.handleExchangeInstitutionEmailInputFieldChange}></input>
                   <label htmlFor="exchange_institution">Exchange institution email (Optional)</label>
                 </div>
               </div>
               <div className="row">
                 <div className="input-field col s8">
                   <i className="material-icons prefix">today</i>
-                  <input id="start_date" type="date" className="datepicker" placeholder="Start date"></input>
+                  <input id="start_date" type="date" className="datepicker" placeholder="Start date" ref="startDateField"></input>
                   <label className="active" htmlFor="start_date">Start date of exchange (Optional)</label>
                 </div>
               </div>
@@ -97,19 +180,25 @@ var UserEditProfileApp = React.createClass({
                 <div className="input-field col s8">
                   <i className="material-icons prefix">event</i>
                   <label className="active" htmlFor="end_date">End date of exchange (Optional)</label>
-                  <input id="end_date" type="date" className="datepicker" placeholder="End date"></input>
+                  <input id="end_date" type="date" className="datepicker" placeholder="End date" ref="endDateField"></input>
                 </div>
               </div>
               <div className="row">
                 <div className="input-field col s8">
                   <i className="material-icons prefix">info_outline</i>
-                  <textarea placeholder="Enter something about yourself" id="bio" type="text" className="materialize-textarea"></textarea>
+                  <textarea placeholder="Enter something about yourself" value={this.state.user.bio} id="bio" type="text" className="materialize-textarea" ref="bioField"></textarea>
                   <label htmlFor="bio">Bio</label>
                 </div>
               </div>
               <div className="row">
                 <div className="col s8">
-                  <a className="waves-effect waves-light btn right"><i className="material-icons left">save</i>Save changes</a>
+                  <button className="btn center waves-effect waves-light btn-medium right"
+                    ref="saveChangesButton"
+                    type="submit"
+                    onClick={this.handleSubmitButtonClick}>
+                    <i className="material-icons left">save</i>
+                    Save changes
+                  </button>
                 </div>
               </div>
             </div>

@@ -1,4 +1,4 @@
-<% if is_users_profile? %>
+
   <div id="user-edit-profile-app"></div>
   <script type="text/javascript" charset="utf-8">
     (function() {
@@ -9,6 +9,3 @@
          document.getElementById("user-edit-profile-app"));
      })();
   </script>
-<% else %>
-  <%= render 'not_authorized_user' %>
-<% end %>

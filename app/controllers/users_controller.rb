@@ -67,11 +67,12 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:username, :home_email, :exchange_email)
+    params.require(:user).permit(:username, :home_email, :exchange_email, :bio, :citizenship, :course)
   end
 
   def restrict_user_info(user_hash)
     restricted_hash = {}
+    restricted_hash[:id] = user_hash[:id]
     restricted_hash[:first_name] = user_hash[:first_name]
     restricted_hash[:last_name] = user_hash[:last_name]
     restricted_hash[:image_url] = user_hash[:image_url]
