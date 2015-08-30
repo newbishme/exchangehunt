@@ -7,6 +7,7 @@ var UserProfileApp = React.createClass({
         <div className="row edit-profile">
           <div className="col s5 offset-s3">
             <a className="waves-effect waves-light btn" href={editUrl}><i className="material-icons left">edit</i>Edit profile</a>
+            <br/>
           </div>
         </div>
       );
@@ -18,6 +19,19 @@ var UserProfileApp = React.createClass({
       return (
         <div>
           <a className="waves-effect waves-light btn"><i className="material-icons left">mail</i>Drop a message</a>
+          <br/>
+        </div>
+      );
+    }
+  },
+
+  renderExchangeInformation: function() {
+    if (this.props.user.exchange_institution != null) {
+      return (
+        <div>
+          <span className="avenir-85">Visiting:</span><br/>
+          <span>NANYANG TECHNOLOGICAL UNIVERSITY</span><br/>
+          <span>2015-2016</span><br/>
         </div>
       );
     }
@@ -38,16 +52,16 @@ var UserProfileApp = React.createClass({
             </div>
           </div>
           {this.renderEditProfileButton()}
+          <div className="row"></div>
           <div className="row">
             <div className="col s6 offset-s3">
           	  <span>{this.props.user.citizenship.toUpperCase()}</span><br/>
           	  <span>{this.props.user.course.toUpperCase()}</span><br/>
               <span>{this.props.user.home_institution.name.toUpperCase()}</span><br/>
               <div className="row"></div>
-          	  <span className="avenir-85">Visiting:</span><br/>
-          	  <span>NANYANG TECHNOLOGICAL UNIVERSITY</span><br/>
-          	  <span>2015-2016</span><br/>
-              {this.renderDropMessageButton()}<br/>
+          	  {this.renderExchangeInformation()}
+              {this.renderDropMessageButton()}
+              <div className="row"></div>
             <span>{this.props.user.bio.toUpperCase()}</span><br/>
             </div>
           </div>
