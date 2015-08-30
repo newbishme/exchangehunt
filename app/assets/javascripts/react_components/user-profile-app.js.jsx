@@ -58,11 +58,15 @@ var UserProfileApp = React.createClass({
           	  <span>{this.props.user.citizenship.toUpperCase()}</span><br/>
           	  <span>{this.props.user.course.toUpperCase()}</span><br/>
               <span>{this.props.user.home_institution.name.toUpperCase()}</span><br/>
+
               <div className="row"></div>
+
           	  {this.renderExchangeInformation()}
               {this.renderDropMessageButton()}
+
               <div className="row"></div>
-            <span>{this.props.user.bio.toUpperCase()}</span><br/>
+              
+              <span>{this.props.user.bio.toUpperCase()}</span><br/>
             </div>
           </div>
         </div>
