@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action :authenticate_user!, only: [:update]
   before_action :ensure_complete_registration, only: [:show]
 
-  before_action :set_user_by_username, only: [:show, :username]
+  before_action :set_user_by_username, only: [:show, :username, :edit]
   before_action :set_user_by_id, only: :update
 
   # check existence for username
@@ -26,6 +26,9 @@ class UsersController < ApplicationController
     end
   end
 
+  def edit
+  end
+
   private
 
   def set_user_by_username
@@ -47,6 +50,7 @@ class UsersController < ApplicationController
     restricted_hash[:first_name] = user_hash[:first_name]
     restricted_hash[:last_name] = user_hash[:last_name]
     restricted_hash[:image_url] = user_hash[:image_url]
+    restricted_hash[:home_institution] = user_hash[:home_institution]
     restricted_hash
   end
 

@@ -1,1 +1,14 @@
-<%= current_user.full_name %>
+<% if is_users_profile? %>
+  <div id="user-edit-profile-app"></div>
+  <script type="text/javascript" charset="utf-8">
+    (function() {
+     var username = JSON.parse('<%= @user.username.to_json.html_safe %>')
+     var is_users_profile = JSON.parse('<%= is_users_profile? %>')
+     React.render(React.createElement(
+           UserEditProfileApp, {username: username, is_users_profile: is_users_profile}),
+         document.getElementById("user-edit-profile-app"));
+     })();
+  </script>
+<% else %>
+  <%= render 'not_authorized_user' %>
+<% end %>

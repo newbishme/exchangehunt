@@ -39,15 +39,16 @@ var UserProfileApp = React.createClass({
             </div>
           </div>
           {function(){
+            var editUrl = "/users/" + this.props.username + "/edit"
             if (this.props.is_users_profile) {
               return (
               <div className="row edit-profile">
                 <div className="col s5 offset-s3">
-                  <a className="waves-effect waves-light btn"><i className="material-icons left">edit</i>Edit profile</a>
+                  <a className="waves-effect waves-light btn" href={editUrl}><i className="material-icons left">edit</i>Edit profile</a>
                 </div>
               </div>);
             }
-          }.call(this)}
+          }.bind(this).call(this)}
           <div className="row"></div>
           <div className="row">
             <div className="col s6 offset-s3">
