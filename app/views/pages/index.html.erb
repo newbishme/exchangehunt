@@ -22,7 +22,7 @@
       </div>
       <div class="row center">
         <div id="multiple-datasets">
-          <input class="typeahead" type="text" placeholder="Search universities, countries, or users">
+          <input id="search-field" class="typeahead" type="text" placeholder="Search universities, countries, or users">
         </div>
       </div>
     </div>
@@ -153,9 +153,19 @@
 
 <script type="text/javascript" charset="utf-8">
   (function() {
-   React.render(React.createElement(
-         SearchBar, {}),
-       document.getElementById("search-bar"));
+
+   $("#search-field").keyup(function(e) {
+       if (e.keyCode === 13) {
+          var search_term = $("#search-field").val();
+          document.location.href = "/search?q=" + search_term;
+       }
+     }
+   );
+
+   //React.render(React.createElement(
+   //      SearchBar, {}),
+   //    document.getElementById("search-bar"));
+   //
    })();
  </script>
 
