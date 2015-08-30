@@ -19,8 +19,10 @@ var UserEditProfileApp = React.createClass({
     $.get("/institutions/mapping?domain=" + domain,
           {},
           function(resp){
-            var span = React.findDOMNode(this.refs.homeInstitutionName)
+            var span = React.findDOMNode(this.refs.homeInstitutionName);
             span.innerHTML = 'Your Home Institution: ' + resp["name"] + ' (<a href="/support">Incorrect?</a>)';
+
+            this.renderValidHomeInstitutionEmail();
           }.bind(this));
   },
 
@@ -30,16 +32,21 @@ var UserEditProfileApp = React.createClass({
           function(resp){
             var span = React.findDOMNode(this.refs.exchangeInstitutionName)
             span.innerHTML = 'Visiting: ' + resp["name"] + ' (<a href="/support">Incorrect?</a>)';
+
+            this.renderValidExchangeInstitutionEmail();
           }.bind(this));
   },
 
   handleHomeInstitutionEmailInputFieldChange: function() {
+    $(React.findDOMNode(this.refs.homeInstitutionName)).addClass("hide")
     var email = React.findDOMNode(this.refs.homeEmailField).value;
     var domain = email.replace(/.*@/, "");
     this.validateAndMapHomeDomain(domain);
   },
 
   handleExchangeInstitutionEmailInputFieldChange: function() {
+    $(React.findDOMNode(this.refs.exchangeInstitutionName)).addClass("hide")
+    $(React.findDOMNode(this.refs.startAndEndDates)).addClass("hide");
     var email = React.findDOMNode(this.refs.exchangeEmailField).value;
     var domain = email.replace(/.*@/, "");
     this.validateAndMapExchangeDomain(domain);
@@ -99,6 +106,36 @@ var UserEditProfileApp = React.createClass({
         }.bind(this)
       });
     }
+  },
+
+  renderValidHomeInstitutionEmail: function() {
+    $(React.findDOMNode(this.refs.homeInstitutionName)).removeClass("hide")
+  },
+
+  renderValidExchangeInstitutionEmail: function() {
+    $(React.findDOMNode(this.refs.exchangeInstitutionName)).removeClass("hide")
+    $(React.findDOMNode(this.refs.startAndEndDates)).removeClass("hide");
+  },
+
+  renderStartAndEndDates: function() {
+    return (
+      <div ref="startAndEndDates" className="hide">
+        <div className="row">
+          <div className="input-field col s8">
+            <i className="material-icons prefix">today</i>
+            <input id="start_date" type="date" className="datepicker" placeholder="Start date" ref="startDateField"></input>
+            <label className="active" htmlFor="start_date">Start date of exchange (Optional)</label>
+          </div>
+        </div>
+        <div className="row">
+          <div className="input-field col s8">
+            <i className="material-icons prefix">event</i>
+            <label className="active" htmlFor="end_date">End date of exchange (Optional)</label>
+            <input id="end_date" type="date" className="datepicker" placeholder="End date" ref="endDateField"></input>
+          </div>
+        </div>
+      </div>
+    );
   },
 
   render: function() {
@@ -162,20 +199,9 @@ var UserEditProfileApp = React.createClass({
                   <label htmlFor="exchange_institution">Exchange institution email (Optional)</label>
                 </div>
               </div>
-              <div className="row">
-                <div className="input-field col s8">
-                  <i className="material-icons prefix">today</i>
-                  <input id="start_date" type="date" className="datepicker" placeholder="Start date" ref="startDateField"></input>
-                  <label className="active" htmlFor="start_date">Start date of exchange (Optional)</label>
-                </div>
-              </div>
-              <div className="row">
-                <div className="input-field col s8">
-                  <i className="material-icons prefix">event</i>
-                  <label className="active" htmlFor="end_date">End date of exchange (Optional)</label>
-                  <input id="end_date" type="date" className="datepicker" placeholder="End date" ref="endDateField"></input>
-                </div>
-              </div>
+
+              {this.renderStartAndEndDates()}
+
               <div className="row">
                 <div className="input-field col s8">
                   <i className="material-icons prefix">info_outline</i>

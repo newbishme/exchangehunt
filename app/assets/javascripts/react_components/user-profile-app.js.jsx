@@ -26,7 +26,7 @@ var UserProfileApp = React.createClass({
   },
 
   renderExchangeInformation: function() {
-    if (this.props.user.exchange_institution != null) {
+    if (this.props.user.exchange_institution.name != null) {
       return (
         <div>
           <span className="avenir-85">Visiting:</span><br/>
