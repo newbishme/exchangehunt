@@ -139,6 +139,11 @@ div.overlay-black {
   background-color: rgba(0, 0, 0, 0.60);
 }
 
+div.overlay-black2 {
+  @extend div.overlay;
+  background-color: rgba(0, 0, 0, 0.80);
+}
+
 div.overlay-white {
   @extend div.overlay;
   background-color: rgba(255, 255, 255, 0.35);
@@ -215,6 +220,14 @@ div.overlay-white {
 
 footer.page-footer {
   margin: 0;
+}
+
+.top-buffer {
+  margin-top: 100px;
+}
+
+.bottom-buffer {
+  margin-bottom: 100px;
 }
 
 /* typeahead */

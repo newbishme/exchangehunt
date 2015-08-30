@@ -35,68 +35,74 @@
 
 <div class="container">
   <div class="section">
-    <div class="row center">
+    <div class="row top-buffer center">
       <h2 class="primary-text-color"><span class="avenir-65">What is exchange</span><span class="avenir-85">hunt</span><span class="avenir-65">?</span></h2>
     </div>
-    <div class="row center">
+    <div class="row bottom-buffer center">
       <h5 class="avenir-45"><span class="avenir-65">exchange</span><span class="avenir-85">hunt</span> is a trusted community for student <br /> exchangers all around the world to connect with each <br /> other and build friendships.</h5>
     </div>
   </div>
 </div>
 
-<div class="container">
-  <div class="section">
-    <div class="row">
-
-      <div class="col s12 m4">
-        <div class="icon-block">
-          <div class="center">
-            <%= image_tag "landing_page_find", class: "responsive-img" %>
+<div id="index-banner" class="parallax-container">
+  <div class="container">
+    <div class="section">
+      <div class="row top-buffer">
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <div class="center">
+              <%= image_tag "landing_page_find", class: "responsive-img" %>
+            </div>
+            <h5 class="center avenir-95">FIND</h5>
+            <p class="avenir-55 center-align">your fellow exchangers in <br /> your region to travel together,<br /> crash at each other’s couches,<br /> or simply to ask about his exchange’s experience!</p>
           </div>
-          <h5 class="center avenir-95">FIND</h5>
-          <p class="avenir-55 center-align">your fellow exchangers in <br /> your region to travel together,<br /> crash at each other’s couches,<br /> or simply to ask about his exchange’s experience!</p>
         </div>
+
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <div class="center">
+              <%= image_tag "landing_page_connect", class: "responsive-img"%>
+            </div>
+            <h5 class="center avenir-95">CONNECT</h5>
+            <p class="avenir-55 center-align">with them by sending <br /> them a “hello” message!</p>
+          </div>
+        </div>
+
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <div class="center">
+              <%= image_tag "landing_page_build", class: "responsive-img" %>
+            </div>
+            <h5 class="center avenir-95">BUILD</h5>
+            <p class="avenir-55 center-align">international friendships <br /> and lasting memories in your<br /> once-in-a-lifetime exchange experience</p>
+          </div>
+        </div>
+
+        <% unless user_signed_in? %>
+          <div class="col s12 m12">
+            <div class="center">
+              <%= link_to "Sign up with Facebook", user_omniauth_authorize_path(:facebook), class: "waves-effect waves-light btn-large btn-cta primary-color" %>
+            </div>
+          </div>
+        <% end %>
+
       </div>
-
-      <div class="col s12 m4">
-        <div class="icon-block">
-          <div class="center">
-            <%= image_tag "landing_page_connect", class: "responsive-img"%>
-          </div>
-          <h5 class="center avenir-95">CONNECT</h5>
-          <p class="avenir-55 center-align">with them by sending <br /> them a “hello” message!</p>
-        </div>
-      </div>
-
-      <div class="col s12 m4">
-        <div class="icon-block">
-          <div class="center">
-            <%= image_tag "landing_page_build", class: "responsive-img" %>
-          </div>
-          <h5 class="center avenir-95">BUILD</h5>
-          <p class="avenir-55 center-align">international friendships <br /> and lasting memories in your<br /> once-in-a-lifetime exchange experience</p>
-        </div>
-      </div>
-
-      <% unless user_signed_in? %>
-        <div class="col s12 m12">
-          <div class="center">
-            <%= link_to "Sign up with Facebook", user_omniauth_authorize_path(:facebook), class: "waves-effect waves-light btn-large btn-cta primary-color" %>
-          </div>
-        </div>
-      <% end %>
 
     </div>
   </div>
+  <div class="parallax">
+    <div class="overlay-black2"></div>
+    <img src="assets/background3.jpg" alt="Main banner">
+  </div>
 </div>
-
 
 <div class="container">
   <div class="section">
-
-    <div class="row">
+    <div class="row top-buffer">
       <div class="col s12 center">
-        <h5>Participating Universities</h5>
+        <h2 class="primary-text-color">
+          <span class="avenir-65">Participating Universities</span>
+        </h2>
       </div>
     </div>
 
@@ -115,6 +121,30 @@
         <div class="center">
           <%= link_to image_tag("logo_smu.png", :alt => "Singapore Management University logo", :class => "responsive-img"), "institutions/3" %>
         </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col s12 m4">
+        <div class="center">
+          <%= link_to image_tag("logo_harvard.png", :alt => "Harvard University logo", :class => "responsive-img", :width => "150px"), "institutions/5" %>
+        </div>
+      </div>
+      <div class="col s12 m4">
+        <div class="center">
+          <%= link_to image_tag("logo_mit.jpg", :alt => "Massachusetts Institute of Technology logo", :class => "responsive-img", :width => "150px"), "institutions/7" %>
+        </div>
+      </div>
+      <div class="col s12 m4">
+        <div class="center">
+          <%= link_to image_tag("logo_cornell.png", :alt => "Cornell University logo", :class => "responsive-img", :width => "150px"), "institutions/13" %>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col s12 bottom-buffer center">
+        <h6>And many more...</h6>
       </div>
     </div>
 
