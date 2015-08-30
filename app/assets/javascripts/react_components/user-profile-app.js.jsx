@@ -1,5 +1,6 @@
 var UserProfileApp = React.createClass({
-  componentWillMount: function() {
+
+  componentDidMount: function() {
     var url = "/users/" + this.props.username + ".json"
     $.get(url, function(response) {
       this.updateUserObject(response);
@@ -24,6 +25,29 @@ var UserProfileApp = React.createClass({
     this.forceUpdate();
   },
 
+  renderEditProfileButton: function() {
+    if (this.props.is_users_profile) {
+      var editUrl = "/users/" + this.props.username + "/edit";
+      return (
+        <div className="row edit-profile">
+          <div className="col s5 offset-s3">
+            <a className="waves-effect waves-light btn" href={editUrl}><i className="material-icons left">edit</i>Edit profile</a>
+          </div>
+        </div>
+      );
+    }
+  },
+
+  renderDropMessageButton: function() {
+    if (!this.props.is_users_profile) {
+      return (
+        <div>
+          <a className="waves-effect waves-light btn"><i className="material-icons left">mail</i>Drop a message</a>
+        </div>
+      );
+    }
+  },
+
   render: function() {
     return (
       <div className="container">
@@ -38,18 +62,7 @@ var UserProfileApp = React.createClass({
             	</h2>
             </div>
           </div>
-          {function(){
-            var editUrl = "/users/" + this.props.username + "/edit"
-            if (this.props.is_users_profile) {
-              return (
-              <div className="row edit-profile">
-                <div className="col s5 offset-s3">
-                  <a className="waves-effect waves-light btn" href={editUrl}><i className="material-icons left">edit</i>Edit profile</a>
-                </div>
-              </div>);
-            }
-          }.bind(this).call(this)}
-          <div className="row"></div>
+          {this.renderEditProfileButton()}
           <div className="row">
             <div className="col s6 offset-s3">
           	  <span>SINGAPOREAN</span><br/>
@@ -59,18 +72,7 @@ var UserProfileApp = React.createClass({
           	  <span className="avenir-85">Visiting:</span><br/>
           	  <span>NANYANG TECHNOLOGICAL UNIVERSITY</span><br/>
           	  <span>2015-2016</span><br/>
-              <div className="row"></div>
-              <div className="row"></div>
-              {function(){
-                if (!this.props.is_users_profile) {
-                  return (
-              	  <div>
-                    <a className="waves-effect waves-light btn"><i className="material-icons left">mail</i>Drop a message</a>
-                    <div className="row"></div>
-                    <div className="row"></div>
-                  </div> );
-                }
-              }.call(this)}
+              {this.renderDropMessageButton()}
           	  <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In felis arcu, porttitor in mauris eget, iaculis lobortis tortor. Etiam pretium molestie lacus. Fusce ultrices eget elit et auctor.</span><br/>
             </div>
           </div>

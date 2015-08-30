@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!, only: [:update]
+  before_action :authenticate_user!, only: [:update, :edit]
   before_action :ensure_complete_registration, only: [:show]
 
   before_action :set_user_by_username, only: [:show, :username, :edit]
