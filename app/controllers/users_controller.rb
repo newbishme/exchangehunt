@@ -42,7 +42,8 @@ class UsersController < ApplicationController
   def confirm
     token = params[:t]
     user = User.find_by_home_institution_confirmation_token(token)
-    if user && user.confirm_home_email!
+    if user
+      user.confirm_home_email!
       respond_to do |format|
         format.html
       end
