@@ -1,30 +1,5 @@
 var UserProfileApp = React.createClass({
 
-  componentDidMount: function() {
-    var url = "/users/" + this.props.username + ".json"
-    $.get(url, function(response) {
-      this.updateUserObject(response);
-    }.bind(this));
-  },
-
-  getInitialState: function() {
-    return {
-      user: {}
-    };
-  },
-
-  updateUserObject: function(user) {
-    this.setState({
-      user: user
-    }, function() {
-      this.updateView();
-    }.bind(this));
-  },
-
-  updateView: function() {
-    this.forceUpdate();
-  },
-
   renderEditProfileButton: function() {
     if (this.props.is_users_profile) {
       var editUrl = "/users/" + this.props.username + "/edit";
@@ -54,11 +29,11 @@ var UserProfileApp = React.createClass({
         <div className="section">
           <div className="row valign-wrapper profile-image-row">
             <div className="col s3">
-              <img src={this.state.user.image_url} className="circle responsive-img right profile-image-size" />
+              <img src={this.props.user.image_url} className="circle responsive-img right profile-image-size" />
             </div>
             <div className="col s7 ">
             	<h2 className="avenir-65 inline">
-            	  <span className="primary-text-color inline">{this.state.user.first_name} {this.state.user.last_name}</span>
+            	  <span className="primary-text-color inline">{this.props.user.first_name} {this.props.user.last_name}</span>
             	</h2>
             </div>
           </div>
@@ -67,7 +42,7 @@ var UserProfileApp = React.createClass({
             <div className="col s6 offset-s3">
           	  <span>SINGAPOREAN</span><br/>
           	  <span>COMPUTER SCIENCE</span><br/>
-          	  <span>NATIONAL UNIVERSITY OF SINGAPORE</span><br/>
+              <span>{this.props.user.home_institution.name.toUpperCase()}</span><br/>
               <div className="row"></div>
           	  <span className="avenir-85">Visiting:</span><br/>
           	  <span>NANYANG TECHNOLOGICAL UNIVERSITY</span><br/>

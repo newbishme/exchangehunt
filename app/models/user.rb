@@ -36,11 +36,13 @@ class User < ActiveRecord::Base
   end
 
   def home_institution
-    Institution.first
+    connect = UsrInstnConnect.find_by user_id: self.id, is_home_institution: true
+    Institution.find(connect.institution_id) if connect
   end
 
   def exchange_institution
-    Institution.second
+    connect = UsrInstnConnect.find_by user_id: self.id, is_home_institution: false
+    Institution.find(connect.institution_id) if connect
   end
 
   def completed_profile?
