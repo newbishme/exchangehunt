@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Welcome to ExchangeHunt, <%= @user.first_name %></h1>
+    <p>
+      To confirm your email, please follow this link: <%= link_to @confirmation_url, @confirmation_url %>
+    </p>
+  </body>
+</html>

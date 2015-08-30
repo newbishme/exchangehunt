@@ -17,6 +17,10 @@ class ApplicationController < ActionController::Base
     raise ActionController::RoutingError.new('Not Found')
   end
 
+  def raise_400(reason)
+    render :status => 400, :json => { reason: reason.to_s }.to_json.html_safe
+  end
+
   def ensure_complete_registration
     if user_signed_in? && current_user.username.nil? && request[:controller] != "pages"
       redirect_to "/welcome/index"
