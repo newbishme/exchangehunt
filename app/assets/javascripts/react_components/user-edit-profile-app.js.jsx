@@ -144,11 +144,9 @@ var UserEditProfileApp = React.createClass({
               </div>
               <div className="row">
                 <div className="input-field col s8">
-                  <div className="row">
-                    <i className="material-icons prefix">home</i>
-                    <input placeholder="Enter your home institution's email" defaultValue={this.props.user.home_email} id="home_institution" type="text" ref="homeEmailField" className="validate" onChange={this.handleHomeInstitutionEmailInputFieldChange}></input>
-                    <label htmlFor="home_institution">Home institution email</label>
-                  </div>
+                  <i className="material-icons prefix">home</i>
+                  <input placeholder="Enter your home institution's email" defaultValue={this.props.user.home_email} id="home_institution" type="text" ref="homeEmailField" className="validate" onChange={this.handleHomeInstitutionEmailInputFieldChange}></input>
+                  <label htmlFor="home_institution">Home institution email</label>
                 </div>
               </div>
 
