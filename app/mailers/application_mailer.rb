@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: "exchangehunt@newbish.me"
+  default from: "noreply@exchangehunt.io"
   layout 'mailer'
 end
