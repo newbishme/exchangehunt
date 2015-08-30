@@ -25,10 +25,11 @@ class User < ActiveRecord::Base
       user.email = auth.info.email || ""
       user.first_name = auth.info.first_name
       user.last_name = auth.info.last_name
-      user.password = Devise.friendly_token[0, 20]
+      user.password = Devise.friendly_token[0, 30]
       user.image_url = auth.info.image
       user.gender = auth.extra.raw_info.gender
       user.admin = false
+      user.home_institution_confirmed = false
     end
   end
 
@@ -46,6 +47,23 @@ class User < ActiveRecord::Base
 
   def completed_profile?
     self.username?
+  end
+
+  def send_confirmation_email_if_changed?(new_params, old_params) 
+    new_home_email, old_home_email = new_params[:home_email], old_params[:home_email]
+    if new_home_email != old_home_email 
+      self.home_institution_confirmation_token = Devise.friendly_token[0, 30]
+      self.home_email = new_home_email 
+      self.home_institution_confirmed = false
+      self.save!
+      UserEmailConfirmationMailer.confirmation_email(self, :home).deliver_now
+    end
+  end
+
+  def confirm_home_email!
+    self.home_institution_confirmed = true
+    self.home_institution_confirmation_token = nil
+    self.save!
   end
 
 end

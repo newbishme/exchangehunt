@@ -18,9 +18,11 @@ Rails.application.routes.draw do
 
   get 'users/username/:id', to: 'users#username'
   get 'institutions/mapping', to: 'institutions#mapping'
+
+  get 'confirm', to: 'users#confirm'
   resources :users
 
-  resources :institutions
   get 'institutions/:id/recently_joined', to: 'institutions#recently_joined'
+  resources :institutions
 
 end

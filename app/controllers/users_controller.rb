@@ -5,6 +5,8 @@ class UsersController < ApplicationController
   before_action :set_user_by_username, only: [:show, :username, :edit]
   before_action :set_user_by_id, only: :update
 
+  skip_before_filter :verify_authenticity_token, only: [:confirm]
+
   # check existence for username
   def username
     respond_to do |format|
@@ -20,9 +22,32 @@ class UsersController < ApplicationController
   end
 
   def update
-    raise_404 unless authorized? @user
+    raise_400 and return unless authorized?(@user)
+    unless InstitutionEmail.valid_domain?(user_params[:home_email])
+      raise_400("Sorry, your institution is not one of the participating institutions.")
+      return
+    end
+
+    old_params = {
+      :home_email => @user.home_email,
+      :exchange_email => @user.exchange_email
+    }
+
     if @user.update_attributes(user_params)
-      render status: 200, json: @user.to_json.html_safe
+      @user.send_confirmation_email_if_changed?(user_params, old_params)
+      render status: 200, json: @user.username.to_json.html_safe
+    end
+  end
+
+  def confirm
+    token = params[:t]
+    user = User.find_by_home_institution_confirmation_token(token)
+    if user && user.confirm_home_email!
+      respond_to do |format|
+        format.html
+      end
+    else
+      raise_404
     end
   end
 
@@ -42,7 +67,7 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:username, :home_institution, :exchange_institution)
+    params.require(:user).permit(:username, :home_email, :exchange_email)
   end
 
   def restrict_user_info(user_hash)

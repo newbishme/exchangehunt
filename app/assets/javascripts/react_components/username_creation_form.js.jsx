@@ -81,7 +81,8 @@ var UsernameCreationForm = React.createClass({
     this.validateAndMapDomain(domain);
   },
 
-  handleSubmitButtonClick: function() {
+  handleSubmitButtonClick: function(evt) {
+    evt.preventDefault();
     var username = React.findDOMNode(this.refs.usernameField).value;
     var homeInstitutionEmail = React.findDOMNode(this.refs.homeInstitutionEmailField).value;
 
@@ -91,12 +92,18 @@ var UsernameCreationForm = React.createClass({
       $.ajax({
         url: "/users/" + this.props.user_id,
         type: "PUT",
-        data: { user: { username: username,
-          email: homeInstitutionEmail } },
-          success: function(response) {
-            var username = response["username"];
-            window.location.href = "/users/" + username;
-          }.bind(this)
+        data: {
+          user: {
+            username: username,
+            home_email: homeInstitutionEmail
+          }
+        },
+        success: function(username) {
+          window.location.href = "/users/" + username;
+        }.bind(this),
+        error: function(response) {
+          console.log(response);
+        }.bind(this)
       });
     }
   },

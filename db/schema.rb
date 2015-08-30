@@ -44,18 +44,18 @@ ActiveRecord::Schema.define(version: 20150829092728) do
   add_index "institutions", ["state"], name: "index_institutions_on_state", using: :btree
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "email",                               default: "", null: false
+    t.string   "encrypted_password",                  default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",                       default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.datetime "created_at",                                       null: false
+    t.datetime "updated_at",                                       null: false
     t.string   "provider"
     t.string   "uid"
     t.boolean  "admin"
@@ -67,6 +67,8 @@ ActiveRecord::Schema.define(version: 20150829092728) do
     t.string   "course"
     t.string   "bio"
     t.string   "citizenship"
+    t.boolean  "home_institution_confirmed"
+    t.string   "home_institution_confirmation_token"
     t.string   "home_email"
     t.string   "exchange_email"
   end
