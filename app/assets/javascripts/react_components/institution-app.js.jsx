@@ -70,6 +70,21 @@ var InstitutionApp = React.createClass({
                 </div>
               </div>
               <div className="row">
+                <div className="col s12">
+                  <div className="slider">
+                    <ul className="slides">
+                      <li>
+                        <img src="http://lorempixel.com/580/250/nature/1"></img>
+                        <div className="caption center-align">
+                          <h3>{this.state.institution.name}</h3>
+                          <h5 className="light grey-text text-lighten-3">A very fun place to be in</h5>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div className="row">
                 <div className="col">
                   Location: {this.state.institution.state}, {this.state.institution.country}
                 </div>
@@ -110,9 +125,9 @@ var InstitutionApp = React.createClass({
                   <h4 className="avenir-65 primary-text-color deep-orange-text">INSTITUTIONS NEARBY</h4>
                 </div>
               </div>
-            </div>
-            <div className="row">
-              <div id="map"></div>
+              <div className="row">
+                <div id="map"></div>
+              </div>
             </div>
           </div>
         </div>
@@ -176,3 +191,7 @@ var RecentlyJoined = React.createClass({
 })
 
 module.exports = InstitutionApp;
+
+$(document).ready(function(){
+  $('.materialboxed').materialbox();
+});
