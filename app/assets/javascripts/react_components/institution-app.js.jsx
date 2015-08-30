@@ -82,7 +82,7 @@ var InstitutionApp = React.createClass({
                 <div className="institution-left-content col s12 m8">
                   <div className="row">
                     <div className="col s11">
-                      <h4 className="avenir-65 primary-text-color deep-orange-text">INFORMATION</h4>
+                      <h5 className="avenir-55 primary-text-color deep-orange-text">INFORMATION</h5>
                       <ul className="collapsible" data-collapsible="accordion">
                        <li>
                          <div className="collapsible-header"><i className="material-icons">place</i>Location</div>
@@ -111,13 +111,13 @@ var InstitutionApp = React.createClass({
                   </div>
                   <div className="row">
                     <div className="col s11">
-                      <h4 className="avenir-65 primary-text-color deep-orange-text">SHOUTOUT</h4>
+                      <h5 className="avenir-55 primary-text-color deep-orange-text">SHOUTOUT</h5>
                       <div id="disqus_thread"></div>
                     </div>
                   </div>
                 </div>
                 <div className="institution-right-content col s12 m4">
-                  <h4 className="avenir-65 primary-text-color deep-orange-text">RECENTLY JOINED</h4>
+                  <h5 className="avenir-55 primary-text-color deep-orange-text">RECENTLY JOINED</h5>
                   <RecentlyJoined institution={this.state.institution} />
                 </div>
               </div>
@@ -128,7 +128,7 @@ var InstitutionApp = React.createClass({
             <div className="container">
               <div className="row">
                 <div className="col">
-                  <h4 className="avenir-65 primary-text-color deep-orange-text">INSTITUTIONS NEARBY</h4>
+                  <h5 className="avenir-55 primary-text-color deep-orange-text">INSTITUTIONS NEARBY</h5>
                 </div>
               </div>
               <div className="row">

@@ -238,7 +238,7 @@ footer.page-footer {
     padding: 8px 12px;
     font-size: 20px;
     line-height: 32px;
-    border: 1px solid #ffffff !important;
+    border: 2px solid #fff !important;
     border-radius: 6px !important;
     outline: none;
 }
@@ -341,4 +341,10 @@ footer.page-footer {
 .input-field textarea[type=text].invalid {
  border-bottom: 1px solid #000;
  box-shadow: 0 1px 0 0 #000;
+}
+/* input-field select icon prefix fix */
+.input-field .prefix ~ input, .input-field .prefix ~ textarea , .input-field .prefix ~ div.select-wrapper {
+    margin-left: 3rem;
+    width: 92%;
+    width: calc(100% - 3rem);
 }
