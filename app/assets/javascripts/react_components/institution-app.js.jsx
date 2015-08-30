@@ -64,7 +64,7 @@ var InstitutionApp = React.createClass({
             <div className="container">
               <div className="row">
                 <div className="col s12">
-                  <img className="materialboxed" width="100%" src="https://fbcdn-sphotos-d-a.akamaihd.net/hphotos-ak-xft1/t31.0-8/11731663_10153501178508540_6995137222862994951_o.jpg" data-caption={this.state.institution.name}></img>
+                  <img className="materialboxed" width="100%" src={this.state.institution.facebook_img_url} data-caption={this.state.institution.name}></img>
                 </div>
               </div>
               <div className="row">
@@ -91,6 +91,16 @@ var InstitutionApp = React.createClass({
                        <li>
                          <div className="collapsible-header"><i className="material-icons">info_outline</i>Description</div>
                          <div className="collapsible-body"><p>{this.state.institution.extract}</p></div>
+                       </li>
+                       <li>
+                         <div className="collapsible-header"><i className="material-icons">public</i>Facebook</div>
+                         <div className="collapsible-body">
+                          <p>
+                            <a href={this.state.institution.facebook_pid}>
+                              {this.state.institution.facebook_pid}
+                            </a>
+                          </p>
+                        </div>
                        </li>
                      </ul>
                     </div>
