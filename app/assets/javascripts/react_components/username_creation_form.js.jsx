@@ -41,7 +41,7 @@ var UsernameCreationForm = React.createClass({
           {},
           function(resp){
             var span = React.findDOMNode(this.refs.institutionName)
-            span.innerHTML = resp["name"] + ' (<a href="/support">Incorrect?</a>)';
+            span.innerHTML = 'Your institution: ' + resp["name"] + ' (<a href="/support">Incorrect?</a>)';
           }.bind(this));
   },
 
@@ -99,7 +99,7 @@ var UsernameCreationForm = React.createClass({
           }
         },
         success: function(username) {
-          window.location.href = "/users/" + username;
+          window.location.href = "/users/" + username + "/edit";
         }.bind(this),
         error: function(response) {
           console.log(response);
@@ -130,7 +130,7 @@ var UsernameCreationForm = React.createClass({
 
             <div className="row">
               <h5 className="inline">Verify your home institution email</h5>
-              <div>Your institution: <span ref="institutionName"></span></div>
+              <div><span ref="institutionName"></span></div>
               <div className="input-field">
                 <i className="material-icons prefix">home</i>
                 <input id="home_email_field" type="text" className="validate" ref="homeInstitutionEmailField" onChange={this.handleHomeInstitutionTextAreaChange}></input>

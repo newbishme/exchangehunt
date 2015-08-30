@@ -67,10 +67,10 @@ ActiveRecord::Schema.define(version: 20150829092728) do
     t.string   "course"
     t.string   "bio"
     t.string   "citizenship"
-    t.boolean  "home_institution_confirmed"
-    t.string   "home_institution_confirmation_token"
     t.string   "home_email"
     t.string   "exchange_email"
+    t.boolean  "home_institution_confirmed"
+    t.string   "home_institution_confirmation_token"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

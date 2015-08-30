@@ -53,6 +53,14 @@ class User < ActiveRecord::Base
     if self.home_email_changed?
       self.home_institution_confirmation_token = Devise.friendly_token[0, 30]
       self.home_institution_confirmed = false
+
+      domain = Mail::Address.new(self.home_email).domain
+      UsrInstnConnect.create!(
+        :user_id => self.id,
+        :institution_id => InstitutionEmail.find_by_instn_domain(domain).id,
+        :is_home_institution => true
+      )
+
       Thread.new do
         UserEmailConfirmationMailer.confirmation_email(self, :home).deliver_now
         ActiveRecord::Base.connection.close
@@ -66,12 +74,6 @@ class User < ActiveRecord::Base
   def confirm_home_email!
     self.home_institution_confirmed = true
     self.home_institution_confirmation_token = nil
-    domain = Mail::Address.new(self.home_email).domain
-    UsrInstnConnect.create!(
-      :user_id => self.id,
-      :institution_id => InstitutionEmail.find_by_instn_domain(domain).id,
-      :is_home_institution => true
-    )
     self.save!
   end
 
