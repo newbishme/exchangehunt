@@ -4,10 +4,10 @@
   <% if participant == current_user %>
     <% myself = true %>
   <% else participant == current_user %>
-    <%= participant.username %>
+    <%= participant.first_name + " " + participant.last_name %>
   <% end %>
 <% end %>
 
 <% if myself %>
-  myself
+  Myself
 <% end %>
