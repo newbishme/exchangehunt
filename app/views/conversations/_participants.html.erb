@@ -1,0 +1,13 @@
+<% myself = false %>
+
+<% conversation.participants.each do |participant| %>
+  <% if participant == current_user %>
+    <% myself = true %>
+  <% else participant == current_user %>
+    <%= participant.first_name + " " + participant.last_name %>
+  <% end %>
+<% end %>
+
+<% if myself %>
+  Myself
+<% end %>

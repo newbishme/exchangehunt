@@ -25,7 +25,7 @@
       <ul class="right">
         <% if user_signed_in? %>
           <% if current_user.username? %>
-            <li class="<%= 'active' if params[:controller] == 'messages' %>"><%= link_to "Messages", user_path(current_user.username) %></li>
+            <li class="<%= 'active' if params[:controller] == 'messages' %><%= 'active' if params[:controller] == 'conversations' %>"><%= link_to "Messages", conversations_path %></li>
             <li class="<%= 'active' if params[:controller] == 'users' %>"><%= link_to current_user.full_name, user_path(current_user.username), class: "truncate" %></li>
           <% end %>
           <li><%= link_to "Log Out", destroy_user_session_path, :method => :delete %></li>
@@ -44,4 +44,3 @@
   </nav>
 
 </div>
-

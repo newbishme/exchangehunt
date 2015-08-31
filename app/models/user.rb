@@ -16,6 +16,12 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :username, :case_sensitive => false, :allow_nil => true
   validates_format_of :username, :with => /\A\w+$\z/, :allow_blank => true
 
+  acts_as_messageable
+
+  def mailboxer_email(object)
+    email
+  end
+
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.provider = auth.provider
