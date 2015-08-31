@@ -1,0 +1,50 @@
+<div class="section">
+  <div class="container">
+    <div class="row">
+      <div class="col s8 offset-s3">
+        <h4 class="primary-text-color">Chatting with
+          <%= render 'conversations/participants', conversation: @conversation %>
+        </h4>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col s8 offset-s3">
+        <div class="panel panel-default">
+          <div class="row">
+            <div class="col s12">
+              <h5 class="primary-text-color"><b>Subject:</b> <%= @conversation.subject %></h5>
+            </div>
+          </div>
+
+          <div class="panel-body">
+            <div class="messages">
+              <% @conversation.receipts_for(current_user).each do |receipt| %>
+              <div class="media">
+                <% message = receipt.message %>
+                <div class="media-left">
+                  <%= image_for message.sender, 45, message.sender.username %>
+                </div>
+
+                <div class="media-body">
+                  <h6 class="media-heading"><%= message.sender.username %>
+                    says at <%= message.created_at.strftime("%-d %B %Y, %H:%M:%S") %></h6>
+                  <%= message.body %>
+                </div>
+              </div>
+              <% end %>
+            </div>
+          </div>
+
+          <%= form_tag reply_conversation_path(@conversation), method: :post do %>
+            <div class="form-group">
+              <%= text_area_tag 'body', nil, cols: 3, class: 'materialize-textarea form-control', placeholder: 'Reply here...', required: true %>
+            </div>
+            <%= submit_tag "Send Message", class: 'btn btn-primary right' %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

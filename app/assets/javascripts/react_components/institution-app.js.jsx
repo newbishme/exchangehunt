@@ -170,12 +170,13 @@ var RecentlyJoined = React.createClass({
       return <li className="collection-item">None :(</li>
     }
     var list = users.map(function(user){
+      var messageUrl = "/messages/new?to=" + user.id;
       return(
         <li className="collection-item avatar" key={user.id}>
           <img src={user.image_url} className="circle responsive-img" alt="User's profile image" />
           <span className="title">{user.first_name} {user.last_name}</span>
           <p>{user.course}</p>
-          <a href="#!" className="secondary-content"><i className="material-icons">email</i></a>
+          <a href={messageUrl} className="secondary-content"><i className="material-icons">email</i></a>
         </li>
       )
     }.bind(this));

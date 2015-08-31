@@ -54,6 +54,11 @@ GEM
       tilt (>= 1.1, < 3)
     builder (3.2.2)
     byebug (6.0.0)
+    carrierwave (0.10.0)
+      activemodel (>= 3.2.0)
+      activesupport (>= 3.2.0)
+      json (>= 1.7)
+      mime-types (>= 1.16)
     coderay (1.1.0)
     coffee-rails (4.1.0)
       coffee-script (>= 2.2.0)
@@ -85,6 +90,8 @@ GEM
     faraday (0.9.1)
       multipart-post (>= 1.2, < 3)
     ffi (1.9.10)
+    foreigner (1.7.4)
+      activerecord (>= 3.0.0)
     formatador (0.2.5)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
@@ -130,6 +137,10 @@ GEM
     lumberjack (1.0.9)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
+    mailboxer (0.13.0)
+      carrierwave (>= 0.5.8)
+      foreigner (>= 0.9.1)
+      rails (>= 3.2.0)
     material_icons (1.0.0)
     materialize-sass (0.97.0)
       sass (~> 3.3)
@@ -273,6 +284,8 @@ GEM
       binding_of_caller (>= 0.7.2)
       railties (>= 4.0)
       sprockets-rails (>= 2.0, < 4.0)
+    will_paginate (3.0.7)
+    will_paginate-materialize (0.1.0)
 
 PLATFORMS
   ruby
@@ -289,6 +302,7 @@ DEPENDENCIES
   guard-rspec
   httparty
   jquery-rails
+  mailboxer
   material_icons
   materialize-sass
   omniauth
@@ -305,3 +319,8 @@ DEPENDENCIES
   unicorn
   unicorn-rails
   web-console (~> 2.0)
+  will_paginate
+  will_paginate-materialize
+
+BUNDLED WITH
+   1.10.6

@@ -7,6 +7,15 @@ class ApplicationController < ActionController::Base
     render :ok, json: "ok".html_safe
   end
 
+  rescue_from ActiveRecord::RecordNotFound do
+    flash[:warning] = 'Resource not found.'
+    redirect_back_or root_path
+  end
+
+  def redirect_back_or(path)
+    redirect_to request.referer || path
+  end
+
   private
 
   def authorized?(user)

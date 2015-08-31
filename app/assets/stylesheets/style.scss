@@ -348,3 +348,16 @@ footer.page-footer {
     width: 92%;
     width: calc(100% - 3rem);
 }
+
+
+/* mailboxer styles */
+.messages {
+  max-height: 400px;
+  overflow-y: auto;
+  margin-bottom: 1em;
+  margin-top: 1em;
+}
+
+.mailboxer-blue-text {
+  color: #0d47a1;
+}
