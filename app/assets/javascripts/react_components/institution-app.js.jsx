@@ -54,6 +54,7 @@ var InstitutionApp = React.createClass({
   },
 
   render: function() {
+    var institutionURL = "https://exchangehunt.io/institutions/" + this.state.institution.id;
     return (
       <div>
         <div ref="loadingWrapper">
@@ -72,10 +73,13 @@ var InstitutionApp = React.createClass({
                 </div>
               </div>
               <div className="row">
-                <div className="col">
+                <div className="col s12 m8">
                   <h3 className="avenir-65 primary-text-color deep-orange-text">
                     {this.state.institution.name}
                   </h3>
+                </div>
+                <div className="col s12 m4">
+                  <div className="fb-like left institution-fb-like-share" data-href={institutionURL} data-layout="standard" data-width="300" data-action="like" data-show-faces="true" data-share="true"></div>
                 </div>
               </div>
               <div className="row">
