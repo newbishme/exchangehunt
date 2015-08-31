@@ -187,7 +187,7 @@ var RecentlyJoined = React.createClass({
     var list = this.generateList(this.state.recentlyJoinedUsers);
     return(
       <div className="row">
-        <div className="col s10">
+        <div className="col s12">
           <ul className="collection">
             {list}
           </ul>
