@@ -37,11 +37,14 @@ var UsernameCreationForm = React.createClass({
   },
 
   validateAndMapDomain: function(domain) {
+    $(React.findDOMNode(this.refs.createUsernameButton)).addClass("disabled");
+    var span = React.findDOMNode(this.refs.institutionName)
+    span.innerHTML = ''
     $.get("/institutions/mapping?domain=" + domain,
           {},
           function(resp){
-            var span = React.findDOMNode(this.refs.institutionName)
             span.innerHTML = 'Your institution: ' + resp["name"] + ' (<a href="/support">Incorrect?</a>)';
+            $(React.findDOMNode(this.refs.createUsernameButton)).removeClass("disabled");
           }.bind(this));
   },
 
@@ -102,7 +105,7 @@ var UsernameCreationForm = React.createClass({
           window.location.href = "/users/" + username + "/edit";
         }.bind(this),
         error: function(response) {
-          console.log(response);
+          alert(JSON.parse(response.responseText).reason);
         }.bind(this)
       });
     }
