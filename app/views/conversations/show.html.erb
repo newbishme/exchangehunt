@@ -19,20 +19,19 @@
 
           <div class="panel-body">
             <div class="messages">
-              <% @conversation.receipts_for(current_user).each do |receipt| %>
-              <div class="media">
-                <% message = receipt.message %>
-                <div class="media-left">
-                  <%= image_for message.sender, 45, message.sender.username %>
-                </div>
+              <ul class="collection">
+                <% @conversation.receipts_for(current_user).each do |receipt| %>
+                <li class="collection-item avatar">
+                  <% message = receipt.message %>
+                  <%= image_tag message.sender.image_url, class: "circle", alt: message.sender.first_name %>
 
-                <div class="media-body">
-                  <h6 class="media-heading"><%= message.sender.username %>
-                    says at <%= message.created_at.strftime("%-d %B %Y, %H:%M:%S") %></h6>
+                  <span class="title"><%= message.sender.first_name + " " + message.sender.last_name %>
+                    says at <%= message.created_at.strftime("%-d %B %Y, %H:%M:%S") %></span><br/><br/>
+
                   <%= message.body %>
-                </div>
-              </div>
-              <% end %>
+                </li>
+                <% end %>
+              </ul>
             </div>
           </div>
 
