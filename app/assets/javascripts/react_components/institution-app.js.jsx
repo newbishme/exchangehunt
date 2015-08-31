@@ -89,19 +89,27 @@ var InstitutionApp = React.createClass({
                       <h5 className="avenir-55 primary-text-color deep-orange-text">INFORMATION</h5>
                       <ul className="collapsible" data-collapsible="accordion">
                        <li>
-                         <div className="collapsible-header"><i className="material-icons">place</i>Location</div>
+                         <div className="collapsible-header"><i className="material-icons">place</i>Location
+                           <a href="#" className="secondary-content"><i className="material-icons">expand_more</i></a>
+                         </div>
                          <div className="collapsible-body"><p>{this.state.institution.state}, {this.state.institution.country}</p></div>
                        </li>
                        <li>
-                         <div className="collapsible-header"><i className="material-icons">language</i>Primary language</div>
+                         <div className="collapsible-header"><i className="material-icons">language</i>Primary language
+                           <a href="#" className="secondary-content"><i className="material-icons">expand_more</i></a>
+                         </div>
                          <div className="collapsible-body"><p>{this.state.institution.language}</p></div>
                        </li>
                        <li>
-                         <div className="collapsible-header"><i className="material-icons">info_outline</i>Description</div>
+                         <div className="collapsible-header"><i className="material-icons">info_outline</i>Description
+                           <a href="#" className="secondary-content"><i className="material-icons">expand_more</i></a>
+                         </div>
                          <div className="collapsible-body"><p>{this.state.institution.extract}</p></div>
                        </li>
                        <li>
-                         <div className="collapsible-header"><i className="material-icons">public</i>Facebook</div>
+                         <div className="collapsible-header"><i className="material-icons">public</i>Facebook
+                           <a href="#" className="secondary-content"><i className="material-icons">expand_more</i></a>
+                         </div>
                          <div className="collapsible-body">
                           <p>
                             <a href={this.state.institution.facebook_pid}>

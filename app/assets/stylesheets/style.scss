@@ -55,6 +55,10 @@ html {
   @extend .text-accent-3;
 }
 
+.secondary-content {
+  color: #000;
+}
+
 .btn {
   @extend .blue;
   @extend .darken-4;
