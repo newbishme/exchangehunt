@@ -43,6 +43,21 @@ var InstitutionApp = React.createClass({
     });
   },
 
+  renderMembersSection: function() {
+    if (this.props.is_signed_in) {
+      return (
+        <div className="section">
+          <div className="row">
+            <div className="col s11">
+              <h5 className="avenir-55 primary-text-color deep-orange-text">MEMBERS</h5>
+              <InstitutionUsersApp institution={this.state.institution} />
+            </div>
+          </div>
+        </div>
+      );
+    }
+  },
+
   render: function() {
     var institutionURL = "https://exchangehunt.io/institutions/" + this.state.institution.id;
     return (
@@ -118,14 +133,7 @@ var InstitutionApp = React.createClass({
                     </div>
                   </div>
 
-                  <div className="section">
-                    <div className="row">
-                      <div className="col s11">
-                        <h5 className="avenir-55 primary-text-color deep-orange-text">MEMBERS</h5>
-                        <InstitutionUsersApp institution={this.state.institution} />
-                      </div>
-                    </div>
-                  </div>
+                  {this.renderMembersSection()}
                 </div>
 
 

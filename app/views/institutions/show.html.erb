@@ -7,8 +7,9 @@
 <div id="institution-app"></div>
 <script type="text/javascript" charset="utf-8">
   (function() {
+   var is_signed_in = JSON.parse('<%= current_user != nil %>');
    React.render(React.createElement(
-         InstitutionApp, {institution_id: <%= @institution.id %>}),
+         InstitutionApp, {institution_id: <%= @institution.id %>, is_signed_in: is_signed_in}),
        document.getElementById("institution-app"));
    })();
 </script>
