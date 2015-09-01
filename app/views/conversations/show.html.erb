@@ -34,7 +34,7 @@
                   <%= image_tag message.sender.image_url, class: "circle", alt: message.sender.first_name %>
 
                   <span class="title"><%= message.sender.first_name + " " + message.sender.last_name %>
-                    says at <span style="font-size: 10pt;"><i><%= message.created_at.strftime("%-d %B %Y, %H:%M:%S") %></i></span></span><br/><br/>
+                    <span style="font-size: 10pt;"> said at <i><%= message.created_at.strftime("%-d %B %Y, %H:%M:%S") %></i></span></span><br/><br/>
 
                   <%= simple_format(message.body) %>
                 </li>
