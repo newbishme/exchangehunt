@@ -31,7 +31,7 @@
             <div class="panel panel-default">
               <div class="row">
                 <div class="col s12">
-                  <h5 class="primary-text-color"><b><%= @conversation.subject %></b></h5>
+                  <h5><b><%= @conversation.subject %></b></h5>
                 </div>
               </div>
 
@@ -39,9 +39,11 @@
               <%= form_tag reply_conversation_path(@conversation), method: :post do %>
                 <div class="form-group valign-wrapper">
                   <%= text_area_tag 'body', nil, cols: 3, class: 'materialize-textarea form-control inline', style: 'width: 70%;', placeholder: 'Reply here...', required: true %>
-                  <%= submit_tag "Send Message", class: 'btn-flat right inline valign', style: 'margin-left: 10px;' %>
+                  <%= submit_tag "Send", class: 'btn right inline valign', style: 'margin-left: 10px;' %>
                 </div>
               <% end %>
+
+              <div class="row"></div>
 
               <div class="panel-body">
                 <div class="messages">
@@ -63,7 +65,7 @@
             </div>
           </div>
         </div>
-        
+
       </div>
     </div>
 
