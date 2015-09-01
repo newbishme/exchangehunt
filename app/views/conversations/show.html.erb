@@ -1,48 +1,69 @@
 <div class="section">
   <div class="container">
-    <div class="row">
-      <div class="col s8 offset-s3">
-        <h4 class="primary-text-color">Chatting with
-          <%= render 'conversations/participants', conversation: @conversation %>
-        </h4>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col s8 offset-s3">
-        <div class="panel panel-default">
-          <div class="row">
-            <div class="col s12">
-              <h5 class="primary-text-color"><b>Subject:</b> <%= @conversation.subject %></h5>
-            </div>
+    <div class="row top-buffer-messages">
+      <div class="col s12 m3">
+        <div class="row">
+          <div class="col s12">
+            <p><%= link_to 'New conversation', new_message_path, class: 'waves-effect waves-light btn' %></p>
           </div>
+        </div>
+        <div class="row">
+          <div class="col s12">
+            <ul class="collection">
+              <li class="collection-item"><h6><%= mailbox_section 'inbox', @box %></h6></li>
+              <li class="collection-item"><h6><%= mailbox_section 'sent', @box %></h6></li>
+              <li class="collection-item"><h6><%= mailbox_section 'trash', @box %></h6></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="col s12 m7 offset-m1">
+        <div class="row">
+          <div class="col s10">
+            <h4 class="primary-text-color">Chatting with
+              <%= render 'conversations/participants', conversation: @conversation %>
+            </h4>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col s10">
+            <div class="panel panel-default">
+              <div class="row">
+                <div class="col s12">
+                  <h5 class="primary-text-color"><b><%= @conversation.subject %></b></h5>
+                </div>
+              </div>
 
 
-          <%= form_tag reply_conversation_path(@conversation), method: :post do %>
-            <div class="form-group valign-wrapper">
-              <%= text_area_tag 'body', nil, cols: 3, class: 'materialize-textarea form-control inline', style: 'width: 70%;', placeholder: 'Reply here...', required: true %>
-              <%= submit_tag "Send Message", class: 'btn btn-primary btn-large right inline valign', style: 'margin-left: 10px;' %>
-            </div>
-          <% end %>
+              <%= form_tag reply_conversation_path(@conversation), method: :post do %>
+                <div class="form-group valign-wrapper">
+                  <%= text_area_tag 'body', nil, cols: 3, class: 'materialize-textarea form-control inline', style: 'width: 70%;', placeholder: 'Reply here...', required: true %>
+                  <%= submit_tag "Send Message", class: 'btn-flat right inline valign', style: 'margin-left: 10px;' %>
+                </div>
+              <% end %>
 
-          <div class="panel-body">
-            <div class="messages">
-              <ul class="collection">
-                <% @conversation.receipts_for(current_user).each do |receipt| %>
-                <li class="collection-item">
-                  <% message = receipt.message %>
-                  <%= image_tag message.sender.image_url, class: "circle", alt: message.sender.first_name %>
+              <div class="panel-body">
+                <div class="messages">
+                  <ul class="collection">
+                    <% @conversation.receipts_for(current_user).each do |receipt| %>
+                    <li class="collection-item">
+                      <% message = receipt.message %>
+                      <%= image_tag message.sender.image_url, class: "circle", alt: message.sender.first_name %>
 
-                  <span class="title"><%= message.sender.first_name + " " + message.sender.last_name %>
-                    <span style="font-size: 10pt;"> said at <i><%= message.created_at.strftime("%-d %B %Y, %H:%M:%S") %></i></span></span><br/><br/>
+                      <span class="title"><%= message.sender.first_name + " " + message.sender.last_name %>
+                        <span style="font-size: 10pt;"> said at <i><%= message.created_at.strftime("%-d %B %Y, %H:%M:%S") %></i></span></span><br/><br/>
 
-                  <%= simple_format(message.body) %>
-                </li>
-                <% end %>
-              </ul>
+                      <%= simple_format(message.body) %>
+                    </li>
+                    <% end %>
+                  </ul>
+                </div>
+              </div>
             </div>
           </div>
         </div>
+        
       </div>
     </div>
 

@@ -8,7 +8,7 @@
       ,&nbsp;
     <% end %>
     <% participant_profile_url = "/users/#{participant.username}" %>
-    <%= link_to participant.first_name + " " + participant.last_name, participant_profile_url %>
+    <%= link_to participant.first_name + " " + participant.last_name, participant_profile_url, :class => 'mailboxer-blue-text' %>
   <% end %>
 <% end %>
 
