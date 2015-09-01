@@ -25,7 +25,7 @@ class InstitutionsController < ApplicationController
   def home_users
     id = params[:id]
     user_ids = UsrInstnConnect.where("institution_id = #{id}").where("is_home_institution").map { |x| x.user_id }
-    users = user_ids.map { |id| User.find(id) }.compact.sort_by(&:created_at).reverse.take(5)
+    users = user_ids.map { |id| User.find(id) }.compact.sort_by(&:created_at).reverse
     respond_to do |format|
       format.json { render json: users.to_json.html_safe}
     end
@@ -34,7 +34,7 @@ class InstitutionsController < ApplicationController
   def exchange_users
     id = params[:id]
     user_ids = UsrInstnConnect.where("institution_id = #{id}").where("is_home_institution = false").map { |x| x.user_id }
-    users = user_ids.map { |id| User.find(id) }.compact.sort_by(&:created_at).reverse.take(5)
+    users = user_ids.map { |id| User.find(id) }.compact.sort_by(&:created_at).reverse
     respond_to do |format|
       format.json { render json: users.to_json.html_safe}
     end
