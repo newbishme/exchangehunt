@@ -34,6 +34,7 @@ class User < ActiveRecord::Base
       user.gender = auth.extra.raw_info.gender
       user.admin = false
       user.home_institution_confirmed = false
+      user.exchange_institution_confirmed = false
     end
   end
 
@@ -56,16 +57,19 @@ class User < ActiveRecord::Base
   end
 
   def send_confirmation_email_if_emails_changed?
+    # refactor this shit
     if self.home_email_changed?
       self.home_institution_confirmation_token = Devise.friendly_token[0, 30]
       self.home_institution_confirmed = false
 
       domain = Mail::Address.new(self.home_email).domain
-      UsrInstnConnect.create!(
-        :user_id => self.id,
-        :institution_id => InstitutionEmail.find_by_instn_domain(domain).id,
-        :is_home_institution => true
-      )
+      new_instn_id = InstitutionEmail.find_by_instn_domain(domain).institution_id
+      connect = UsrInstnConnect.where(user_id: self.id, is_home_institution: true).first_or_create do |c|
+        c.user_id = self.id
+        c.is_home_institution = true
+      end
+      connect.institution_id = new_instn_id
+      connect.save!
 
       Thread.new do
         UserEmailConfirmationMailer.confirmation_email(self, :home).deliver_now
@@ -74,12 +78,34 @@ class User < ActiveRecord::Base
     end
 
     if self.exchange_email_changed?
+      self.exchange_institution_confirmation_token = Devise.friendly_token[0, 30]
+      self.exchange_institution_confirmed = false
+
+      domain = Mail::Address.new(self.exchange_email).domain
+      new_instn_id = InstitutionEmail.find_by_instn_domain(domain).institution_id
+      connect = UsrInstnConnect.where(user_id: self.id, is_home_institution: false).first_or_create do |c|
+        c.user_id = self.id
+        c.is_home_institution = false
+      end
+      connect.institution_id = new_instn_id
+      connect.save!
+
+      Thread.new do
+        UserEmailConfirmationMailer.confirmation_email(self, :exchange).deliver_now
+        ActiveRecord::Base.connection.close
+      end
     end
   end
 
   def confirm_home_email!
     self.home_institution_confirmed = true
     self.home_institution_confirmation_token = nil
+    self.save!
+  end
+
+  def confirm_exchange_email!
+    self.exchange_institution_confirmed = true
+    self.exchange_institution_confirmation_token = nil
     self.save!
   end
 
