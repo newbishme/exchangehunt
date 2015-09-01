@@ -23,9 +23,12 @@ class UsersController < ApplicationController
 
   def update
     raise_400 and return unless authorized?(@user)
-    unless InstitutionEmail.valid_domain?(user_params[:home_email])
-      raise_400("Sorry, your institution is not one of the participating institutions.")
-      return
+
+    if (user_params[:home_email] &&
+        !InstitutionEmail.valid_domain?(user_params[:home_email])) ||
+       (user_params[:exchange_email] &&
+        !InstitutionEmail.valid_domain?(user_params[:exchange_email]))
+      raise_400("Sorry, your institution is not one of the participating institutions.") and return
     end
 
     if @user.update_attributes(user_params)
@@ -35,9 +38,13 @@ class UsersController < ApplicationController
 
   def confirm
     token = params[:t]
-    user = User.find_by_home_institution_confirmation_token(token)
-    if user
+    if user = User.find_by_home_institution_confirmation_token(token)
       user.confirm_home_email!
+      respond_to do |format|
+        format.html
+      end
+    elsif user = User.find_by_exchange_institution_confirmation_token(token)
+      user.confirm_exchange_email!
       respond_to do |format|
         format.html
       end

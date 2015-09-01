@@ -27,11 +27,12 @@ var UserProfileApp = React.createClass({
   },
 
   renderExchangeInformation: function() {
+    console.log(this.props.user.exchange_institution);
     if (this.props.user.exchange_institution.name != null) {
       return (
         <div>
           <span className="avenir-85">Visiting:</span><br/>
-          <span>NANYANG TECHNOLOGICAL UNIVERSITY</span><br/>
+          <span>{this.props.user.exchange_institution.name.toUpperCase()}</span><br/>
           <span>2015-2016</span><br/>
         </div>
       );
