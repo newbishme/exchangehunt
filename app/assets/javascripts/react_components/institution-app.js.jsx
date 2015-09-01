@@ -36,21 +36,11 @@ var InstitutionApp = React.createClass({
     $(React.findDOMNode(this.refs.wrapper)).removeClass("hide")
     Materialize.updateTextFields();
     this.forceUpdate();
-    this.loadDisqus();
-    $('.collapsible').collapsible();
-    $('.parallax').parallax();
-  },
-
-  loadDisqus: function() {
-    /* * * CONFIGURATION VARIABLES * * */
-    var disqus_shortname = 'exchangehunt';
-
-    /* * * DON'T EDIT BELOW THIS LINE * * */
-    (function() {
-      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    })();
+    $(document).ready(function(){
+      $('.collapsible').collapsible();
+      $('.parallax').parallax();
+      $('ul.tabs').tabs();
+    });
   },
 
   render: function() {
@@ -79,7 +69,7 @@ var InstitutionApp = React.createClass({
                   </h3>
                 </div>
                 <div className="col s12 m4">
-                  <div className="fb-like left institution-fb-like-share" data-href={institutionURL} data-layout="standard" data-width="300" data-action="like" data-show-faces="true" data-share="true"></div>
+                  <div className="fb-like left institution-fb-like-share" data-href={this.state.institution.facebook_pid} data-layout="standard" data-width="300" data-action="like" data-show-faces="true"></div>
                 </div>
               </div>
               <div className="row">
@@ -121,16 +111,30 @@ var InstitutionApp = React.createClass({
                      </ul>
                     </div>
                   </div>
-                  <div className="row">
-                    <div className="col s11">
-                      <h5 className="avenir-55 primary-text-color deep-orange-text">SHOUTOUT</h5>
-                      <div id="disqus_thread"></div>
+
+                  <div className="section">
+                    <div className="row">
+                      <div className="col s11">
+                        <h5 className="avenir-55 primary-text-color deep-orange-text">SHOUTOUT</h5>
+                        <div className="fb-comments" data-href={institutionURL} data-numposts="8" data-width="100%"></div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="section">
+                    <div className="row">
+                      <div className="col s11">
+                        <h5 className="avenir-55 primary-text-color deep-orange-text">MEMBERS</h5>
+                        <InstitutionUsersApp institution={this.state.institution} />
+                      </div>
                     </div>
                   </div>
                 </div>
+
+
                 <div className="institution-right-content col s12 m4">
-                  <h5 className="avenir-55 primary-text-color deep-orange-text">RECENTLY JOINED</h5>
-                  <RecentlyJoined institution={this.state.institution} />
+                  <h5 className="avenir-55 primary-text-color deep-orange-text">RECENT ACTIVITY</h5>
+                  <RecentlyActivity institution={this.state.institution} />
                 </div>
               </div>
             </div>
@@ -155,7 +159,7 @@ var InstitutionApp = React.createClass({
 
 });
 
-var RecentlyJoined = React.createClass({
+var RecentlyActivity = React.createClass({
 
   getInitialState: function() {
     return {
@@ -187,7 +191,7 @@ var RecentlyJoined = React.createClass({
         <li className="collection-item avatar" key={user.id}>
           <img src={user.image_url} className="circle responsive-img" alt="User's profile image" />
           <span className="title">{user.first_name} {user.last_name}</span>
-          <p>{user.course}</p>
+          <p>has joined</p>
           <a href={messageUrl} className="secondary-content"><i className="material-icons">email</i></a>
         </li>
       )
@@ -207,7 +211,7 @@ var RecentlyJoined = React.createClass({
       </div>
     )
   }
-})
+});
 
 var HomeUsers = React.createClass({
 
@@ -218,13 +222,13 @@ var HomeUsers = React.createClass({
   },
 
   componentDidUpdate: function(prevProps, prevState) {
-    if (prevProps.institution.id == undefined && this.props.institution.id) {
+    if (prevProps.institutionId == undefined && this.props.institutionId) {
       this.getHomeUsers();
     }
   },
 
   getHomeUsers: function() {
-    var url = "/institutions/" + this.props.institution.id + "/home_users.json"
+    var url = "/institutions/" + this.props.institutionId + "/home_users.json"
     $.get(url, function(response) {
       this.setState({ homeUsers: response });
       this.forceUpdate();
@@ -261,7 +265,7 @@ var HomeUsers = React.createClass({
       </div>
     )
   }
-})
+});
 
 var ExchangeUsers = React.createClass({
 
@@ -272,15 +276,15 @@ var ExchangeUsers = React.createClass({
   },
 
   componentDidUpdate: function(prevProps, prevState) {
-    if (prevProps.institution.id == undefined && this.props.institution.id) {
+    if (prevProps.institutionId == undefined && this.props.institutionId) {
       this.getExchangeUsers();
     }
   },
 
   getExchangeUsers: function() {
-    var url = "/institutions/" + this.props.institution.id + "/exchange_users.json"
+    var url = "/institutions/" + this.props.institutionId + "/exchange_users.json"
     $.get(url, function(response) {
-      this.setState({ homeUsers: response });
+      this.setState({ exchangeUsers: response });
       this.forceUpdate();
     }.bind(this));
   },
@@ -315,6 +319,45 @@ var ExchangeUsers = React.createClass({
       </div>
     )
   }
-})
+});
+
+var InstitutionUsersApp = React.createClass({
+  componentDidMount: function() {
+    this.updateView();
+  },
+
+  updateView: function() {
+    $(React.findDOMNode(this.refs.loadingWrapper)).addClass("hide")
+    $(React.findDOMNode(this.refs.wrapper)).removeClass("hide")
+    $(React.findDOMNode(this.refs.homeStudentsTab)).addClass("active")
+    this.forceUpdate();
+  },
+
+
+  render: function() {
+    return (
+      <div>
+        <div ref="loadingWrapper">
+          Loading..
+        </div>
+        <div ref="wrapper" className="hide">
+
+          <div className="row">
+            <div className="col s12">
+              <ul className="tabs">
+                <li className="tab col s6"><a href="#home_students" ref="homeStudentsTab">HOME</a></li>
+                <li className="tab col s6"><a href="#exchange_students">EXCHANGE</a></li>
+              </ul>
+            </div>
+            <div id="home_students" className="col s12"><HomeUsers institutionId={this.props.institution.id} /></div>
+            <div id="exchange_students" className="col s12"><ExchangeUsers institutionId={this.props.institution.id} /></div>
+          </div>
+
+        </div>
+      </div>
+    );
+  }
+
+});
 
 module.exports = InstitutionApp;
