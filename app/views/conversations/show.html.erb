@@ -36,7 +36,7 @@
                   <span class="title"><%= message.sender.first_name + " " + message.sender.last_name %>
                     says at <span style="font-size: 10pt;"><i><%= message.created_at.strftime("%-d %B %Y, %H:%M:%S") %></i></span></span><br/><br/>
 
-                  <%= message.body %>
+                  <%= simple_format(message.body) %>
                 </li>
                 <% end %>
               </ul>

@@ -66,7 +66,7 @@ var UserProfileApp = React.createClass({
 
               <div className="row"></div>
 
-              <span>{this.props.user.bio.toUpperCase()}</span><br/>
+              <span>{this.props.user.bio}</span><br/>
             </div>
           </div>
         </div>

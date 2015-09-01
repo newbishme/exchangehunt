@@ -19,15 +19,15 @@
       </div>
 
       <div class="col s12 m8">
-        <% if @box == 'trash' %>
-          <p><%= link_to 'Empty trash', empty_trash_conversations_path, class: 'btn', method: :delete,
-                         data: {confirm: 'Are you sure?'} %></p>
-        <% end %>
         <ul class="collection with-header">
           <li class="collection-header"><h4 class="primary-text-color">Messages</h4></li>
           <%= render partial: 'conversations/conversation', collection: @conversations %>
         </ul>
         <%= will_paginate @conversations, renderer: MaterializePagination::Rails %>
+
+        <% if @box == 'trash' %>
+          <p><h6><i>Messages will be automatically deleted after 30 days</i></h6></p>
+        <% end %>
       </div>
     </div>
 

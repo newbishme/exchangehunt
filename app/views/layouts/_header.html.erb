@@ -25,7 +25,13 @@
       <ul class="right">
         <% if user_signed_in? %>
           <% if current_user.username? %>
-            <li class="<%= 'active' if params[:controller] == 'messages' %><%= 'active' if params[:controller] == 'conversations' %>"><%= link_to "Messages", conversations_path %></li>
+            <% @messages_count = current_user.mailbox.inbox({:read => false}).count %>
+            <% if @messages_count > 0 %>
+              <% message_header_text = "Messages (#{@messages_count})" %>
+            <% else %>
+              <% message_header_text = "Messages" %>
+            <% end %>
+            <li class="<%= 'active' if params[:controller] == 'messages' %><%= 'active' if params[:controller] == 'conversations' %>"><%= link_to message_header_text, conversations_path %></li>
             <li class="<%= 'active' if params[:controller] == 'users' %>"><%= link_to current_user.full_name, user_path(current_user.username), class: "truncate" %></li>
           <% end %>
           <li><%= link_to "Log Out", destroy_user_session_path, :method => :delete %></li>
