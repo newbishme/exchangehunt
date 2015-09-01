@@ -206,10 +206,13 @@ var RecentlyActivity = React.createClass({
     }
     var list = users.map(function(user){
       var messageUrl = "/messages/new?to=" + user.id;
+      var userProfileUrl = "/users/" + user.username;
       return(
         <li className="collection-item avatar" key={user.id}>
-          <img src={user.image_url} className="circle responsive-img" alt="User's profile image" />
-          <span className="title">{user.first_name} {user.last_name}</span>
+          <a href={userProfileUrl}>
+            <img src={user.image_url} className="circle responsive-img" alt="User's profile image" />
+            <span className="title">{user.first_name} {user.last_name}</span>
+          </a>
           <p>has joined</p>
           <a href={messageUrl} className="secondary-content"><i className="material-icons">email</i></a>
         </li>
