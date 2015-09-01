@@ -1,33 +1,33 @@
 <div class="section">
   <div class="container">
-    <div class="row top-buffer bottom-buffer">
-      <div class="col s12 m4">
+    <div class="row top-buffer-messages bottom-buffer">
+      <div class="col s12 m3">
         <div class="row">
           <div class="col s12">
-            <p><%= link_to 'New conversation', new_message_path, class: 'btn' %></p>
+            <p><%= link_to 'New conversation', new_message_path, class: 'waves-effect waves-light btn' %></p>
           </div>
         </div>
         <div class="row">
           <div class="col s12">
-            <ul class="">
-              <h5><%= mailbox_section 'inbox', @box %></h5>
-              <h5><%= mailbox_section 'sent', @box %></h5>
-              <h5><%= mailbox_section 'trash', @box %></h5>
+            <ul class="collection">
+              <li class="collection-item"><h6><%= mailbox_section 'inbox', @box %></h6></li>
+              <li class="collection-item"><h6><%= mailbox_section 'sent', @box %></h6></li>
+              <li class="collection-item"><h6><%= mailbox_section 'trash', @box %></h6></li>
             </ul>
           </div>
         </div>
       </div>
 
-      <div class="col s12 m8">
-        <% if @box == 'trash' %>
-          <p><%= link_to 'Empty trash', empty_trash_conversations_path, class: 'btn', method: :delete,
-                         data: {confirm: 'Are you sure?'} %></p>
-        <% end %>
-        <ul class="collection with-header">
-          <li class="collection-header"><h4 class="primary-text-color">Messages</h4></li>
+      <div class="col s12 m7 offset-m1">
+        <h4 class="primary-text-color">Messages</h4>
+        <ul class="collection">
           <%= render partial: 'conversations/conversation', collection: @conversations %>
         </ul>
         <%= will_paginate @conversations, renderer: MaterializePagination::Rails %>
+
+        <% if @box == 'trash' %>
+          <p><h6><i>Messages will be automatically deleted after 30 days</i></h6></p>
+        <% end %>
       </div>
     </div>
 

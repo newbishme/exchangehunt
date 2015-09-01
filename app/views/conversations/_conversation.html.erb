@@ -1,9 +1,16 @@
-<li class="collection-item avatar clearfix">
-  <span class="title">Subject: <%= link_to conversation.subject, conversation_path(conversation), class: 'mailboxer-blue-text' %></span>
+<li class="collection-item avatar clearfix messages-padding-left">
+  <span class="title"><b><%= link_to conversation.subject, conversation_path(conversation), class: 'mailboxer-blue-text' %></b></span>
 
 
   <p>Participant(s): <%= render 'conversations/participants', conversation: conversation %></p>
-  <p>Message: <%= conversation.last_message.body %>
+
+  <% if conversation.last_message.body.length > 50 %>
+    <% truncatedMessage = conversation.last_message.body[0,47] + "....." %>
+  <% else %>
+    <% truncatedMessage = conversation.last_message.body %>
+  <% end %>
+
+  <p>Message: <%= simple_format(truncatedMessage) %>
     <small>
       (<span class="text-muted"><%= conversation.last_message.created_at.strftime("%-d %B %Y, %H:%M:%S") %></span>)
     </small>
@@ -13,7 +20,10 @@
     <% if conversation.is_trashed?(current_user) %>
       <%= link_to 'Restore', restore_conversation_path(conversation), class: 'secondary-content mailboxer-blue-text', method: :post %>
     <% else %>
-      <%= link_to 'Delete', conversation_path(conversation), class: 'secondary-content mailboxer-blue-text', method: :delete,
-                  data: {confirm: 'Are you sure?'} %>
+      <div class="secondary-content">
+        <%= link_to 'Reply', conversation_path(conversation), class: 'mailboxer-blue-text right-buffer' %>
+        <%= link_to 'Delete', conversation_path(conversation), class: 'mailboxer-blue-text', method: :delete,
+                    data: {confirm: 'Are you sure?'} %>
+      </div>
     <% end %>
 </li>

@@ -1,45 +1,64 @@
 <div class="section">
   <div class="container">
-    <div class="row">
-      <div class="col s12">
-        <div class="row top-buffer">
-          <div class="col s6 offset-s3">
-            <h4 class="primary-text-color">Compose your message</h4>
+    <div class="row top-buffer-messages bottom-buffer">
+      <div class="col s12 m3">
+        <div class="row">
+          <div class="col s12">
+            <ul class="collection">
+              <li class="collection-item"><h6><%= mailbox_section 'inbox', @box %></h6></li>
+              <li class="collection-item"><h6><%= mailbox_section 'sent', @box %></h6></li>
+              <li class="collection-item"><h6><%= mailbox_section 'trash', @box %></h6></li>
+            </ul>
           </div>
         </div>
+        </div>
 
-        <%= form_tag messages_path, method: :post do %>
-          <div class="row">
-            <div class="input-field col s6 offset-s3">
-              <i class="material-icons prefix">contacts</i>
-              <%= select_tag 'recipients', recipients_options(@chosen_recipient), multiple: true, class: 'form-control' %>
-              <%= label_tag 'recipients', 'Recipient' %>
-            </div>
-          </div>
+
+
+
+        <div class="col s12 m7 offset-m1">
 
           <div class="row">
-            <div class="input-field col s6 offset-s3">
-              <i class="material-icons prefix">subject</i>
-              <%= label_tag 'message[subject]', 'Subject', for: 'subject-input-field' %>
-              <%= text_field_tag 'message[subject]', nil, class: 'materialize-textarea form-control', id: 'subject-input-field', required: true %>
+            <div class="col s12">
+              <h4 class="primary-text-color">Compose your message</h4>
             </div>
           </div>
 
-          <div class="row">
-            <div class="input-field col s6 offset-s3">
-              <i class="material-icons prefix">message</i>
-              <%= label_tag 'message[body]', 'Message', for: 'message-input-field' %>
-              <%= text_area_tag 'message[body]', nil, cols: 3, class: 'materialize-textarea form-control', style: 'height: 100px;', id: 'message-input-field', required: true %>
+          <%= form_tag messages_path, method: :post do %>
+            <div class="row">
+              <div class="input-field col s10">
+                <i class="material-icons prefix">contacts</i>
+                <%= select_tag 'recipients', recipients_options(@chosen_recipient), multiple: true, class: 'form-control' %>
+                <%= label_tag 'recipients', 'Recipient' %>
+              </div>
             </div>
-          </div>
 
-          <div class="row bottom-buffer">
-            <div class="col s6 offset-s3">
-              <%= submit_tag 'Send', class: 'btn right' %>
+            <div class="row">
+              <div class="input-field col s10">
+                <i class="material-icons prefix">subject</i>
+                <%= label_tag 'message[subject]', 'Subject', for: 'subject-input-field' %>
+                <%= text_field_tag 'message[subject]', nil, class: 'materialize-textarea form-control', id: 'subject-input-field', required: true %>
+              </div>
             </div>
-          </div>
-        <% end %>
-      </div>
+
+            <div class="row">
+              <div class="input-field col s10">
+                <i class="material-icons prefix">message</i>
+                <%= label_tag 'message[body]', 'Message', for: 'message-input-field' %>
+                <%= text_area_tag 'message[body]', nil, cols: 3, class: 'materialize-textarea form-control', style: 'height: 100px;', id: 'message-input-field', required: true %>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col s10">
+                <%= submit_tag 'Send', class: 'btn right' %>
+              </div>
+            </div>
+          <% end %>
+
+
+        </div>
+
     </div>
   </div>
 </div>

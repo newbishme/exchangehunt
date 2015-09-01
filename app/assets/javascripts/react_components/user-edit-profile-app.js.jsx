@@ -27,14 +27,21 @@ var UserEditProfileApp = React.createClass({
   },
 
   validateAndMapExchangeDomain: function(domain) {
-    $.get("/institutions/mapping?domain=" + domain,
-          {},
-          function(resp){
-            var span = React.findDOMNode(this.refs.exchangeInstitutionName)
-            span.innerHTML = 'Visiting: ' + resp["name"] + ' (<a href="/support">Incorrect?</a>)';
+    var request = $.get("/institutions/mapping?domain=" + domain);
 
-            this.renderValidExchangeInstitutionEmail();
-          }.bind(this));
+    request.success(function(resp){
+      var span = React.findDOMNode(this.refs.exchangeInstitutionName)
+      span.innerHTML = 'Visiting: ' + resp["name"] + ' (<a href="/support">Incorrect?</a>)';
+
+      this.renderValidExchangeInstitutionEmail();
+    }.bind(this));
+
+    request.error(function(resp){
+      var span = React.findDOMNode(this.refs.exchangeInstitutionName)
+      span.innerHTML = 'Your institution is currently not recognised. Please contact <a href="https://exchangehunt.io/support">support</a>.';
+
+      this.renderInvalidExchangeInstitutionEmail();
+    }.bind(this));
   },
 
   handleHomeInstitutionEmailInputFieldChange: function() {
@@ -57,8 +64,9 @@ var UserEditProfileApp = React.createClass({
     var course = React.findDOMNode(this.refs.courseField).value;
     var homeInstitutionEmail = React.findDOMNode(this.refs.homeEmailField).value;
     var exchangeInstitutionEmail = React.findDOMNode(this.refs.exchangeEmailField).value;
-    var startDate = React.findDOMNode(this.refs.startDateField).value;
-    var endDate = React.findDOMNode(this.refs.endDateField).value;
+    var startMonth = React.findDOMNode(this.refs.startMonthField).value;
+    var startYear = React.findDOMNode(this.refs.startYearField).value;
+    var duration = React.findDOMNode(this.refs.durationField).value;
     var bio = React.findDOMNode(this.refs.bioField).value;
 
     if (citizenship === "") {
@@ -71,7 +79,7 @@ var UserEditProfileApp = React.createClass({
 
     if (course === "") {
       return;
-    } else if (exchangeInstitutionEmail !== "" && (startDate === "" || endDate === "")){
+    } else if (exchangeInstitutionEmail !== "" && (startMonth === "" || startYear === "" || duration === "")){
       return;
     } else {
       $.ajax({
@@ -93,8 +101,9 @@ var UserEditProfileApp = React.createClass({
           usr_instn_connect_exchange: {
             user_id: this.props.user.id,
             institution_id: 2,
-            start_date: startDate,
-            end_date: endDate,
+            start_month: startMonth,
+            start_year: startYear,
+            duration: duration,
             is_home_institution: false
           }
         },
@@ -117,21 +126,64 @@ var UserEditProfileApp = React.createClass({
     $(React.findDOMNode(this.refs.startAndEndDates)).removeClass("hide");
   },
 
+  renderInvalidExchangeInstitutionEmail: function() {
+    $(React.findDOMNode(this.refs.exchangeInstitutionName)).removeClass("hide")
+  },
+
   renderStartAndEndDates: function() {
     return (
       <div ref="startAndEndDates" className="hide">
         <div className="row">
-          <div className="input-field col s8">
+          <div className="input-field col s4">
             <i className="material-icons prefix">today</i>
-            <input id="start_date" type="date" className="datepicker" placeholder="Start date" ref="startDateField"></input>
-            <label className="active" htmlFor="start_date">Start date of exchange (Optional)</label>
+            <select id="start-month" ref="startMonthField">
+              <option value="January">January</option>
+              <option value="February">February</option>
+              <option value="March">March</option>
+              <option value="April">April</option>
+              <option value="May">May</option>
+              <option value="June">June</option>
+              <option value="July">July</option>
+              <option value="August">August</option>
+              <option value="September">September</option>
+              <option value="October">October</option>
+              <option value="November">November</option>
+              <option value="December">December</option>
+            </select>
+            <label className="active" htmlFor="start-month">Starting month (Optional)</label>
+          </div>
+          <div className="input-field col s4">
+            <select id="start-year" ref="startYearField">
+              <option value="2015">2015</option>
+              <option value="2016">2016</option>
+              <option value="2017">2017</option>
+              <option value="2018">2018</option>
+              <option value="2019">2019</option>
+            </select>
+            <label className="active" htmlFor="start-year">Starting year (Optional)</label>
           </div>
         </div>
         <div className="row">
           <div className="input-field col s8">
             <i className="material-icons prefix">event</i>
-            <label className="active" htmlFor="end_date">End date of exchange (Optional)</label>
-            <input id="end_date" type="date" className="datepicker" placeholder="End date" ref="endDateField"></input>
+            <select id="duration-months" ref="durationField">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+              <option value="11">11</option>
+              <option value="12">12</option>
+              <option value="13">13</option>
+              <option value="14">14</option>
+              <option value="15">15</option>
+            </select>
+            <label className="active" htmlFor="duration-months">Duration of exchange in months(Optional)</label>
           </div>
         </div>
       </div>
@@ -187,6 +239,13 @@ var UserEditProfileApp = React.createClass({
                 </div>
               </div>
 
+              <div className="row"></div>
+
+              <div className="row">
+                <div className="col s8">
+                  <span className="avenir-85">Going for an exchange? Enter your exchange email to get started</span>
+                </div>
+              </div>
               <div className="row">
                 <div className="col s8">
                   <span className="avenir-85" ref="exchangeInstitutionName"></span>
@@ -195,7 +254,7 @@ var UserEditProfileApp = React.createClass({
               <div className="row">
                 <div className="input-field col s8">
                   <i className="material-icons prefix">mail</i>
-                  <input placeholder="Enter your exchange institution's email" defaultValue={this.props.user.exchange_email} id="exchange_institution" type="text" ref="exchangeEmailField" className="validate" onChange={this.handleExchangeInstitutionEmailInputFieldChange}></input>
+                  <input placeholder="Enter your exchange institution's email" defaultValue={this.props.user.exchange_email} id="exchange_institution" type="text" ref="exchangeEmailField" className="validate" onBlur={this.handleExchangeInstitutionEmailInputFieldChange}></input>
                   <label htmlFor="exchange_institution">Exchange institution email (Optional)</label>
                 </div>
               </div>
