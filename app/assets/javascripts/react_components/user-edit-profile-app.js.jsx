@@ -27,14 +27,21 @@ var UserEditProfileApp = React.createClass({
   },
 
   validateAndMapExchangeDomain: function(domain) {
-    $.get("/institutions/mapping?domain=" + domain,
-          {},
-          function(resp){
-            var span = React.findDOMNode(this.refs.exchangeInstitutionName)
-            span.innerHTML = 'Visiting: ' + resp["name"] + ' (<a href="/support">Incorrect?</a>)';
+    var request = $.get("/institutions/mapping?domain=" + domain);
 
-            this.renderValidExchangeInstitutionEmail();
-          }.bind(this));
+    request.success(function(resp){
+      var span = React.findDOMNode(this.refs.exchangeInstitutionName)
+      span.innerHTML = 'Visiting: ' + resp["name"] + ' (<a href="/support">Incorrect?</a>)';
+
+      this.renderValidExchangeInstitutionEmail();
+    }.bind(this));
+
+    request.error(function(resp){
+      var span = React.findDOMNode(this.refs.exchangeInstitutionName)
+      span.innerHTML = 'Your institution is currently not recognised. Please contact <a href="https://exchangehunt.io/support">support</a>.';
+
+      this.renderInvalidExchangeInstitutionEmail();
+    }.bind(this));
   },
 
   handleHomeInstitutionEmailInputFieldChange: function() {
@@ -117,6 +124,10 @@ var UserEditProfileApp = React.createClass({
   renderValidExchangeInstitutionEmail: function() {
     $(React.findDOMNode(this.refs.exchangeInstitutionName)).removeClass("hide")
     $(React.findDOMNode(this.refs.startAndEndDates)).removeClass("hide");
+  },
+
+  renderInvalidExchangeInstitutionEmail: function() {
+    $(React.findDOMNode(this.refs.exchangeInstitutionName)).removeClass("hide")
   },
 
   renderStartAndEndDates: function() {
@@ -228,6 +239,13 @@ var UserEditProfileApp = React.createClass({
                 </div>
               </div>
 
+              <div className="row"></div>
+
+              <div className="row">
+                <div className="col s8">
+                  <span className="avenir-85">Going for an exchange? Enter your exchange email to get started</span>
+                </div>
+              </div>
               <div className="row">
                 <div className="col s8">
                   <span className="avenir-85" ref="exchangeInstitutionName"></span>
@@ -236,7 +254,7 @@ var UserEditProfileApp = React.createClass({
               <div className="row">
                 <div className="input-field col s8">
                   <i className="material-icons prefix">mail</i>
-                  <input placeholder="Enter your exchange institution's email" defaultValue={this.props.user.exchange_email} id="exchange_institution" type="text" ref="exchangeEmailField" className="validate" onChange={this.handleExchangeInstitutionEmailInputFieldChange}></input>
+                  <input placeholder="Enter your exchange institution's email" defaultValue={this.props.user.exchange_email} id="exchange_institution" type="text" ref="exchangeEmailField" className="validate" onBlur={this.handleExchangeInstitutionEmailInputFieldChange}></input>
                   <label htmlFor="exchange_institution">Exchange institution email (Optional)</label>
                 </div>
               </div>
