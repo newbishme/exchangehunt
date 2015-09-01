@@ -16,9 +16,10 @@ var UserProfileApp = React.createClass({
 
   renderDropMessageButton: function() {
     if (!this.props.is_users_profile) {
+      var messageUrl = "/messages/new?to=" + this.props.user.id;
       return (
         <div>
-          <a className="waves-effect waves-light btn"><i className="material-icons left">mail</i>Drop a message</a>
+          <a href={messageUrl} className="waves-effect waves-light btn"><i className="material-icons left">mail</i>Drop a message</a>
           <br/>
         </div>
       );
