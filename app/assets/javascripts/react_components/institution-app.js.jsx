@@ -92,25 +92,25 @@ var InstitutionApp = React.createClass({
                       <ul className="collapsible" data-collapsible="accordion">
                        <li>
                          <div className="collapsible-header"><i className="material-icons">place</i>Location
-                           <a href="#" className="secondary-content"><i className="material-icons">expand_more</i></a>
+                           <span className="secondary-content"><i className="material-icons">expand_more</i></span>
                          </div>
                          <div className="collapsible-body"><p>{this.state.institution.state}, {this.state.institution.country}</p></div>
                        </li>
                        <li>
                          <div className="collapsible-header"><i className="material-icons">language</i>Primary language
-                           <a href="#" className="secondary-content"><i className="material-icons">expand_more</i></a>
+                           <span className="secondary-content"><i className="material-icons">expand_more</i></span>
                          </div>
                          <div className="collapsible-body"><p>{this.state.institution.language}</p></div>
                        </li>
                        <li>
                          <div className="collapsible-header"><i className="material-icons">info_outline</i>Description
-                           <a href="#" className="secondary-content"><i className="material-icons">expand_more</i></a>
+                           <span className="secondary-content"><i className="material-icons">expand_more</i></span>
                          </div>
                          <div className="collapsible-body"><p>{this.state.institution.extract}</p></div>
                        </li>
                        <li>
                          <div className="collapsible-header"><i className="material-icons">public</i>Facebook
-                           <a href="#" className="secondary-content"><i className="material-icons">expand_more</i></a>
+                           <span className="secondary-content"><i className="material-icons">expand_more</i></span>
                          </div>
                          <div className="collapsible-body">
                           <p>
