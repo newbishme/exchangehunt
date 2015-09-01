@@ -16,9 +16,10 @@ var UserProfileApp = React.createClass({
 
   renderDropMessageButton: function() {
     if (!this.props.is_users_profile) {
+      var messageUrl = "/messages/new?to=" + this.props.user.id;
       return (
         <div>
-          <a className="waves-effect waves-light btn"><i className="material-icons left">mail</i>Drop a message</a>
+          <a href={messageUrl} className="waves-effect waves-light btn"><i className="material-icons left">mail</i>Drop a message</a>
           <br/>
         </div>
       );
@@ -32,6 +33,17 @@ var UserProfileApp = React.createClass({
           <span className="avenir-85">Visiting:</span><br/>
           <span>NANYANG TECHNOLOGICAL UNIVERSITY</span><br/>
           <span>2015-2016</span><br/>
+        </div>
+      );
+    }
+  },
+
+  renderAboutMe: function() {
+    if (this.props.user.bio != "") {
+      return (
+        <div>
+          <b><span className="avenir-45">ABOUT ME</span></b><br/>
+          <span>{this.props.user.bio}</span><br/>
         </div>
       );
     }
@@ -66,7 +78,7 @@ var UserProfileApp = React.createClass({
 
               <div className="row"></div>
 
-              <span>{this.props.user.bio}</span><br/>
+              {this.renderAboutMe()}
             </div>
           </div>
         </div>
