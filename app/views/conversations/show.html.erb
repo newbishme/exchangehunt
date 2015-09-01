@@ -29,7 +29,7 @@
             <div class="messages">
               <ul class="collection">
                 <% @conversation.receipts_for(current_user).each do |receipt| %>
-                <li class="collection-item avatar">
+                <li class="collection-item">
                   <% message = receipt.message %>
                   <%= image_tag message.sender.image_url, class: "circle", alt: message.sender.first_name %>
 
