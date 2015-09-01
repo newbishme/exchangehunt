@@ -63,13 +63,10 @@ var InstitutionApp = React.createClass({
                 </div>
               </div>
               <div className="row">
-                <div className="col s12 m8">
+                <div className="col s12">
                   <h3 className="avenir-65 primary-text-color deep-orange-text">
                     {this.state.institution.name}
                   </h3>
-                </div>
-                <div className="col s12 m4">
-                  <div className="fb-like left institution-fb-like-share" data-href={this.state.institution.facebook_pid} data-layout="standard" data-width="300" data-action="like" data-show-faces="true"></div>
                 </div>
               </div>
               <div className="row">
@@ -133,8 +130,22 @@ var InstitutionApp = React.createClass({
 
 
                 <div className="institution-right-content col s12 m4">
-                  <h5 className="avenir-55 primary-text-color deep-orange-text">RECENT ACTIVITY</h5>
-                  <RecentlyActivity institution={this.state.institution} />
+                  <div className="row">
+                    <div className="col s12">
+                      <h5 className="avenir-55 primary-text-color deep-orange-text">RECENT ACTIVITY</h5>
+                      <RecentlyActivity institution={this.state.institution} />
+                    </div>
+                  </div>
+                  <div className="row">
+                    <div className="col s12">
+                      <div className="fb-like left institution-fb-like-share" data-href={this.state.institution.facebook_pid} data-layout="standard" data-width="300" data-action="like" data-show-faces="true"></div>
+                    </div>
+                  </div>
+                  <div className="row">
+                    <div className="col s12">
+                      <div className="fb-share-button" data-href={institutionURL} data-layout="button_count"></div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
