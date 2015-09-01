@@ -37,6 +37,17 @@ var UserProfileApp = React.createClass({
     }
   },
 
+  renderAboutMe: function() {
+    if (this.props.user.bio != "") {
+      return (
+        <div>
+          <b><span className="avenir-45">ABOUT ME</span></b><br/>
+          <span>{this.props.user.bio}</span><br/>
+        </div>
+      );
+    }
+  },
+
   render: function() {
     return (
       <div className="container">
@@ -66,7 +77,7 @@ var UserProfileApp = React.createClass({
 
               <div className="row"></div>
 
-              <span>{this.props.user.bio}</span><br/>
+              {this.renderAboutMe()}
             </div>
           </div>
         </div>
