@@ -6,11 +6,11 @@ class UserEmailConfirmationMailer < ApplicationMailer
                 when Rails.env.development? then "http://localhost:3000"
                 when Rails.env.production? then "https://exchangehunt.io"
                 end
-    @confirmation_url = "#{@base_url}/confirm?t=#{@user.home_institution_confirmation_token}"
-    dest = case type
-           when :home then @user.home_email
-           when :exchange then @user.exchange_email
-           end
+    dest, token = case type
+                  when :home then [@user.home_email, @user.home_institution_confirmation_token]
+                  when :exchange then [@user.exchange_email, @user.exchange_institution_confirmation_token]
+                  end
+    @confirmation_url = "#{@base_url}/confirm?t=#{token}"
     mail(to: dest, subject: "Please confirm your email")
   end
 
