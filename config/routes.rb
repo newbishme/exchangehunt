@@ -25,6 +25,8 @@ Rails.application.routes.draw do
   resources :users
 
   get 'institutions/:id/recently_joined', to: 'institutions#recently_joined'
+  get 'institutions/:id/home_users', to: 'institutions#home_users'
+  get 'institutions/:id/exchange_users', to: 'institutions#exchange_users'
   resources :institutions
 
   resources :messages, only: [:new, :create]
@@ -52,6 +54,6 @@ Rails.application.routes.draw do
       post :mark_as_read
     end
   end
-  
+
 
 end
