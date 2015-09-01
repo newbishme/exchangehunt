@@ -17,6 +17,14 @@
             </div>
           </div>
 
+
+          <%= form_tag reply_conversation_path(@conversation), method: :post do %>
+            <div class="form-group valign-wrapper">
+              <%= text_area_tag 'body', nil, cols: 3, class: 'materialize-textarea form-control inline', style: 'width: 70%;', placeholder: 'Reply here...', required: true %>
+              <%= submit_tag "Send Message", class: 'btn btn-primary btn-large right inline valign', style: 'margin-left: 10px;' %>
+            </div>
+          <% end %>
+
           <div class="panel-body">
             <div class="messages">
               <ul class="collection">
@@ -26,7 +34,7 @@
                   <%= image_tag message.sender.image_url, class: "circle", alt: message.sender.first_name %>
 
                   <span class="title"><%= message.sender.first_name + " " + message.sender.last_name %>
-                    says at <%= message.created_at.strftime("%-d %B %Y, %H:%M:%S") %></span><br/><br/>
+                    says at <span style="font-size: 10pt;"><i><%= message.created_at.strftime("%-d %B %Y, %H:%M:%S") %></i></span></span><br/><br/>
 
                   <%= message.body %>
                 </li>
@@ -34,13 +42,6 @@
               </ul>
             </div>
           </div>
-
-          <%= form_tag reply_conversation_path(@conversation), method: :post do %>
-            <div class="form-group">
-              <%= text_area_tag 'body', nil, cols: 3, class: 'materialize-textarea form-control', placeholder: 'Reply here...', required: true %>
-            </div>
-            <%= submit_tag "Send Message", class: 'btn btn-primary right' %>
-          <% end %>
         </div>
       </div>
     </div>
