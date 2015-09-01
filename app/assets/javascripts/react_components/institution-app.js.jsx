@@ -209,4 +209,112 @@ var RecentlyJoined = React.createClass({
   }
 })
 
+var HomeUsers = React.createClass({
+
+  getInitialState: function() {
+    return {
+      homeUsers: []
+    };
+  },
+
+  componentDidUpdate: function(prevProps, prevState) {
+    if (prevProps.institution.id == undefined && this.props.institution.id) {
+      this.getHomeUsers();
+    }
+  },
+
+  getHomeUsers: function() {
+    var url = "/institutions/" + this.props.institution.id + "/home_users.json"
+    $.get(url, function(response) {
+      this.setState({ homeUsers: response });
+      this.forceUpdate();
+    }.bind(this));
+  },
+
+  generateList: function(users) {
+    if (users.length === 0) {
+      return <li className="collection-item">None :(</li>
+    }
+    var list = users.map(function(user){
+      var messageUrl = "/messages/new?to=" + user.id;
+      return(
+        <li className="collection-item avatar" key={user.id}>
+          <img src={user.image_url} className="circle responsive-img" alt="User's profile image" />
+          <span className="title">{user.first_name} {user.last_name}</span>
+          <p>{user.course}</p>
+          <a href={messageUrl} className="secondary-content"><i className="material-icons">email</i></a>
+        </li>
+      )
+    }.bind(this));
+    return list;
+  },
+
+  render: function() {
+    var list = this.generateList(this.state.homeUsers);
+    return(
+      <div className="row">
+        <div className="col s12">
+          <ul className="collection">
+            {list}
+          </ul>
+        </div>
+      </div>
+    )
+  }
+})
+
+var ExchangeUsers = React.createClass({
+
+  getInitialState: function() {
+    return {
+      exchangeUsers: []
+    };
+  },
+
+  componentDidUpdate: function(prevProps, prevState) {
+    if (prevProps.institution.id == undefined && this.props.institution.id) {
+      this.getExchangeUsers();
+    }
+  },
+
+  getExchangeUsers: function() {
+    var url = "/institutions/" + this.props.institution.id + "/exchange_users.json"
+    $.get(url, function(response) {
+      this.setState({ homeUsers: response });
+      this.forceUpdate();
+    }.bind(this));
+  },
+
+  generateList: function(users) {
+    if (users.length === 0) {
+      return <li className="collection-item">None :(</li>
+    }
+    var list = users.map(function(user){
+      var messageUrl = "/messages/new?to=" + user.id;
+      return(
+        <li className="collection-item avatar" key={user.id}>
+          <img src={user.image_url} className="circle responsive-img" alt="User's profile image" />
+          <span className="title">{user.first_name} {user.last_name}</span>
+          <p>{user.course}</p>
+          <a href={messageUrl} className="secondary-content"><i className="material-icons">email</i></a>
+        </li>
+      )
+    }.bind(this));
+    return list;
+  },
+
+  render: function() {
+    var list = this.generateList(this.state.exchangeUsers);
+    return(
+      <div className="row">
+        <div className="col s12">
+          <ul className="collection">
+            {list}
+          </ul>
+        </div>
+      </div>
+    )
+  }
+})
+
 module.exports = InstitutionApp;
