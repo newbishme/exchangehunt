@@ -1,6 +1,6 @@
 <% participant_count = 0 %>
 
-<% conversation.participants.each do |participant, index| %>
+<% conversation.participants.compact.each do |participant, index| %>
   <% if participant != current_user %>
     <% participant_count += 1 %>
 
