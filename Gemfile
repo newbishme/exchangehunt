@@ -20,6 +20,8 @@ gem 'httparty'
 gem 'mailboxer'
 gem 'will_paginate'
 gem 'will_paginate-materialize'
+gem 'mechanize'
+gem "koala", "~> 2.2"
 
 group :development do
   gem "better_errors"
