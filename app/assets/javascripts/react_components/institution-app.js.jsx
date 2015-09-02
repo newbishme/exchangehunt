@@ -264,12 +264,18 @@ var HomeUsers = React.createClass({
     var list = users.map(function(user){
       var messageUrl = "/messages/new?to=" + user.id;
       var userProfileUrl = "/users/" + user.username;
+      var userVerifiedIcon = "";
+
+      if (user.home_institution_confirmed) {
+        userVerifiedIcon = "verified_user";
+      }
+
       return(
         <li className="collection-item avatar" key={user.id}>
           <a href={userProfileUrl}><img src={user.image_url} className="circle responsive-img" alt="User's profile image" />
           <span className="title">{user.first_name} {user.last_name}</span></a>
           <p>{user.course}</p>
-          <a href={messageUrl} className="secondary-content"><i className="material-icons">email</i></a>
+          <p className="secondary-content"><i className='material-icons'>{userVerifiedIcon}</i> <a href={messageUrl} className="secondary-content-addons"><i className="material-icons">email</i></a></p>
         </li>
       )
     }.bind(this));
@@ -316,7 +322,14 @@ var ExchangeUsers = React.createClass({
     if (users.length === 0) {
       return <li className="collection-item">None :(</li>
     }
+
     var list = users.map(function(user){
+      var userVerifiedIcon = "";
+
+      if (user.exchange_institution_confirmed) {
+        userVerifiedIcon = "verified_user";
+      }
+      
       var messageUrl = "/messages/new?to=" + user.id;
       var userProfileUrl = "/users/" + user.username;
       return(
@@ -324,7 +337,7 @@ var ExchangeUsers = React.createClass({
           <a href={userProfileUrl}><img src={user.image_url} className="circle responsive-img" alt="User's profile image" />
           <span className="title">{user.first_name} {user.last_name}</span></a>
           <p>{user.course}</p>
-          <a href={messageUrl} className="secondary-content"><i className="material-icons">email</i></a>
+          <p className="secondary-content"><i className='material-icons'>{userVerifiedIcon}</i> <a href={messageUrl} className="secondary-content-addons"><i className="material-icons">email</i></a></p>
         </li>
       )
     }.bind(this));
