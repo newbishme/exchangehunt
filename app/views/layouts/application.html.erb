@@ -14,6 +14,8 @@
     <meta property="fb:admins" content="670512116">
   </head>
   <body class="site">
+    <div id="fb-root"></div>
+    <%= render 'shared/facebook_sdk' %>
     <header>
       <%= render 'layouts/header' unless current_page?(root_path) && current_user.nil? %>
     </header>
@@ -24,7 +26,6 @@
     <footer class="page-footer footer-color">
       <%= render 'layouts/footer' %>
       <%= render 'shared/zopim' %>
-      <%= render 'shared/facebook_sdk' %>
       <%= render('shared/google_analytics') if Rails.env.production? %>
     </footer>
   </body>
