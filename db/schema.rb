@@ -120,10 +120,10 @@ ActiveRecord::Schema.define(version: 20150901171734) do
     t.string   "course"
     t.string   "bio"
     t.string   "citizenship"
-    t.string   "home_email"
-    t.string   "exchange_email"
     t.boolean  "home_institution_confirmed"
     t.string   "home_institution_confirmation_token"
+    t.string   "home_email"
+    t.string   "exchange_email"
     t.boolean  "exchange_institution_confirmed"
     t.string   "exchange_institution_confirmation_token"
   end

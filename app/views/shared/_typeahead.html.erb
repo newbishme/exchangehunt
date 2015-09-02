@@ -1,20 +1,23 @@
 <script>
+  var institutions = new Bloodhound({
+    datumTokenizer: Bloodhound.tokenizers.whitespace,
+    queryTokenizer: Bloodhound.tokenizers.whitespace,
+    prefetch: {
+      url: '/json/institutions.json',
+      ttl: 500
+    }
+  });
+
   var countries = new Bloodhound({
     datumTokenizer: Bloodhound.tokenizers.whitespace,
     queryTokenizer: Bloodhound.tokenizers.whitespace,
-    prefetch: 'json/countries.json'
+    prefetch: '/json/countries.json'
   });
 
   var states = new Bloodhound({
     datumTokenizer: Bloodhound.tokenizers.whitespace,
     queryTokenizer: Bloodhound.tokenizers.whitespace,
-    prefetch: 'json/states.json'
-  });
-
-  var institutions = new Bloodhound({
-    datumTokenizer: Bloodhound.tokenizers.whitespace,
-    queryTokenizer: Bloodhound.tokenizers.whitespace,
-    prefetch: 'json/institutions.json'
+    prefetch: '/json/states.json'
   });
 
   $('#multiple-datasets .typeahead').typeahead({
@@ -27,8 +30,8 @@
     source: countries
   },
   {
-      name: 'states',
-      source: states
+    name: 'states',
+    source: states
   },
   {
     name: 'institutions',

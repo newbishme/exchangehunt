@@ -14,6 +14,7 @@ def seed_institutions
   csv.each do |row|
     Institution.create!(row.to_hash)
   end
+
 end
 
 def seed_institution_emails
