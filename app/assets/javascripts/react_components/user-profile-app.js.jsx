@@ -26,14 +26,22 @@ var UserProfileApp = React.createClass({
     }
   },
 
+  renderHomeInformation: function() {
+    return (
+      <div>
+          <span>{this.props.user.citizenship.toUpperCase()}</span><br/>
+          <span>{this.props.user.course.toUpperCase()}</span><br/>
+          <span>{this.props.user.home_institution.name.toUpperCase()}</span><br/>
+      </div>
+    );
+  },
+
   renderExchangeInformation: function() {
-    console.log(this.props.user.exchange_institution);
     if (this.props.user.exchange_institution.name != null) {
       return (
         <div>
-          <span className="avenir-85">Visiting:</span><br/>
+          <b><span className="avenir-45">VISITING</span></b><br/>
           <span>{this.props.user.exchange_institution.name.toUpperCase()}</span><br/>
-          <span>2015-2016</span><br/>
         </div>
       );
     }
@@ -68,15 +76,14 @@ var UserProfileApp = React.createClass({
           <div className="row"></div>
           <div className="row">
             <div className="col s6 offset-s3">
-          	  <span>{this.props.user.citizenship.toUpperCase()}</span><br/>
-          	  <span>{this.props.user.course.toUpperCase()}</span><br/>
-              <span>{this.props.user.home_institution.name.toUpperCase()}</span><br/>
+          	  {this.renderHomeInformation()}
 
               <div className="row"></div>
 
           	  {this.renderExchangeInformation()}
               {this.renderDropMessageButton()}
 
+              <div className="row"></div>
               <div className="row"></div>
 
               {this.renderAboutMe()}

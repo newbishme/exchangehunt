@@ -1,20 +1,23 @@
 <div class="navbar-fixed">
   <nav class="primary-color" role="navigation">
-    <div class="nav-wrapper container hide-on-med-and-down">
+    <div class="nav-wrapper container">
       <ul class="left valign-wrapper">
         <li>
-          <%= link_to image_tag("exchangehunt_logo_mascot.png", :alt => "Exchange Hunt Mascot Icon", :class => "valign"), root_path %>
+          <%= link_to image_tag("exchangehunt_logo_mascot.png", :alt => "Exchange Hunt Mascot Icon", :class => "valign responsive-img"), root_path %>
+        </li>
+        <li class="show-on-med-and-down">
+          &nbsp;
         </li>
         <% if user_signed_in? %>
           <% unless current_user.home_institution.nil? %>
-            <li class="<%= 'active' if params[:controller] == 'institutions' %>">
+            <li class="<%= 'active' if (params[:controller] == 'institutions' && current_user.home_institution.id.to_s == params[:id].to_s) %>">
               <%= link_to current_user.home_institution.name, institution_path(current_user.home_institution), class: "truncate" %>
             </li>
           <% else %>
             <li>&nbsp;</li>
           <% end %>
           <% unless current_user.exchange_institution.nil? %>
-            <li class="<%= 'active' if params[:controller] == 'institutions' %>">
+            <li class="<%= 'active' if (params[:controller] == 'institutions' && current_user.exchange_institution.id.to_s == params[:id].to_s) %>">
               <%= link_to current_user.exchange_institution.name, institution_path(current_user.exchange_institution), class: "truncate" %>
             </li>
           <% end %>
@@ -22,7 +25,8 @@
           <li>&nbsp;</li>
         <% end %>
       </ul>
-      <ul class="right">
+      
+      <ul class="right primary-color">
         <% if user_signed_in? %>
           <% if current_user.username? %>
             <% @messages_count = current_user.mailbox.inbox({:read => false}).count %>
@@ -32,11 +36,11 @@
               <% message_header_text = "Messages" %>
             <% end %>
             <li class="<%= 'active' if params[:controller] == 'messages' %><%= 'active' if params[:controller] == 'conversations' %>"><%= link_to message_header_text, conversations_path %></li>
-            <li class="<%= 'active' if params[:controller] == 'users' %>"><%= link_to current_user.full_name, user_path(current_user.username), class: "truncate" %></li>
+            <li class="<%= 'active' if (params[:controller] == 'users' && params[:id] == current_user.username) %>"><%= link_to current_user.full_name, user_path(current_user.username), class: "truncate" %></li>
           <% end %>
           <li><%= link_to "Log Out", destroy_user_session_path, :method => :delete %></li>
         <% else %>
-          <li><%= link_to "Log In with Facebook", user_omniauth_authorize_path(:facebook) %></li>
+          <li><%= link_to "Connect with Facebook", user_omniauth_authorize_path(:facebook) %></li>
         <% end %>
       </ul>
     </div>
