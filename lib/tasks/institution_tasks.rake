@@ -34,7 +34,9 @@ namespace :institutions do
         i.state = ""
         i.language = "English"
       end
-      instn.institution_emails.create(instn_domain: domain)
+      instn.institution_emails.where(instn_domain: domain).first_or_create do |e|
+        e.instn_domain = domain
+      end
       instn.save
     end
   end
