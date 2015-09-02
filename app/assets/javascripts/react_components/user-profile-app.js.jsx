@@ -28,16 +28,31 @@ var UserProfileApp = React.createClass({
 
   renderHomeInformation: function() {
     var homeVerifiedIcon = "";
+    var citizenship = "";
+    var course = "";
+    var homeInstitution = ""
 
     if (this.props.user.home_institution_confirmed) {
       homeVerifiedIcon = "verified_user";
     }
 
+    if (this.props.user.citizenship != null) {
+      citizenship = this.props.user.citizenship.toUpperCase();
+    }
+
+    if (this.props.user.course != null) {
+      course = this.props.user.course.toUpperCase();
+    }
+
+    if (this.props.user.home_institution != null) {
+      homeInstitution = this.props.user.home_institution.name.toUpperCase();
+    }
+
     return (
       <div>
-          <span>{this.props.user.citizenship.toUpperCase()}</span><br/>
-          <span>{this.props.user.course.toUpperCase()}</span><br/>
-          <span>{this.props.user.home_institution.name.toUpperCase()}  <i className='material-icons verified-status'>{homeVerifiedIcon}</i></span><br/>
+          <span>{citizenship}</span><br/>
+          <span>{course}</span><br/>
+          <span>{homeInstitution}  <i className='material-icons verified-status'>{homeVerifiedIcon}</i></span><br/>
       </div>
     );
   },
