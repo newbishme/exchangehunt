@@ -4,15 +4,15 @@
       <div class="col s12 m3">
         <div class="row">
           <div class="col s12">
-            <p><%= link_to 'New conversation', new_message_path, class: 'waves-effect waves-light btn' %></p>
+            <p><%= link_to 'New conversation', new_message_path, class: 'waves-effect waves-light btn conversation-nav-buttons' %></p>
           </div>
         </div>
         <div class="row">
           <div class="col s12">
             <ul class="collection">
-              <li class="collection-item"><h6><%= mailbox_section 'inbox', @box %></h6></li>
-              <li class="collection-item"><h6><%= mailbox_section 'sent', @box %></h6></li>
-              <li class="collection-item"><h6><%= mailbox_section 'trash', @box %></h6></li>
+              <li class="collection-item btn-messages-sidenav"><h6><%= mailbox_section 'inbox', @box %></h6></li>
+              <li class="collection-item btn-messages-sidenav"><h6><%= mailbox_section 'sent', @box %></h6></li>
+              <li class="collection-item btn-messages-sidenav"><h6><%= mailbox_section 'trash', @box %></h6></li>
             </ul>
           </div>
         </div>

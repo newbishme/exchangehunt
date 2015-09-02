@@ -2,8 +2,8 @@
 <html>
   <head>
     <title>ExchangeHunt</title>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application'%>
+    <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= csrf_meta_tags %>
     <meta property="og:title" content="ExchangeHunt" />
     <meta property="og:url" content="<%= request.original_url %>" />
@@ -14,7 +14,6 @@
     <meta property="fb:admins" content="670512116">
   </head>
   <body class="site">
-    <div id="fb-root"></div>
     <%= render 'shared/facebook_sdk' %>
     <header>
       <%= render 'layouts/header' unless current_page?(root_path) && current_user.nil? %>
