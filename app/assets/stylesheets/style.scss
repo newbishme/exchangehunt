@@ -386,3 +386,16 @@ footer.page-footer {
 .conversation-nav-buttons {
   width: 100%;
 }
+
+
+.imagedropshadow {
+  padding: 0px;
+  border: solid 0px #EFEFEF;
+}
+
+a:hover img.imagedropshadow {
+  border: solid 0px #CCC;
+  -moz-box-shadow: 1px 1px 5px #999;
+  -webkit-box-shadow: 1px 1px 5px #999;
+  box-shadow: 1px 1px 5px #999;
+}
