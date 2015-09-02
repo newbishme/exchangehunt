@@ -263,8 +263,6 @@ GEM
     thor (0.19.1)
     thread_safe (0.3.5)
     tilt (1.4.1)
-    turbolinks (2.5.3)
-      coffee-rails
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
     uglifier (2.7.1)
@@ -314,10 +312,12 @@ DEPENDENCIES
   rspec-rails (~> 3.0)
   sass-rails (~> 5.0)
   spring
-  turbolinks
   uglifier (>= 1.3.0)
   unicorn
   unicorn-rails
   web-console (~> 2.0)
   will_paginate
   will_paginate-materialize
+
+BUNDLED WITH
+   1.10.6

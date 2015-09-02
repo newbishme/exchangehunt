@@ -59,6 +59,10 @@ html {
   color: #000;
 }
 
+.secondary-content-addons {
+  color: #000;
+}
+
 .btn {
   @extend .blue;
   @extend .darken-4;
@@ -385,8 +389,12 @@ footer.page-footer {
 
 .conversation-nav-buttons {
   width: 100%;
+  padding: 0 0;
 }
 
+.btn-messages-sidenav {
+  padding: 0px 0px !important;
+}
 
 .imagedropshadow {
   padding: 0px;

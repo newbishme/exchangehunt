@@ -27,21 +27,33 @@ var UserProfileApp = React.createClass({
   },
 
   renderHomeInformation: function() {
+    var homeVerifiedIcon = "";
+
+    if (this.props.user.home_institution_confirmed) {
+      homeVerifiedIcon = "verified_user";
+    }
+
     return (
       <div>
           <span>{this.props.user.citizenship.toUpperCase()}</span><br/>
           <span>{this.props.user.course.toUpperCase()}</span><br/>
-          <span>{this.props.user.home_institution.name.toUpperCase()}</span><br/>
+          <span>{this.props.user.home_institution.name.toUpperCase()}  <i className='material-icons'>{homeVerifiedIcon}</i></span><br/>
       </div>
     );
   },
 
   renderExchangeInformation: function() {
     if (this.props.user.exchange_institution.name != null) {
+      var exchangeVerifiedIcon = "";
+
+      if (this.props.user.exchange_institution_confirmed) {
+        exchangeVerifiedIcon = "verified_user";
+      }
+
       return (
         <div>
           <b><span className="avenir-45">VISITING</span></b><br/>
-          <span>{this.props.user.exchange_institution.name.toUpperCase()}</span><br/>
+          <span>{this.props.user.exchange_institution.name.toUpperCase()}  <i className='material-icons'>{exchangeVerifiedIcon}</i></span><br/>
         </div>
       );
     }
