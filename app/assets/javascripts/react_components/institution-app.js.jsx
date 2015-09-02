@@ -275,7 +275,7 @@ var HomeUsers = React.createClass({
           <a href={userProfileUrl}><img src={user.image_url} className="circle responsive-img" alt="User's profile image" />
           <span className="title">{user.first_name} {user.last_name}</span></a>
           <p>{user.course}</p>
-          <p className="secondary-content"><i className='material-icons'>{userVerifiedIcon}</i> <a href={messageUrl} className="secondary-content-addons"><i className="material-icons">email</i></a></p>
+          <p className="secondary-content"><i className='material-icons verified-status'>{userVerifiedIcon}</i> <a href={messageUrl} className="secondary-content-addons"><i className="material-icons">email</i></a></p>
         </li>
       )
     }.bind(this));
@@ -329,7 +329,7 @@ var ExchangeUsers = React.createClass({
       if (user.exchange_institution_confirmed) {
         userVerifiedIcon = "verified_user";
       }
-      
+
       var messageUrl = "/messages/new?to=" + user.id;
       var userProfileUrl = "/users/" + user.username;
       return(

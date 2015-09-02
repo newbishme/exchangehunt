@@ -37,7 +37,7 @@ var UserProfileApp = React.createClass({
       <div>
           <span>{this.props.user.citizenship.toUpperCase()}</span><br/>
           <span>{this.props.user.course.toUpperCase()}</span><br/>
-          <span>{this.props.user.home_institution.name.toUpperCase()}  <i className='material-icons'>{homeVerifiedIcon}</i></span><br/>
+          <span>{this.props.user.home_institution.name.toUpperCase()}  <i className='material-icons verified-status'>{homeVerifiedIcon}</i></span><br/>
       </div>
     );
   },
@@ -53,7 +53,7 @@ var UserProfileApp = React.createClass({
       return (
         <div>
           <b><span className="avenir-45">VISITING</span></b><br/>
-          <span>{this.props.user.exchange_institution.name.toUpperCase()}  <i className='material-icons'>{exchangeVerifiedIcon}</i></span><br/>
+          <span>{this.props.user.exchange_institution.name.toUpperCase()}  <i className='material-icons verified-status'>{exchangeVerifiedIcon}</i></span><br/>
         </div>
       );
     }
