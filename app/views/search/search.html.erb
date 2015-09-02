@@ -13,24 +13,35 @@
 </div>
 
 <div class="container">
-  <h3 class="primary-text-color flow-text">Search results for <%= params[:q] %></h3>
-    <div class="row">
-      <% @instn_results.each do |instn| %>
-        <div class="col s12 m6 l4">
-          <div class="card">
-            <div class="card-image">
-              <%= image_tag instn.facebook_img_url, :class => "search-results-card-img" %>
-            </div>
-            <div class="card-content">
-              <span class="search-results-card-text truncate"><%= instn.name %></span>
-            </div>
-            <div class="card-action">
-              <%= link_to 'Visit institution page', institution_path(instn) %>
-            </div>
+  <h3 class="primary-text-color flow-text">
+    Search results for <%= params[:q] %>
+    <% if @instn_results.blank? %>
+      yielded no results... :(
+    <% end %>
+  </h3>
+
+  <% if @instn_results.blank? %>
+    <br/>
+    <h5>Try another search.</h5>
+  <% end %>
+  
+  <div class="row">
+    <% @instn_results.each do |instn| %>
+      <div class="col s12 m6 l4">
+        <div class="card">
+          <div class="card-image">
+            <%= image_tag instn.facebook_img_url, :class => "search-results-card-img" %>
+          </div>
+          <div class="card-content">
+            <span class="search-results-card-text truncate"><%= instn.name %></span>
+          </div>
+          <div class="card-action">
+            <%= link_to 'Visit institution page', institution_path(instn) %>
           </div>
         </div>
-      <% end %>
-    </div>
+      </div>
+    <% end %>
+  </div>
 </div>
 <script type="text/javascript" charset="utf-8">
   (function() {
