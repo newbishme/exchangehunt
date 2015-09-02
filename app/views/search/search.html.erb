@@ -1,8 +1,53 @@
-<div class="container">
-  <h1>Search results</h1>
-  <ul>
-    <% @instn_results.each do |instn| %>
-      <h4><%= link_to instn.name, institution_path(instn) %></h4>
-    <% end %>
-  </ul>
+<div class="section parallax-container search">
+  <div class="container">
+    <div class="row center top-buffer-search">
+      <div id="multiple-datasets">
+        <input id="search-field" class="typeahead" type="text" placeholder="Search universities, or countries">
+      </div>
+    </div>
+    <div class="parallax">
+      <div class="overlay-black"></div>
+      <img src="assets/background1.png" alt="Main banner">
+    </div>
+  </div>
 </div>
+
+<div class="container">
+  <h3 class="primary-text-color flow-text">Search results for <%= params[:q] %></h3>
+    <div class="row">
+      <% @instn_results.each do |instn| %>
+        <div class="col s12 m6 l4">
+          <div class="card">
+            <div class="card-image">
+              <%= image_tag instn.facebook_img_url, :class => "search-results-card-img" %>
+            </div>
+            <div class="card-content">
+              <span class="search-results-card-text truncate"><%= instn.name %></span>
+            </div>
+            <div class="card-action">
+              <%= link_to 'Visit institution page', institution_path(instn) %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+</div>
+<script type="text/javascript" charset="utf-8">
+  (function() {
+
+   $("#search-field").keyup(function(e) {
+       if (e.keyCode === 13) {
+          var search_term = $("#search-field").val();
+          document.location.href = "/search?q=" + search_term;
+       }
+     }
+   );
+
+   //React.render(React.createElement(
+   //      SearchBar, {}),
+   //    document.getElementById("search-bar"));
+   //
+   })();
+ </script>
+
+  <%= render 'shared/typeahead' %>

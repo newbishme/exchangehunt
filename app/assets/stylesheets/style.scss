@@ -131,6 +131,16 @@ p {
   }
 }
 
+.parallax-container.search {
+  min-height: 180px;
+  height: auto;
+  color: rgba(255,255,255,.9);
+
+  .section {
+    width: 100%;
+  }
+}
+
 .nav-wrapper {
   a {
     color: white;
@@ -241,6 +251,10 @@ footer.page-footer {
 
 .top-buffer-messages {
   margin-top: 20px;
+}
+
+.top-buffer-search {
+  margin-top: 40px;
 }
 
 .institution-fb-like-share {
@@ -410,4 +424,22 @@ a:hover img.imagedropshadow {
   -moz-box-shadow: 1px 1px 5px #999;
   -webkit-box-shadow: 1px 1px 5px #999;
   box-shadow: 1px 1px 5px #999;
+}
+
+.search-results-card-img {
+  height: 170px;
+}
+
+.card {
+  .card-content.search-results-card-text {
+    color: #000;
+  }
+}
+
+.card {
+  .card-action {
+    a {
+      color: #0d47a1;
+    }
+  }
 }
