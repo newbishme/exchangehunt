@@ -24,9 +24,9 @@ class UsersController < ApplicationController
   def update
     raise_400 and return unless authorized?(@user)
 
-    if (user_params[:home_email] &&
+    if (!user_params[:home_email].to_s.blank? &&
         !InstitutionEmail.valid_domain?(user_params[:home_email])) ||
-       (user_params[:exchange_email] &&
+       (!user_params[:exchange_email].to_s.blank? &&
         !InstitutionEmail.valid_domain?(user_params[:exchange_email]))
       raise_400("Sorry, your institution is not one of the participating institutions.") and return
     end

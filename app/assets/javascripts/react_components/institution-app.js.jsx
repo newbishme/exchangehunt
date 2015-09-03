@@ -43,6 +43,34 @@ var InstitutionApp = React.createClass({
     });
   },
 
+  renderInstitutionImageBanner: function() {
+    if (this.state.institution.facebook_img_url != "") {
+      return (
+        <div id="index-banner" className="parallax-container">
+          <div className="row">
+            <div className="col s12">
+              <div className="parallax">
+                <img src={this.state.institution.facebook_img_url} alt={this.state.institution.name}></img>
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    }
+  },
+
+  renderFBLike: function() {
+    if (this.state.institution.facebook_pid != "") {
+      return (
+        <div className="row">
+          <div className="col s12">
+            <div className="fb-like left institution-fb-like-share" data-href={this.state.institution.facebook_pid} data-layout="standard" data-width="300" data-action="like" data-show-faces="true"></div>
+          </div>
+        </div>
+      );
+    }
+  },
+
   renderMembersSection: function() {
     if (this.props.is_signed_in) {
       return (
@@ -68,15 +96,9 @@ var InstitutionApp = React.createClass({
         <div ref="wrapper" className="hide">
           <div className="section">
             <div className="container">
-              <div id="index-banner" className="parallax-container">
-                <div className="row">
-                  <div className="col s12">
-                    <div className="parallax">
-                      <img src={this.state.institution.facebook_img_url} alt={this.state.institution.name}></img>
-                    </div>
-                  </div>
-                </div>
-              </div>
+
+              {this.renderInstitutionImageBanner()}
+
               <div className="row">
                 <div className="col s12">
                   <h3 className="avenir-65 primary-text-color deep-orange-text">
@@ -144,11 +166,9 @@ var InstitutionApp = React.createClass({
                       <RecentlyActivity institution={this.state.institution} />
                     </div>
                   </div>
-                  <div className="row">
-                    <div className="col s12">
-                      <div className="fb-like left institution-fb-like-share" data-href={this.state.institution.facebook_pid} data-layout="standard" data-width="300" data-action="like" data-show-faces="true"></div>
-                    </div>
-                  </div>
+
+                  {this.renderFBLike()}
+
                   <div className="row">
                     <div className="col s12">
                       <div className="fb-share-button" data-href={institutionURL} data-layout="button_count"></div>
