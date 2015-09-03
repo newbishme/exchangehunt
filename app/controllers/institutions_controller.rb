@@ -50,6 +50,7 @@ class InstitutionsController < ApplicationController
   end
 
   def show
+    @title = @institution.name
     respond_to do |format|
       format.html
       format.json { render json: @institution.to_json.html_safe }

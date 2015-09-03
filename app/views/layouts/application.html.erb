@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>ExchangeHunt</title>
+    <title>ExchangeHunt<%= ' | ' + @title if @title %></title>
     <%= javascript_include_tag 'application'%>
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= csrf_meta_tags %>
     <script src="http://maps.googleapis.com/maps/api/js?key="<%= ENV["GOOGLE_MAPS_TOKEN"] %>
       type="text/javascript"></script>
-    <meta property="og:title" content="ExchangeHunt" />
+    <meta property="og:title" content="ExchangeHunt <%= '| ' + @title if @title %>" />
     <meta property="og:url" content="<%= request.original_url %>" />
     <meta property="og:description" content="ExchangeHunt is a trusted community for exchange students all around the world to connect with each other and build friendships." />
-    <meta property="og:image" content="https://exchangehunt.io/assets/exchangehunt_og_image.png" />
+    <meta property="og:image" content=<%= @img_url.nil? ? 'https://exchangehunt.io/assets/exchangehunt_og_image.png' : @img_url %> />
     <meta property="og:type" content="website" />
     <meta property="fb:app_id" content="<%= ENV["FACEBOOK_APP_ID"] %>">
     <meta property="fb:admins" content="670512116">
@@ -21,17 +21,6 @@
       <%= render 'layouts/header' unless current_page?(root_path) && current_user.nil? %>
     </header>
     <main class="site-content">
-    <% if flash[:notice] %>
-      <div class="green lighten-4">
-        <div class="container">
-          <div class="section">
-            <div class="center">
-              <div class="notice"><%= flash[:notice] %></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    <% end %>
       <%= render 'shared/complete_profile_banner' unless current_user.nil? || current_user.completed_profile? || current_page?(welcome_index_path) %>
       <%= yield %>
     </main>
