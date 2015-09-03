@@ -50,9 +50,9 @@ var UserProfileApp = React.createClass({
 
     return (
       <div>
-          <span>{citizenship}</span><br/>
-          <span>{course}</span><br/>
-          <span>{homeInstitution}  <i className='material-icons verified-status'>{homeVerifiedIcon}</i></span><br/>
+        <span>{citizenship}</span><br/>
+        <span>{course}</span><br/>
+        <span>{homeInstitution}  <i className='material-icons verified-status'>{homeVerifiedIcon}</i></span><br/>
       </div>
     );
   },
@@ -60,15 +60,81 @@ var UserProfileApp = React.createClass({
   renderExchangeInformation: function() {
     if (this.props.user.exchange_institution.name != null) {
       var exchangeVerifiedIcon = "";
+      var startMonth = "JANUARY";
+      var startYear = "2015";
+      var durationInMonths = "3";
+      var monthText = "MONTH";
 
       if (this.props.user.exchange_institution_confirmed) {
         exchangeVerifiedIcon = "verified_user";
       }
 
+      if (this.props.user.start_month != "") {
+        startMonth = this.props.user.start_month;
+        switch(startMonth) {
+          case 1:
+            startMonth = "JANUARY";
+            break;
+          case 2:
+            startMonth = "FEBRUARY";
+            break;
+          case 3:
+            startMonth = "MARCH";
+            break;
+          case 4:
+            startMonth = "APRIL";
+            break;
+          case 5:
+            startMonth = "MAY";
+            break;
+          case 6:
+            startMonth = "JUNE";
+            break;
+          case 7:
+            startMonth = "JULY";
+            break;
+          case 8:
+            startMonth = "AUGUST";
+            break;
+          case 9:
+            startMonth = "SEPTEMBER";
+            break;
+          case 10:
+            startMonth = "OCTOBER";
+            break;
+          case 11:
+            startMonth = "NOVEMBER";
+            break;
+          case 12:
+            startMonth = "DECEMBER";
+            break;
+          default:
+            startMonth = "JANUARY";
+            break;
+        }
+      }
+
+      if (this.props.user.start_year != "") {
+        startYear = this.props.user.start_year;
+      }
+
+      if (this.props.user.duration_in_months != "") {
+        durationInMonths = this.props.user.duration_in_months;
+
+        if (durationInMonths <= 0) {
+          durationInMonths = 1;
+        }
+      }
+
+      if (durationInMonths > 1) {
+        monthText = "MONTHS"
+      }
+
       return (
         <div>
-          <b><span className="avenir-45">VISITING</span></b><br/>
+          <b><span className="avenir-75 primary-text-color">VISITING</span></b><br/>
           <span>{this.props.user.exchange_institution.name.toUpperCase()}  <i className='material-icons verified-status'>{exchangeVerifiedIcon}</i></span><br/>
+          <span>{startMonth} {startYear}, {durationInMonths} {monthText}</span>
         </div>
       );
     }
@@ -78,7 +144,7 @@ var UserProfileApp = React.createClass({
     if (this.props.user.bio != "") {
       return (
         <div>
-          <b><span className="avenir-45">ABOUT ME</span></b><br/>
+          <b><span className="avenir-75 primary-text-color">ABOUT ME</span></b><br/>
           <span>{this.props.user.bio}</span><br/>
         </div>
       );

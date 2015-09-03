@@ -15,6 +15,8 @@
 //= require react
 //= require react_ujs
 //= require components
+//= require chosen-jquery
+//= require messages
 //= require materialize-sprockets
 //= require "./google_maps.js"
 //= require "./typeahead.bundle.js"

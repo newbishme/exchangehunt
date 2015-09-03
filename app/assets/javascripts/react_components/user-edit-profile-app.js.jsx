@@ -67,7 +67,7 @@ var UserEditProfileApp = React.createClass({
     var exchangeInstitutionEmail = React.findDOMNode(this.refs.exchangeEmailField).value;
     var startMonth = React.findDOMNode(this.refs.startMonthField).value;
     var startYear = React.findDOMNode(this.refs.startYearField).value;
-    var duration = React.findDOMNode(this.refs.durationField).value;
+    var durationInMonths = React.findDOMNode(this.refs.durationField).value;
     var bio = React.findDOMNode(this.refs.bioField).value;
 
     if (citizenship === "") {
@@ -78,10 +78,7 @@ var UserEditProfileApp = React.createClass({
       }
     }
 
-    /*if (course === "") {
-      return;
-      } else */ 
-    if (exchangeInstitutionEmail !== "" && (startMonth === "" || startYear === "" || duration === "")){
+    if (exchangeInstitutionEmail !== "" && (startMonth === "" || startYear === "" || durationInMonths === "")){
       return;
     } else {
       $.ajax({
@@ -95,18 +92,12 @@ var UserEditProfileApp = React.createClass({
             exchange_email: exchangeInstitutionEmail,
             bio: bio
           },
-          usr_instn_connect_home: {
-            user_id: this.props.user.id,
-            institution_id: this.props.user.home_institution.id,
-            is_home_institution: true
-          },
           usr_instn_connect_exchange: {
             user_id: this.props.user.id,
-            institution_id: 2,
+            exchange_email: exchangeInstitutionEmail,
             start_month: startMonth,
             start_year: startYear,
-            duration: duration,
-            is_home_institution: false
+            duration_in_months: durationInMonths,
           }
         },
         success: function(username) {
@@ -134,29 +125,45 @@ var UserEditProfileApp = React.createClass({
   },
 
   renderStartAndEndDates: function() {
+    var startMonth = "1";
+    var startYear = "2015";
+    var durationInMonths = "3";
+
+    if (this.props.user.start_month != null) {
+      startMonth = this.props.user.start_month;
+    }
+
+    if (this.props.user.start_year != null) {
+      startYear = this.props.user.start_year;
+    }
+
+    if (this.props.user.duration_in_months != null) {
+      durationInMonths = this.props.user.duration_in_months;
+    }
+
     return (
       <div ref="startAndEndDates" className="hide">
         <div className="row">
           <div className="input-field col s4">
             <i className="material-icons prefix">today</i>
-            <select id="start-month" ref="startMonthField" defaultValue="January">
-              <option value="January">January</option>
-              <option value="February">February</option>
-              <option value="March">March</option>
-              <option value="April">April</option>
-              <option value="May">May</option>
-              <option value="June">June</option>
-              <option value="July">July</option>
-              <option value="August">August</option>
-              <option value="September">September</option>
-              <option value="October">October</option>
-              <option value="November">November</option>
-              <option value="December">December</option>
+            <select id="start-month" ref="startMonthField" defaultValue={startMonth} >
+              <option value="1">January</option>
+              <option value="2">February</option>
+              <option value="3">March</option>
+              <option value="4">April</option>
+              <option value="5">May</option>
+              <option value="6">June</option>
+              <option value="7">July</option>
+              <option value="8">August</option>
+              <option value="9">September</option>
+              <option value="10">October</option>
+              <option value="11">November</option>
+              <option value="12">December</option>
             </select>
             <label className="active" htmlFor="start-month">Starting month (Optional)</label>
           </div>
           <div className="input-field col s4">
-            <select id="start-year" ref="startYearField" defaultValue="2015">
+            <select id="start-year" ref="startYearField" defaultValue={startYear} >
               <option value="2015">2015</option>
               <option value="2016">2016</option>
               <option value="2017">2017</option>
@@ -169,7 +176,7 @@ var UserEditProfileApp = React.createClass({
         <div className="row">
           <div className="input-field col s8">
             <i className="material-icons prefix">event</i>
-            <select id="duration-months" ref="durationField" defaultValue="3">
+            <select id="duration-months" ref="durationField" defaultValue={durationInMonths} >
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
@@ -301,7 +308,7 @@ var UserEditProfileApp = React.createClass({
 
               <div className="row">
                 <div className="col s8">
-                  <span className="avenir-85">Going for an exchange? Enter your exchange email to get started</span>
+                  <span className="avenir-85">Going for an exchange? Enter your exchange email to get started.</span>
                 </div>
               </div>
               <div className="row">

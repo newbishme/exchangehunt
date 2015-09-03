@@ -410,6 +410,18 @@ footer.page-footer {
   padding: 0 0;
 }
 
+.conversation-new-recipients {
+  min-width: 30%;
+}
+
+.conversation-new-text-field {
+  min-height: 50px;
+}
+
+.conversation-new-text-area {
+  min-height: 100px;
+}
+
 .btn-messages-sidenav {
   padding: 0px 0px !important;
 }
@@ -427,6 +439,7 @@ a:hover img.imagedropshadow {
 }
 
 .search-results-card-img {
+  min-height: 170px;
   height: 170px;
 }
 
