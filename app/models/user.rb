@@ -23,7 +23,12 @@ class User < ActiveRecord::Base
   end
 
   def self.from_omniauth(auth)
-    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+    oauth = Koala::Facebook::OAuth.new(ENV["FACEBOOK_APP_ID"], ENV["FACEBOOK_APP_SECRET"])
+    new_access_info = oauth.exchange_access_token_info auth.credentials.token
+    new_access_token = new_access_info["access_token"]
+    new_access_expires_at = DateTime.now + new_access_info["expires"].to_i.seconds
+
+    where(provider: auth.provider, uid: auth.uid).first_or_initialize.tap do |user|
       user.provider = auth.provider
       user.uid = auth.uid
       user.email = auth.info.email || ""
@@ -35,6 +40,9 @@ class User < ActiveRecord::Base
       user.admin = false
       user.home_institution_confirmed = false
       user.exchange_institution_confirmed = false
+      user.oauth_token = new_access_token #originally auth.credentials.token
+      user.oauth_expires_at = new_access_expires_at
+      user.save!
     end
   end
 

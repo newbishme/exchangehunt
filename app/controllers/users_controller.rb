@@ -60,11 +60,15 @@ class UsersController < ApplicationController
     token = params[:t]
     if user = User.find_by_home_institution_confirmation_token(token)
       user.confirm_home_email!
+      @oauth_token = user.oauth_token
+      @instn = user.home_institution.name
       respond_to do |format|
         format.html
       end
     elsif user = User.find_by_exchange_institution_confirmation_token(token)
       user.confirm_exchange_email!
+      @oauth_token = user.oauth_token
+      @instn = user.exchange_institution.name
       respond_to do |format|
         format.html
       end
