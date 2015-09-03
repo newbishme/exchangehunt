@@ -77,7 +77,7 @@ var InstitutionApp = React.createClass({
           <div className="row">
             <div className="col s11">
               <h5 className="avenir-55 primary-text-color deep-orange-text">MEMBERS</h5>
-              <InstitutionUsersApp institution={this.state.institution} />
+              <InstitutionUsersApp institution={this.state.institution} userId={this.props.current_user_id} username={this.props.username} isExchanging={this.props.is_on_exchange} />
             </div>
           </div>
         </div>
@@ -339,7 +339,7 @@ var ExchangeUsers = React.createClass({
 
   generateList: function(users) {
     if (users.length === 0) {
-      return <li className="collection-item">None :(</li>
+      return <li className="collection-item">None :(</li>;
     }
 
     var list = users.map(function(user){
@@ -377,6 +377,45 @@ var ExchangeUsers = React.createClass({
   }
 });
 
+var ExchangeHereButton = React.createClass({
+  getInitialState: function() {
+    return {
+      isConnected: true
+    };
+  },
+
+  componentDidUpdate: function(prevProps, prevState) {
+    if (prevProps.institutionId == undefined && this.props.institutionId) {
+      this.getExchangeUsers();
+    }
+  },
+
+  getExchangeUsers: function() {
+    var url = "/institutions/" + this.props.institutionId + "/connections/" + this.props.userId + ".json";
+    $.get(url, function(response) {
+      this.setState({ isConnected: response });
+    }.bind(this));
+  },
+
+  render: function() {
+    var editProfileUrl = "/users/" + this.props.username + "/edit/";
+
+    if (this.state.isConnected == false && !this.props.isExchanging) {
+      return(
+        <div className="row center">
+          <div className="col s12">
+            <a href={editProfileUrl} className="waves-effect waves-light btn primary-color" id="main-signup-button">Currently exchanging here?</a>
+          </div>
+        </div>
+      )
+    } else {
+      return(
+        <div></div>
+      )
+    }
+  }
+});
+
 var InstitutionUsersApp = React.createClass({
   componentDidMount: function() {
     this.updateView();
@@ -407,6 +446,10 @@ var InstitutionUsersApp = React.createClass({
             </div>
             <div id="home_students" className="col s12"><HomeUsers institutionId={this.props.institution.id} /></div>
             <div id="exchange_students" className="col s12"><ExchangeUsers institutionId={this.props.institution.id} /></div>
+          </div>
+
+          <div className="section">
+            <div id="exchange_here_button"><ExchangeHereButton institutionId={this.props.institution.id} userId={this.props.userId} username={this.props.username} isExchanging={this.props.isExchanging} /></div>
           </div>
 
         </div>
