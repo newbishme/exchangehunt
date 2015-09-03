@@ -37,9 +37,10 @@ var UserEditProfileApp = React.createClass({
     }.bind(this));
 
     request.error(function(resp){
-      var span = React.findDOMNode(this.refs.exchangeInstitutionName)
-      span.innerHTML = 'Your institution is currently not recognised. Please contact <a href="https://exchangehunt.io/support">support</a>.';
-
+      if (domain.length > 0) {
+        var span = React.findDOMNode(this.refs.exchangeInstitutionName)
+        span.innerHTML = 'Your institution is currently not recognised. Please contact <a href="https://exchangehunt.io/support">support</a>.';
+      }
       this.renderInvalidExchangeInstitutionEmail();
     }.bind(this));
   },
@@ -136,7 +137,7 @@ var UserEditProfileApp = React.createClass({
         <div className="row">
           <div className="input-field col s4">
             <i className="material-icons prefix">today</i>
-            <select id="start-month" ref="startMonthField">
+            <select id="start-month" ref="startMonthField" defaultValue="January">
               <option value="January">January</option>
               <option value="February">February</option>
               <option value="March">March</option>
@@ -153,7 +154,7 @@ var UserEditProfileApp = React.createClass({
             <label className="active" htmlFor="start-month">Starting month (Optional)</label>
           </div>
           <div className="input-field col s4">
-            <select id="start-year" ref="startYearField">
+            <select id="start-year" ref="startYearField" defaultValue="2015">
               <option value="2015">2015</option>
               <option value="2016">2016</option>
               <option value="2017">2017</option>
@@ -166,7 +167,7 @@ var UserEditProfileApp = React.createClass({
         <div className="row">
           <div className="input-field col s8">
             <i className="material-icons prefix">event</i>
-            <select id="duration-months" ref="durationField">
+            <select id="duration-months" ref="durationField" defaultValue="3">
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
@@ -190,6 +191,83 @@ var UserEditProfileApp = React.createClass({
     );
   },
 
+  renderCitizenship: function() {
+    var citizenship = "";
+
+    if (this.props.user.citizenship != null) {
+      citizenship = this.props.user.citizenship;
+    }
+
+    return (
+      <div className="row">
+        <div className="input-field col s8">
+          <i className="material-icons prefix">language</i>
+          <select ref="citizenshipField" defaultValue={citizenship}>
+            <option value="">Select your citizenship</option>
+            <option value="SINGAPOREAN">SINGAPOREAN</option>
+            <option value="AMERICAN">AMERICAN</option>
+            <option value="ALL OTHERS">ALL OTHERS</option>
+          </select>
+          <label>Citizenship</label>
+        </div>
+      </div>
+    );
+  },
+
+  renderCourse: function() {
+    var course = "";
+
+    if (this.props.user.course != null) {
+      course = this.props.user.course;
+    }
+
+    return (
+      <div className="row">
+        <div className="input-field col s8">
+          <i className="material-icons prefix">school</i>
+          <input placeholder="Enter your field of study" defaultValue={course} id="course" type="text" ref="courseField" onChange={this.handleChange}></input>
+          <label htmlFor="course">Field of Study</label>
+        </div>
+      </div>
+    );
+  },
+
+  renderHomeInstitution: function() {
+    var home_email = "";
+
+    if (this.props.user.home_email != null) {
+      home_email = this.props.user.home_email;
+    }
+
+    return (
+      <div className="row">
+        <div className="input-field col s8">
+          <i className="material-icons prefix">home</i>
+          <input placeholder="Enter your home institution's email" defaultValue={home_email} id="home_institution" type="text" ref="homeEmailField" className="validate" onChange={this.handleHomeInstitutionEmailInputFieldChange}></input>
+          <label htmlFor="home_institution">Home institution email</label>
+        </div>
+      </div>
+    );
+  },
+
+  renderExchangeInstitutionEmail: function() {
+    var exchange_email = "";
+
+    if (this.props.user.exchange_email != null) {
+      exchange_email = this.props.user.exchange_email;
+    }
+
+    return (
+      <div className="row">
+        <div className="input-field col s8">
+          <i className="material-icons prefix">mail</i>
+          <input placeholder="Enter your exchange institution's email" defaultValue={exchange_email} id="exchange_institution" type="text" ref="exchangeEmailField" className="validate" onBlur={this.handleExchangeInstitutionEmailInputFieldChange}></input>
+          <label htmlFor="exchange_institution">Exchange institution email (Optional)</label>
+        </div>
+      </div>
+    );
+  },
+
   render: function() {
     return (
       <div className="container">
@@ -206,38 +284,16 @@ var UserEditProfileApp = React.createClass({
           </div>
           <div className="row">
             <div className="col s9 offset-s3">
-              <div className="row">
-                <div className="input-field col s8">
-                  <i className="material-icons prefix">language</i>
-                  <select ref="citizenshipField" defaultValue={this.props.user.citizenship}>
-                    <option value="">Select your citizenship</option>
-                    <option value="SINGAPOREAN">SINGAPOREAN</option>
-                    <option value="AMERICAN">AMERICAN</option>
-                    <option value="ALL OTHERS">ALL OTHERS</option>
-                  </select>
-                  <label>Citizenship</label>
-                </div>
-              </div>
-              <div className="row">
-                <div className="input-field col s8">
-                  <i className="material-icons prefix">school</i>
-                  <input placeholder="Enter your field of study" defaultValue={this.props.user.course} id="course" type="text" ref="courseField" onChange={this.handleChange}></input>
-                  <label htmlFor="course">Field of Study</label>
-                </div>
-              </div>
+              {this.renderCitizenship()}
+              {this.renderCourse()}
 
               <div className="row">
                 <div className="col s8">
                   <span className="avenir-85" ref="homeInstitutionName"></span>
                 </div>
               </div>
-              <div className="row">
-                <div className="input-field col s8">
-                  <i className="material-icons prefix">home</i>
-                  <input placeholder="Enter your home institution's email" defaultValue={this.props.user.home_email} id="home_institution" type="text" ref="homeEmailField" className="validate" onChange={this.handleHomeInstitutionEmailInputFieldChange}></input>
-                  <label htmlFor="home_institution">Home institution email</label>
-                </div>
-              </div>
+
+              {this.renderHomeInstitution()}
 
               <div className="row"></div>
 
@@ -251,14 +307,8 @@ var UserEditProfileApp = React.createClass({
                   <span className="avenir-85" ref="exchangeInstitutionName"></span>
                 </div>
               </div>
-              <div className="row">
-                <div className="input-field col s8">
-                  <i className="material-icons prefix">mail</i>
-                  <input placeholder="Enter your exchange institution's email" defaultValue={this.props.user.exchange_email} id="exchange_institution" type="text" ref="exchangeEmailField" className="validate" onBlur={this.handleExchangeInstitutionEmailInputFieldChange}></input>
-                  <label htmlFor="exchange_institution">Exchange institution email (Optional)</label>
-                </div>
-              </div>
 
+              {this.renderExchangeInstitutionEmail()}
               {this.renderStartAndEndDates()}
 
               <div className="row">
