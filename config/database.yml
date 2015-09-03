@@ -17,5 +17,5 @@ test:
 production:
   adapter: postgresql
   encoding: unicode
-  env: <%= ENV["DATABASE_URL" %>
+  env: <%= ENV["DATABASE_URL"] %>
 
