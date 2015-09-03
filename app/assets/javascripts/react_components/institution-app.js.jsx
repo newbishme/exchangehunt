@@ -43,30 +43,34 @@ var InstitutionApp = React.createClass({
   },
 
   renderInstitutionImageBanner: function() {
-    if (this.state.institution.facebook_img_url != "") {
-      return (
-        <div id="index-banner" className="parallax-container">
-          <div className="row">
-            <div className="col s12">
-              <div className="parallax">
-                <img src={this.state.institution.facebook_img_url} alt={this.state.institution.name}></img>
+    if (this.state.institution.facebook_img_url != null) {
+      if (this.state.institution.facebook_img_url != "") {
+        return (
+          <div id="index-banner" className="parallax-container">
+            <div className="row">
+              <div className="col s12">
+                <div className="parallax">
+                  <img src={this.state.institution.facebook_img_url} alt={this.state.institution.name}></img>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      );
+        );
+      }
     }
   },
 
   renderFBLike: function() {
-    if (this.state.institution.facebook_pid != "") {
-      return (
-        <div className="row">
-          <div className="col s12">
-            <div className="fb-like left institution-fb-like-share" data-href={this.state.institution.facebook_pid} data-layout="standard" data-width="300" data-action="like" data-show-faces="true"></div>
+    if (this.state.institution.facebook_pid != null) {
+      if (this.state.institution.facebook_pid != "") {
+        return (
+          <div className="row">
+            <div className="col s12">
+              <div className="fb-like left institution-fb-like-share" data-href={this.state.institution.facebook_pid} data-layout="standard" data-width="300" data-action="like" data-show-faces="true"></div>
+            </div>
           </div>
-        </div>
-      );
+        );
+      }
     }
   },
 
