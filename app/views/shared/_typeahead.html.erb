@@ -1,6 +1,6 @@
 <script>
   var institutions = new Bloodhound({
-    datumTokenizer: Bloodhound.tokenizers.whitespace,
+    datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
     queryTokenizer: Bloodhound.tokenizers.whitespace,
     prefetch: {
       url: '/json/institutions.json',
@@ -35,6 +35,7 @@
   },
   {
     name: 'institutions',
+    display: 'name',
     source: institutions
   });
 </script>
