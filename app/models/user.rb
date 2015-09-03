@@ -78,6 +78,12 @@ class User < ActiveRecord::Base
     end
 
     if self.exchange_email_changed?
+      if self.exchange_email.blank?
+        u = UsrInstnConnect.where(user_id: self.id, is_home_institution: false).first
+        u.delete if u
+        return
+      end
+
       self.exchange_institution_confirmation_token = Devise.friendly_token[0, 30]
       self.exchange_institution_confirmed = false
 
