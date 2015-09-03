@@ -22,6 +22,8 @@ gem 'will_paginate'
 gem 'will_paginate-materialize'
 gem 'mechanize'
 gem "koala", "~> 2.2"
+gem 'chosen-rails'
+gem "compass-rails", github: "Compass/compass-rails", branch: "master"
 
 group :development do
   gem "better_errors"
