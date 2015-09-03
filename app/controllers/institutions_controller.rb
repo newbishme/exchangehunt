@@ -40,6 +40,15 @@ class InstitutionsController < ApplicationController
     end
   end
 
+  def user_institution_connections
+    institution_id = params[:id]
+    user_id = params[:userid]
+    is_connected = !UsrInstnConnect.where("institution_id = #{institution_id} AND user_id = #{user_id}").blank?
+    respond_to do |format|
+      format.json { render json: is_connected.to_json.html_safe }
+    end
+  end
+
   def show
     respond_to do |format|
       format.html
