@@ -1,5 +1,11 @@
 <div class="container">
-  <div class"row">
-    <h3>Your email has been verified.</h3>
+  <div class="section">
+    <div class="center">
+      <h3>Your email has been verified. <i class='material-icons verified-status'>verified_user</i></h3>
+      Redirecting to the home page in 5 seconds..
+    </div>
   </div>
 </div>
+<script type="text/javascript" charset="utf-8">
+  window.setTimeout(function(){ window.location.href = "<%= root_path %>"; }, 5000);
+</script>

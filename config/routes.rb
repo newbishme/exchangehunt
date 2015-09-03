@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   get 'institutions/:id/connections/:userid', to: 'institutions#user_institution_connections'
 
   get 'confirm', to: 'users#confirm'
+  post 'resend_confirmation', to: 'users#resend_confirmation'
   resources :users
 
   get 'institutions/:id/recently_joined', to: 'institutions#recently_joined'

@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!, only: [:update, :edit, :show]
+  before_action :authenticate_user!, only: [:update, :edit, :show, :resend_confirmation]
   before_action :ensure_complete_registration, only: [:show]
 
   before_action :set_user_by_username, only: [:show, :username, :edit]
@@ -74,6 +74,15 @@ class UsersController < ApplicationController
   end
 
   def edit
+  end
+
+  def resend_confirmation
+    @user = current_user
+    case params["type"]
+    when "home" then @user.resend_home_confirmation_mail
+    when "exchange" then @user.resend_exchange_confirmation_mail
+    end
+    redirect_to edit_user_path(@user.username)
   end
 
   private
