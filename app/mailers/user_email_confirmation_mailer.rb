@@ -11,7 +11,7 @@ class UserEmailConfirmationMailer < ApplicationMailer
                   when :exchange then [@user.exchange_email, @user.exchange_institution_confirmation_token]
                   end
     @confirmation_url = "#{@base_url}/confirm?t=#{token}"
-    mail(to: dest, subject: "Please confirm your email")
+    mail(to: dest, subject: "ExchangeHunt: Please confirm your email")
   end
 
 end

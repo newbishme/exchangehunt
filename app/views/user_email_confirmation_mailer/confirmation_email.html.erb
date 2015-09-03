@@ -6,7 +6,11 @@
   <body>
     <h1>Welcome to ExchangeHunt, <%= @user.first_name %></h1>
     <p>
-      To confirm your email, please follow this link: <%= link_to @confirmation_url, @confirmation_url %>
+      To confirm your email, please follow this link. <br />
+      <%= link_to @confirmation_url, @confirmation_url %>
     </p>
+    Thank you, <br />
+    ExchangeHunt Team <br />
+    support@exchangehunt.io <br />
   </body>
 </html>

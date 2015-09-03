@@ -78,9 +78,10 @@ var UserEditProfileApp = React.createClass({
       }
     }
 
-    if (course === "") {
+    /*if (course === "") {
       return;
-    } else if (exchangeInstitutionEmail !== "" && (startMonth === "" || startYear === "" || duration === "")){
+      } else */ 
+    if (exchangeInstitutionEmail !== "" && (startMonth === "" || startYear === "" || duration === "")){
       return;
     } else {
       $.ajax({

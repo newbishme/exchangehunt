@@ -3,8 +3,8 @@
     <div class="container">
       <div class="section">
         <div class="center">
-          Please verify your home institution email.
-          <%= link_to "Resend verification email?", resend_confirmation_path(nil, :type => "home"), method: :post %>
+          We've sent you a verification email!
+          <%= link_to "Resend verification email to #{@user.home_email}?", resend_confirmation_path(nil, :type => "home"), method: :post %>
         </div>
       </div>
     </div>
@@ -16,8 +16,8 @@
     <div class="container">
       <div class="section">
         <div class="center">
-          Please verify your exchange institution email.
-          <%= link_to "Resend verification email?", resend_confirmation_path(nil, :type => "exchange"), method: :post %>
+          We've sent you a verification email!
+          <%= link_to "Resend verification email to #{@user.exchange_email}?", resend_confirmation_path(nil, :type => "exchange"), method: :post %>
         </div>
       </div>
     </div>
