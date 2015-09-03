@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150901171734) do
+ActiveRecord::Schema.define(version: 20150903120913) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -135,11 +135,12 @@ ActiveRecord::Schema.define(version: 20150901171734) do
   create_table "usr_instn_connects", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "institution_id"
-    t.date     "start_date"
-    t.date     "end_date"
     t.boolean  "is_home_institution", null: false
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
+    t.integer  "start_month"
+    t.integer  "start_year"
+    t.integer  "duration_in_months"
   end
 
   add_index "usr_instn_connects", ["institution_id"], name: "index_usr_instn_connects_on_institution_id", using: :btree
