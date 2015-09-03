@@ -300,7 +300,7 @@ var UserEditProfileApp = React.createClass({
 
               <div className="row">
                 <div className="col s8">
-                  <span className="avenir-85">Going for an exchange? Enter your exchange email to get started</span>
+                  <span className="avenir-85">Going for an exchange? Enter your exchange email to get started.</span>
                 </div>
               </div>
               <div className="row">

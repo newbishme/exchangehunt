@@ -67,7 +67,7 @@ var UserProfileApp = React.createClass({
 
       return (
         <div>
-          <b><span className="avenir-45">VISITING</span></b><br/>
+          <b><span className="avenir-75 primary-text-color">VISITING</span></b><br/>
           <span>{this.props.user.exchange_institution.name.toUpperCase()}  <i className='material-icons verified-status'>{exchangeVerifiedIcon}</i></span><br/>
         </div>
       );
@@ -78,7 +78,7 @@ var UserProfileApp = React.createClass({
     if (this.props.user.bio != "") {
       return (
         <div>
-          <b><span className="avenir-45">ABOUT ME</span></b><br/>
+          <b><span className="avenir-75 primary-text-color">ABOUT ME</span></b><br/>
           <span>{this.props.user.bio}</span><br/>
         </div>
       );
