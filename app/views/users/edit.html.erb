@@ -1,3 +1,28 @@
+<% if !@user.home_email.to_s.blank? && !@user.home_institution_confirmed %>
+  <div class="red lighten-4">
+    <div class="container">
+      <div class="section">
+        <div class="center">
+          Please verify your home institution email.
+          <%= link_to "Resend verification email?", resend_confirmation_path(nil, :type => "home"), method: :post %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<% if !@user.exchange_email.to_s.blank? && !@user.exchange_institution_confirmed %>
+  <div class="red lighten-4">
+    <div class="container">
+      <div class="section">
+        <div class="center">
+          Please verify your exchange institution email.
+          <%= link_to "Resend verification email?", resend_confirmation_path(nil, :type => "exchange"), method: :post %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
 <div id="user-edit-profile-app"></div>
 <script type="text/javascript" charset="utf-8">
   (function() {

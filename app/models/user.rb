@@ -59,9 +59,6 @@ class User < ActiveRecord::Base
   def send_confirmation_email_if_emails_changed?
     # refactor this shit
     if self.home_email_changed?
-      self.home_institution_confirmation_token = Devise.friendly_token[0, 30]
-      self.home_institution_confirmed = false
-
       domain = Mail::Address.new(self.home_email).domain
       new_instn_id = InstitutionEmail.find_by_instn_domain(domain).institution_id
       connect = UsrInstnConnect.where(user_id: self.id, is_home_institution: true).first_or_create do |c|
@@ -71,10 +68,7 @@ class User < ActiveRecord::Base
       connect.institution_id = new_instn_id
       connect.save!
 
-      Thread.new do
-        UserEmailConfirmationMailer.confirmation_email(self, :home).deliver_now
-        ActiveRecord::Base.connection.close
-      end
+      resend_home_confirmation_mail
     end
 
     if self.exchange_email_changed?
@@ -83,9 +77,6 @@ class User < ActiveRecord::Base
         u.delete if u
         return
       end
-
-      self.exchange_institution_confirmation_token = Devise.friendly_token[0, 30]
-      self.exchange_institution_confirmed = false
 
       domain = Mail::Address.new(self.exchange_email).domain
       new_instn_id = InstitutionEmail.find_by_instn_domain(domain).institution_id
@@ -96,10 +87,29 @@ class User < ActiveRecord::Base
       connect.institution_id = new_instn_id
       connect.save!
 
-      Thread.new do
-        UserEmailConfirmationMailer.confirmation_email(self, :exchange).deliver_now
-        ActiveRecord::Base.connection.close
-      end
+      resend_exchange_confirmation_mail
+    end
+  end
+
+  def resend_home_confirmation_mail
+    Thread.new do
+      self.update_columns({
+        home_institution_confirmation_token: Devise.friendly_token[0, 30],
+        home_institution_confirmed: false
+      })
+      UserEmailConfirmationMailer.confirmation_email(self, :home).deliver_now
+      ActiveRecord::Base.connection.close
+    end
+  end
+
+  def resend_exchange_confirmation_mail
+    Thread.new do
+      self.update_columns({
+        exchange_institution_confirmation_token: Devise.friendly_token[0, 30],
+        exchange_institution_confirmed: false
+      })
+      UserEmailConfirmationMailer.confirmation_email(self, :exchange).deliver_now
+      ActiveRecord::Base.connection.close
     end
   end
 
