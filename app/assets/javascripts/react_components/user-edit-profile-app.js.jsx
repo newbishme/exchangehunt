@@ -125,12 +125,28 @@ var UserEditProfileApp = React.createClass({
   },
 
   renderStartAndEndDates: function() {
+    var startMonth = "1";
+    var startYear = "2015";
+    var durationInMonths = "3";
+
+    if (this.props.user.start_month != null) {
+      startMonth = this.props.user.start_month;
+    }
+
+    if (this.props.user.start_year != null) {
+      startYear = this.props.user.start_year;
+    }
+
+    if (this.props.user.duration_in_months != null) {
+      durationInMonths = this.props.user.duration_in_months;
+    }
+
     return (
       <div ref="startAndEndDates" className="hide">
         <div className="row">
           <div className="input-field col s4">
             <i className="material-icons prefix">today</i>
-            <select id="start-month" ref="startMonthField" defaultValue="January">
+            <select id="start-month" ref="startMonthField" defaultValue={startMonth} >
               <option value="1">January</option>
               <option value="2">February</option>
               <option value="3">March</option>
@@ -147,7 +163,7 @@ var UserEditProfileApp = React.createClass({
             <label className="active" htmlFor="start-month">Starting month (Optional)</label>
           </div>
           <div className="input-field col s4">
-            <select id="start-year" ref="startYearField" defaultValue="2015">
+            <select id="start-year" ref="startYearField" defaultValue={startYear} >
               <option value="2015">2015</option>
               <option value="2016">2016</option>
               <option value="2017">2017</option>
@@ -160,7 +176,7 @@ var UserEditProfileApp = React.createClass({
         <div className="row">
           <div className="input-field col s8">
             <i className="material-icons prefix">event</i>
-            <select id="duration-months" ref="durationField" defaultValue="3">
+            <select id="duration-months" ref="durationField" defaultValue={durationInMonths} >
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
