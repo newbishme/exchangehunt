@@ -5,7 +5,7 @@
     <%= javascript_include_tag 'application'%>
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= csrf_meta_tags %>
-    <script src="http://maps.googleapis.com/maps/api/js?key="<%= ENV["GOOGLE_MAPS_API"] %>
+    <script src="http://maps.googleapis.com/maps/api/js?key="<%= ENV["GOOGLE_MAPS_TOKEN"] %>
       type="text/javascript"></script>
     <meta property="og:title" content="ExchangeHunt" />
     <meta property="og:url" content="<%= request.original_url %>" />
