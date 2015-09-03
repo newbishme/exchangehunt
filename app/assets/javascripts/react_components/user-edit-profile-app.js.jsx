@@ -113,6 +113,7 @@ var UserEditProfileApp = React.createClass({
         }.bind(this),
         error: function(response) {
           console.log(response);
+          Materialize.toast('Invalid/Unrecognised institution email address!', 3000)
         }.bind(this)
       });
     }

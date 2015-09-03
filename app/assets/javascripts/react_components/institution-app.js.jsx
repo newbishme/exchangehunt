@@ -11,8 +11,8 @@ var InstitutionApp = React.createClass({
         center: new google.maps.LatLng(1.2956, 103.7767),
         zoom: 12,
         mapTypeId: google.maps.MapTypeId.ROADMAP
-      }
-      var map = new google.maps.Map(mapCanvas, mapOptions)
+      };
+      var map = new google.maps.Map(mapCanvas, mapOptions);
     }
     google.maps.event.addDomListener(window, 'load', initialize);
   },
@@ -32,9 +32,8 @@ var InstitutionApp = React.createClass({
   },
 
   updateView: function() {
-    $(React.findDOMNode(this.refs.loadingWrapper)).addClass("hide")
-    $(React.findDOMNode(this.refs.wrapper)).removeClass("hide")
-    Materialize.updateTextFields();
+    $(React.findDOMNode(this.refs.loadingWrapper)).addClass("hide");
+    $(React.findDOMNode(this.refs.wrapper)).removeClass("hide");
     this.forceUpdate();
     $(document).ready(function(){
       $('.collapsible').collapsible();
