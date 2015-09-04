@@ -33,16 +33,30 @@
   </div>
 </div>
 
-<div class="container">
-  <div class="section">
-    <div class="row top-buffer center">
-      <h2 class="primary-text-color"><span class="avenir-65">What is exchange</span><span class="avenir-85">hunt</span><span class="avenir-65">?</span></h2>
-    </div>
-    <div class="row bottom-buffer center">
-      <h5 class="avenir-45"><span class="avenir-65">exchange</span><span class="avenir-85">hunt</span> is a trusted community for exchange <br /> students all around the world to connect with each <br /> other and build friendships.</h5>
+<% if user_signed_in? && current_user.oauth_token? %>
+  <div class="container">
+    <div class="section">
+      <div class="row top-buffer center">
+        <ul>
+          <% user.facebook_friends.each do |friend| %>
+            <li><%= friend %></li>
+          <% end %>
+        </ul>
+      </div>
     </div>
   </div>
-</div>
+<% else %>
+  <div class="container">
+    <div class="section">
+      <div class="row top-buffer center">
+        <h2 class="primary-text-color"><span class="avenir-65">What is exchange</span><span class="avenir-85">hunt</span><span class="avenir-65">?</span></h2>
+      </div>
+      <div class="row bottom-buffer center">
+        <h5 class="avenir-45"><span class="avenir-65">exchange</span><span class="avenir-85">hunt</span> is a trusted community for exchange <br /> students all around the world to connect with each <br /> other and build friendships.</h5>
+      </div>
+    </div>
+  </div>
+<% end %>
 
 <div id="index-banner" class="parallax-container">
   <div class="container">
