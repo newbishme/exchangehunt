@@ -4,7 +4,7 @@ class PagesController < ApplicationController
 
   def index
     if user_signed_in? && current_user.oauth_token?
-      @facebook_friends = current_user.facebook_friends
+      @facebook_friends = current_user.facebook_friends.map { |f| User.find_by_uid(f["id"]) }
     end
   end
 
