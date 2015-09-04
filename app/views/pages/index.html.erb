@@ -38,14 +38,17 @@
   <div class="container">
     <div class="section">
       <div class="row top-buffer center">
+        <h2 class="primary-text-color">Friends on Facebook</h2>
+      </div>
+      <div class="row top-buffer center">
         <% @facebook_friends.each do |friend| %>
           <div class="col s12 m6 l4">
-            <div class="card">
+            <div class="card small">
               <div class="card-image">
                 <% if friend.image_url.to_s.blank? %>
                   <%= image_tag 'no_image_found.png', :class => "search-results-card-img" %>
                 <% else %>
-                  <%= image_tag friend.image_url, :class => "search-results-card-img" %>
+                  <%= image_tag "#{friend.image_url}?height=320", :class => "search-results-card-img" %>
                 <% end %>
               </div>
               <div class="card-content">
