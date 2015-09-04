@@ -64,14 +64,14 @@ class UsersController < ApplicationController
     if user = User.find_by_home_institution_confirmation_token(token)
       user.confirm_home_email!
       @oauth_token = user.oauth_token
-      @instn = user.home_institution.name
+      @instn = user.home_institution
       respond_to do |format|
         format.html
       end
     elsif user = User.find_by_exchange_institution_confirmation_token(token)
       user.confirm_exchange_email!
       @oauth_token = user.oauth_token
-      @instn = user.exchange_institution.name
+      @instn = user.exchange_institution
       respond_to do |format|
         format.html
       end
@@ -104,6 +104,14 @@ class UsersController < ApplicationController
       end
     end
 
+    render :nothing => true
+  end
+
+  def share_affliation
+    if user_signed_in? && current_user.oauth_token? && params[:institution]
+      current_user.affliate_with_institution(params[:institution].to_i)
+      redirect_to institution_path(params[:institution].to_i)
+    end
     render :nothing => true
   end
 
