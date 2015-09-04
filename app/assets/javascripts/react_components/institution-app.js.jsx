@@ -28,7 +28,8 @@ var InstitutionApp = React.createClass({
       });
 
       google.maps.event.addListener(marker, 'click', function() {
-        infowindow.setContent(place.name);
+        var link = '<a href="/search?q=' + place.name + '">' + place.name + "</a>"
+        infowindow.setContent(link);
         infowindow.open(map, this);
       });
     }
