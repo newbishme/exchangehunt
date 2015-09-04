@@ -42,20 +42,18 @@
       </div>
       <div class="row bottom-buffer">
         <% @facebook_friends.each do |friend| %>
-          <div class="col s12 m6 l4">
-            <div class="card small">
+          <div class="col s12 m6 l3">
+            <div class="card">
               <div class="card-image">
                 <% if friend.image_url.to_s.blank? %>
                   <%= image_tag 'no_image_found.png', :class => "search-results-card-img" %>
                 <% else %>
-                  <%= image_tag "#{friend.image_url}?height=320", :class => "search-results-card-img" %>
+                  <%= image_tag "#{friend.image_url}?height=320", :class => "" %>
                 <% end %>
               </div>
               <div class="card-content">
-                <span class="search-results-card-text truncate"><%= friend.full_name %></span>
-              </div>
-              <div class="card-action">
-                <%= link_to 'VISIT PROFILE', user_path(friend.username), :class => "facebook-card-profile-link" %>
+                <%= link_to friend.full_name, user_path(friend.username), :class => "facebook-card-profile-link search-results-card-text truncate" %>
+                <span class="truncate"><%= friend.home_institution.name %></span>
               </div>
             </div>
           </div>
