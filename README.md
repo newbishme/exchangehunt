@@ -10,8 +10,18 @@ Tan Sei Yee, A0111697B (Designer)
 - Feedback on UI/UX to improve the frontend and logic flow of app
 
 Ang Ming Yi, A0111840W (Developer)
+- (Mostly) Frontend developer
+- Responsible for turning design into code
+- Responsible for implementing the UI/UX design
+- Implemented messages component
+- Manage database schema
 
 Chen Jingwen, A0111764L (Developer)
+- (Mostly) Backend developer
+- Responsible for linking backend components to talk to each other
+- Responsible for the rake scripts 
+- Responsible for setting up of environment
+- Implemented facebook/google api components
 
 ## Building
 
