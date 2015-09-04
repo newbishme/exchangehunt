@@ -38,9 +38,9 @@
   <div class="container">
     <div class="section">
       <div class="row top-buffer center">
-        <h2 class="primary-text-color">Friends on Facebook</h2>
+        <h2 class="primary-text-color">Your friends on ExchangeHunt</h2>
       </div>
-      <div class="row top-buffer center">
+      <div class="row bottom-buffer">
         <% @facebook_friends.each do |friend| %>
           <div class="col s12 m6 l4">
             <div class="card small">
@@ -55,7 +55,7 @@
                 <span class="search-results-card-text truncate"><%= friend.full_name %></span>
               </div>
               <div class="card-action">
-                <%= link_to 'Visit profile', user_path(friend.username) %>
+                <%= link_to 'VISIT PROFILE', user_path(friend.username), :class => "facebook-card-profile-link" %>
               </div>
             </div>
           </div>
