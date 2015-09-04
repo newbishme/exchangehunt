@@ -1,20 +1,66 @@
 var InstitutionApp = React.createClass({
+
   componentDidMount: function() {
     var url = "/institutions/" + this.props.institution_id + ".json"
     $.get(url, function(response) {
       this.updateInstitutionObject(response);
+      google.maps.event.addDomListener(window, 'load', function() { initialize(response.name); });
     }.bind(this));
 
-    function initialize() {
+    var map;
+    var infowindow;
+    var service;
+    infowindow = new google.maps.InfoWindow();
+
+    function callback(results, status) {
+      if (status === google.maps.places.PlacesServiceStatus.OK) {
+        for (var i = 0; i < results.length; i++) {
+          createMarker(results[i]);
+        }
+      }
+    }
+
+    function createMarker(place) {
+      var placeLoc = place.geometry.location;
+      var marker = new google.maps.Marker({
+        map: map,
+        position: place.geometry.location
+      });
+
+      google.maps.event.addListener(marker, 'click', function() {
+        infowindow.setContent(place.name);
+        infowindow.open(map, this);
+      });
+    }
+
+    function searchInstitution(result, status) {
+      if (result.length > 0) {
+        var loc = result[0]["geometry"]["location"];
+        map.setCenter(new google.maps.LatLng(loc["G"], loc["K"]));
+        service.nearbySearch({
+          location: {lat: loc["G"], lng: loc["K"]},
+          radius: 40000,
+          types: ['university']
+        }, callback);
+      }
+    }
+
+    function initialize(name) {
       var mapCanvas = document.getElementById('map');
+      var lat = 1.2956;
+      var lng = 103.7767;
       var mapOptions = {
-        center: new google.maps.LatLng(1.2956, 103.7767),
+        center: new google.maps.LatLng(lat, lng),
         zoom: 12,
         mapTypeId: google.maps.MapTypeId.ROADMAP
       };
-      var map = new google.maps.Map(mapCanvas, mapOptions);
+      map = new google.maps.Map(mapCanvas, mapOptions);
+      var p = {lat: lat, lng: lng};
+      service = new google.maps.places.PlacesService(map);
+      service.textSearch({
+        query: name 
+      }, searchInstitution);
     }
-    google.maps.event.addDomListener(window, 'load', initialize);
   },
 
   getInitialState: function() {
