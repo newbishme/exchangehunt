@@ -137,4 +137,10 @@ class User < ActiveRecord::Base
     self.email = email.downcase if self.email
   end
 
+  def facebook_friends
+    @graph = Koala::Facebook::API.new(self.oauth_token)
+    friends = @graph.get_connections("me", "friends")
+    friends
+  end
+
 end

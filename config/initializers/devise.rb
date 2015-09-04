@@ -238,7 +238,7 @@ Devise.setup do |config|
   config.omniauth :facebook,
     ENV['FACEBOOK_APP_ID'],
     ENV['FACEBOOK_APP_SECRET'],
-    :scope => 'email,public_profile',
+    :scope => 'email,public_profile,user_friends',
     info_fields: 'email,first_name,last_name,gender,location'
 
   # ==> Warden configuration
