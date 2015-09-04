@@ -95,7 +95,7 @@ class UsersController < ApplicationController
   private
 
   def set_user_by_username
-    @user = User.find_by_username(params[:id].downcase)
+    @user = User.where('lower(username) = ?', params[:id].downcase).first
     raise_404 unless @user
   end
 

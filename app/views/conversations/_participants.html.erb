@@ -1,18 +1,10 @@
-<% participant_count = 0 %>
-
-<% conversation.participants.compact.each do |participant, index| %>
-  <% if participant != current_user %>
-    <% participant_count += 1 %>
-
-    <% if (participant_count != 1) %>
-      ,&nbsp;
-    <% end %>
-    <% participant_profile_url = "/users/#{participant.username}" %>
-    <%= link_to participant.first_name + " " + participant.last_name, participant_profile_url, :class => 'mailboxer-blue-text' %>
-  <% end %>
+<% participants = conversation.participants.reject { |c| c == current_user }.compact %>
+<% participants.each_with_index do |participant, index| %>
+  <%= link_to participant.full_name,
+    user_path(participant.username),
+    :class => 'mailboxer-blue-text' %><% if index != participants.count - 1 %>,<% end %>
 <% end %>
 
-
-<% if participant_count == 0 %>
+<% if participants.empty? %>
   Myself
 <% end %>
