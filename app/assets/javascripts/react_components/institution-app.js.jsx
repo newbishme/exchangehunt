@@ -341,6 +341,80 @@ var ExchangeUsers = React.createClass({
     }.bind(this));
   },
 
+  renderExchangeInformation: function(user) {
+    var startMonth = "JANUARY";
+    var startYear = "2015";
+    var durationInMonths = "3";
+    var monthText = "MONTH";
+
+    if (user.start_month != "") {
+      startMonth = user.start_month;
+      switch(startMonth) {
+        case 1:
+          startMonth = "JANUARY";
+          break;
+        case 2:
+          startMonth = "FEBRUARY";
+          break;
+        case 3:
+          startMonth = "MARCH";
+          break;
+        case 4:
+          startMonth = "APRIL";
+          break;
+        case 5:
+          startMonth = "MAY";
+          break;
+        case 6:
+          startMonth = "JUNE";
+          break;
+        case 7:
+          startMonth = "JULY";
+          break;
+        case 8:
+          startMonth = "AUGUST";
+          break;
+        case 9:
+          startMonth = "SEPTEMBER";
+          break;
+        case 10:
+          startMonth = "OCTOBER";
+          break;
+        case 11:
+          startMonth = "NOVEMBER";
+          break;
+        case 12:
+          startMonth = "DECEMBER";
+          break;
+        default:
+          startMonth = "JANUARY";
+          break;
+      }
+    }
+
+    if (user.start_year != "") {
+      startYear = user.start_year;
+    }
+
+    if (user.duration_in_months != "") {
+      durationInMonths = user.duration_in_months;
+
+      if (durationInMonths <= 0) {
+        durationInMonths = 1;
+      }
+    }
+
+    if (durationInMonths > 1) {
+      monthText = "MONTHS"
+    }
+
+    return (
+      <div>
+        <span>{startMonth} {startYear}, {durationInMonths} {monthText}</span>
+      </div>
+    );
+  },
+
   generateList: function(users) {
     if (users.length === 0) {
       return <li className="collection-item">None :(</li>;
@@ -355,11 +429,12 @@ var ExchangeUsers = React.createClass({
 
       var messageUrl = "/messages/new?to=" + user.id;
       var userProfileUrl = "/users/" + user.username;
+
       return(
         <li className="collection-item avatar" key={user.id}>
           <a href={userProfileUrl}><img src={user.image_url} className="circle responsive-img" alt="User's profile image" />
           <span className="title">{user.first_name} {user.last_name}</span></a>
-          <p>{user.course}</p>
+          <p>{user.course}</p> {this.renderExchangeInformation(user)}
           <p className="secondary-content"><i className='material-icons'>{userVerifiedIcon}</i> <a href={messageUrl} className="secondary-content-addons"><i className="material-icons">email</i></a></p>
         </li>
       )
