@@ -38,21 +38,24 @@ class UsersController < ApplicationController
     if params[:usr_instn_connect_exchange]
       user_exchange_info = params[:usr_instn_connect_exchange]
 
-      user_id = user_exchange_info[:user_id]
-      domain = Mail::Address.new(user_exchange_info[:exchange_email]).domain
-      exchange_instn_id = InstitutionEmail.find_by_instn_domain(domain).institution_id
+      if user_exchange_info[:exchange_email] != ""
 
-      connect = UsrInstnConnect.where(user_id: user_id, is_home_institution: false).first_or_create do |c|
-        c.user_id = user_id.to_i
-        c.institution_id = exchange_instn_id.to_i
-        c.is_home_institution = false
+        user_id = user_exchange_info[:user_id]
+        domain = Mail::Address.new(user_exchange_info[:exchange_email]).domain
+        exchange_instn_id = InstitutionEmail.find_by_instn_domain(domain).institution_id
+
+        connect = UsrInstnConnect.where(user_id: user_id, is_home_institution: false).first_or_create do |c|
+          c.user_id = user_id.to_i
+          c.institution_id = exchange_instn_id.to_i
+          c.is_home_institution = false
+        end
+
+        connect.start_month = user_exchange_info[:start_month].to_i
+        connect.start_year = user_exchange_info[:start_year].to_i
+        connect.duration_in_months = user_exchange_info[:duration_in_months].to_i
+        connect.save!
+
       end
-
-      connect.start_month = user_exchange_info[:start_month].to_i
-      connect.start_year = user_exchange_info[:start_year].to_i
-      connect.duration_in_months = user_exchange_info[:duration_in_months].to_i
-      connect.save!
-
     end
   end
 
@@ -60,11 +63,15 @@ class UsersController < ApplicationController
     token = params[:t]
     if user = User.find_by_home_institution_confirmation_token(token)
       user.confirm_home_email!
+      @oauth_token = user.oauth_token
+      @instn = user.home_institution.name
       respond_to do |format|
         format.html
       end
     elsif user = User.find_by_exchange_institution_confirmation_token(token)
       user.confirm_exchange_email!
+      @oauth_token = user.oauth_token
+      @instn = user.exchange_institution.name
       respond_to do |format|
         format.html
       end
@@ -132,8 +139,8 @@ class UsersController < ApplicationController
   end
 
   def getExchangeDuration(user_id)
-    userExchangeRecord = UsrInstnConnect.where(user_id: user_id, is_home_institution: false).first
     restrictedExchangeRecord = {}
+    userExchangeRecord = UsrInstnConnect.where(user_id: user_id, is_home_institution: false).first_or_initialize
     restrictedExchangeRecord[:start_month] = userExchangeRecord[:start_month]
     restrictedExchangeRecord[:start_year] = userExchangeRecord[:start_year]
     restrictedExchangeRecord[:duration_in_months] = userExchangeRecord[:duration_in_months]

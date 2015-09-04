@@ -2,9 +2,12 @@
   <div class="section">
     <div class="center">
       <h3>Your email has been verified. <i class='material-icons verified-status'>verified_user</i></h3>
+      <!-- <h5><%= link_to "Share this affliation with #{@instn} on Facebook", "#", :onclick => "affiliate();"%></h5> -->
       Redirecting to the home page in 5 seconds..
     </div>
   </div>
+</div>
+<div id="result">
 </div>
 <script type="text/javascript" charset="utf-8">
   window.setTimeout(function(){ window.location.href = "<%= root_path %>"; }, 5000);
