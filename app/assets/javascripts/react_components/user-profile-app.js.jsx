@@ -18,9 +18,11 @@ var UserProfileApp = React.createClass({
     if (!this.props.is_users_profile) {
       var messageUrl = "/messages/new?to=" + this.props.user.id;
       return (
-        <div>
-          <a href={messageUrl} className="waves-effect waves-light btn"><i className="material-icons left">mail</i>Drop a message</a>
-          <br/>
+        <div className="row">
+          <div className="col s5 offset-s3">
+            <a href={messageUrl} className="waves-effect waves-light btn"><i className="material-icons left">mail</i>Drop a message</a>
+            <br/>
+          </div>
         </div>
       );
     }
@@ -159,13 +161,16 @@ var UserProfileApp = React.createClass({
             <div className="col s3">
               <img src={this.props.user.image_url} className="circle responsive-img right profile-image-size" />
             </div>
-            <div className="col s7 ">
+            <div className="col s9 ">
             	<h2 className="avenir-65 inline">
             	  <span className="primary-text-color inline">{this.props.user.first_name} {this.props.user.last_name}</span>
             	</h2>
             </div>
           </div>
+
           {this.renderEditProfileButton()}
+          {this.renderDropMessageButton()}
+
           <div className="row"></div>
           <div className="row">
             <div className="col s6 offset-s3">
@@ -174,7 +179,6 @@ var UserProfileApp = React.createClass({
               <div className="row"></div>
 
           	  {this.renderExchangeInformation()}
-              {this.renderDropMessageButton()}
 
               <div className="row"></div>
               <div className="row"></div>
