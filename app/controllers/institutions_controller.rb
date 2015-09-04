@@ -60,6 +60,7 @@ class InstitutionsController < ApplicationController
   end
 
   def show
+    @og_type = "exchangehunt:institution"
     @og_description = "Exchanging or studying at #{@institution.name}? Join ExchangeHunt now!"
     @title = @institution.name
     @img_url = @institution.facebook_img_url unless @institution.facebook_img_url.to_s.blank?

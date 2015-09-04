@@ -15,7 +15,7 @@
       <meta property="og:description" content="ExchangeHunt is a trusted community for exchange students all around the world to connect with each other and build friendships." />
     <% end %>
     <meta property="og:image" content=<%= @img_url.nil? ? 'https://exchangehunt.io/assets/exchangehunt_og_image.png' : @img_url %> />
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content=<%= @og_type || "website" %> />
     <meta property="fb:app_id" content="<%= ENV["FACEBOOK_APP_ID"] %>">
     <meta property="fb:admins" content="670512116">
   </head>
