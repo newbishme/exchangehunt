@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => { :omniauth_callbacks => 'callbacks' }
   root 'pages#index'
 
+  post 'users/deauthorize', to: 'users#deauthorize'
   get 'users/username/:id', to: 'users#username'
   get 'institutions/mapping', to: 'institutions#mapping'
   get 'institutions/:id/connections/:userid', to: 'institutions#user_institution_connections'

@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   before_action :set_user_by_username, only: [:show, :username, :edit]
   before_action :set_user_by_id, only: :update
 
-  skip_before_filter :verify_authenticity_token, only: [:confirm]
+  skip_before_filter :verify_authenticity_token, only: [:confirm, :deauthorize]
 
   # check existence for username
   def username
@@ -92,6 +92,13 @@ class UsersController < ApplicationController
     redirect_to edit_user_path(@user.username)
   end
 
+  def deauthorize
+    p request
+    # if verify_uninstall_signature
+    # end
+    render :nothing => true
+  end
+
   private
 
   def set_user_by_username
@@ -145,6 +152,37 @@ class UsersController < ApplicationController
     restrictedExchangeRecord[:start_year] = userExchangeRecord[:start_year]
     restrictedExchangeRecord[:duration_in_months] = userExchangeRecord[:duration_in_months]
     restrictedExchangeRecord
+  end
+
+  def verify_uninstall_signature
+    signature = ''
+    keys = params.keys.sort
+    keys.each do |key|
+      next if key == 'fb_sig'
+      next unless key.include?('fb_sig')
+      key_name = key.gsub('fb_sig_', '')
+      signature += key_name
+      signature += '='
+      signature += params[key]
+    end
+
+    signature += ENV['FACEBOOK_APP_SECRET']
+    calculated_sig = Digest::MD5.hexdigest(signature)
+
+    if calculated_sig != params[:fb_sig]
+      #check to see if ip variables are nil
+      if not request.env['HTTP_X_FORWARDED_FOR'].nil? and not request.env['HTTP_X_REAL_IP'].nil?
+        ip = request.env['HTTP_X_FORWARDED_FOR'] || request.env['HTTP_X_REAL_IP']
+      else
+        ip = request.remote_ip
+      end
+
+      logger.info "\nRemote IP :: #{ip}"
+      return false
+    else
+      #logger.warn "\n\nSUCCESS!! Signatures matched.\n"
+    end
+    return true
   end
 
 end
