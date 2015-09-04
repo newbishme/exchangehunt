@@ -143,4 +143,9 @@ class User < ActiveRecord::Base
     friends
   end
 
+  def affliate_with_institution(instn)
+    @graph = Koala::Facebook::API.new(self.oauth_token)
+    @graph.put_connections("me", "exchangehunt:affliate_with", :object => "https://exchangehunt.io/institutions/#{instn.id}")
+  end
+
 end
