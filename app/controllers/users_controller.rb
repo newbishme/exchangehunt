@@ -93,9 +93,15 @@ class UsersController < ApplicationController
   end
 
   def deauthorize
-    p request
-    # if verify_uninstall_signature
-    # end
+    if request["signed_request"]
+      signed_request = request["signed_request"]
+      @oauth = Koala::Facebook::OAuth.new(ENV["FACEBOOK_APP_ID"], ENV["FACEBOOK_APP_SECRET"]) # example secret is 'secret', app ID doesn't matter
+      parsed = @oauth.parse_signed_request(signed_request)
+      p signed_request
+      p @oauth
+      p parsed
+    end
+
     render :nothing => true
   end
 
