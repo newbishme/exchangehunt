@@ -46,7 +46,7 @@
             <div class="card">
               <div class="card-image">
                 <% if friend.image_url.to_s.blank? %>
-                  <%= image_tag 'no_image_found.png', :class => "search-results-card-img" %>
+                  <%= image_tag 'no_image_found.png', :class => "fb-friends-results-card-img" %>
                 <% else %>
                   <%= image_tag "#{friend.image_url}?height=320", :class => "" %>
                 <% end %>
