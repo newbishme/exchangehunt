@@ -144,88 +144,88 @@ var InstitutionApp = React.createClass({
         </div>
         <div ref="wrapper" className="hide">
             <div className="container">
+              <div className="section">
+                {this.renderInstitutionImageBanner()}
 
-              {this.renderInstitutionImageBanner()}
-
-              <div className="row">
-                <div className="col s12">
-                  <h3 className="avenir-65 primary-text-color deep-orange-text">
-                    {this.state.institution.name}
-                  </h3>
-                </div>
-              </div>
-              <div className="row">
-                <div className="institution-left-content col s12 m8">
-                  <div className="row">
-                    <div className="col s11">
-                      <h5 className="avenir-55 primary-text-color deep-orange-text">INFORMATION</h5>
-                      <ul className="collapsible" data-collapsible="accordion">
-                       <li>
-                         <div className="collapsible-header"><i className="material-icons">place</i>Location
-                           <span className="secondary-content"><i className="material-icons">expand_more</i></span>
-                         </div>
-                         <div className="collapsible-body"><p>{this.state.institution.state}, {this.state.institution.country}</p></div>
-                       </li>
-                       <li>
-                         <div className="collapsible-header"><i className="material-icons">language</i>Primary language
-                           <span className="secondary-content"><i className="material-icons">expand_more</i></span>
-                         </div>
-                         <div className="collapsible-body"><p>{this.state.institution.language}</p></div>
-                       </li>
-                       <li>
-                         <div className="collapsible-header"><i className="material-icons">info_outline</i>Description
-                           <span className="secondary-content"><i className="material-icons">expand_more</i></span>
-                         </div>
-                         <div className="collapsible-body"><p>{this.state.institution.extract}</p></div>
-                       </li>
-                       <li>
-                         <div className="collapsible-header"><i className="material-icons">public</i>Facebook
-                           <span className="secondary-content"><i className="material-icons">expand_more</i></span>
-                         </div>
-                         <div className="collapsible-body">
-                          <p>
-                            <a href={this.state.institution.facebook_pid}>
-                              {this.state.institution.facebook_pid}
-                            </a>
-                          </p>
-                        </div>
-                       </li>
-                     </ul>
-                    </div>
+                <div className="row">
+                  <div className="col s12">
+                    <h3 className="avenir-65 primary-text-color deep-orange-text">
+                      {this.state.institution.name}
+                    </h3>
                   </div>
+                </div>
 
-                  <div className="section">
+                <div className="row">
+                  <div className="institution-left-content col s12 m8">
                     <div className="row">
                       <div className="col s11">
-                        <h5 className="avenir-55 primary-text-color deep-orange-text">SHOUTOUT</h5>
-                        <div className="fb-comments" data-href={institutionURL} data-numposts="8" data-width="100%"></div>
+                        <h5 className="avenir-55 primary-text-color deep-orange-text">INFORMATION</h5>
+                        <ul className="collapsible" data-collapsible="accordion">
+                         <li>
+                           <div className="collapsible-header"><i className="material-icons">place</i>Location
+                             <span className="secondary-content"><i className="material-icons">expand_more</i></span>
+                           </div>
+                           <div className="collapsible-body"><p>{this.state.institution.state}, {this.state.institution.country}</p></div>
+                         </li>
+                         <li>
+                           <div className="collapsible-header"><i className="material-icons">language</i>Primary language
+                             <span className="secondary-content"><i className="material-icons">expand_more</i></span>
+                           </div>
+                           <div className="collapsible-body"><p>{this.state.institution.language}</p></div>
+                         </li>
+                         <li>
+                           <div className="collapsible-header"><i className="material-icons">info_outline</i>Description
+                             <span className="secondary-content"><i className="material-icons">expand_more</i></span>
+                           </div>
+                           <div className="collapsible-body"><p>{this.state.institution.extract}</p></div>
+                         </li>
+                         <li>
+                           <div className="collapsible-header"><i className="material-icons">public</i>Facebook
+                             <span className="secondary-content"><i className="material-icons">expand_more</i></span>
+                           </div>
+                           <div className="collapsible-body">
+                            <p>
+                              <a href={this.state.institution.facebook_pid}>
+                                {this.state.institution.facebook_pid}
+                              </a>
+                            </p>
+                          </div>
+                         </li>
+                       </ul>
                       </div>
                     </div>
-                  </div>
 
-                  {this.renderMembersSection()}
-                </div>
-
-
-                <div className="institution-right-content col s12 m4">
-                  <div className="row">
-                    <div className="col s12">
-                      <h5 className="avenir-55 primary-text-color deep-orange-text">RECENT ACTIVITY</h5>
-                      <RecentlyActivity institution={this.state.institution} />
+                    <div className="section">
+                      <div className="row">
+                        <div className="col s11">
+                          <h5 className="avenir-55 primary-text-color deep-orange-text">SHOUTOUT</h5>
+                          <div className="fb-comments" data-href={institutionURL} data-numposts="8" data-width="100%"></div>
+                        </div>
+                      </div>
                     </div>
+
+                    {this.renderMembersSection()}
                   </div>
 
-                  {this.renderFBLike()}
+                  <div className="institution-right-content col s12 m4">
+                    <div className="row">
+                      <div className="col s12">
+                        <h5 className="avenir-55 primary-text-color deep-orange-text">RECENT ACTIVITY</h5>
+                        <RecentlyActivity institution={this.state.institution} />
+                      </div>
+                    </div>
 
-                  <div className="row">
-                    <div className="col s12">
-                      <div className="fb-share-button" data-href={institutionURL} data-layout="button_count"></div>
+                    {this.renderFBLike()}
+
+                    <div className="row">
+                      <div className="col s12">
+                        <div className="fb-share-button" data-href={institutionURL} data-layout="button_count"></div>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-
 
             <div className="container">
               <div className="row">
@@ -559,7 +559,6 @@ var InstitutionUsersApp = React.createClass({
           Loading..
         </div>
         <div ref="wrapper" className="hide">
-
           <div className="row">
             <div className="col s12">
               <ul className="tabs">
@@ -572,7 +571,6 @@ var InstitutionUsersApp = React.createClass({
           </div>
 
           <div id="exchange_here_button"><ExchangeHereButton institutionId={this.props.institution.id} userId={this.props.userId} username={this.props.username} isExchanging={this.props.isExchanging} /></div>
-
         </div>
       </div>
     );
