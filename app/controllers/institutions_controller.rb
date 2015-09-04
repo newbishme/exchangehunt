@@ -29,13 +29,12 @@ class InstitutionsController < ApplicationController
   def home_users
     id = params[:id]
     user_ids = UsrInstnConnect.where("institution_id = #{id}").where("is_home_institution").map { |x| x.user_id }
-    users = user_ids
-      .map { |id| User.find(id) }
-      .compact
-      .sort_by(&:created_at)
-      .reverse
+    users = user_ids.map { |id| User.find(id) }.compact.sort_by(&:created_at).reverse
+    users.map! do |user|
+      restricted_info = restrict_user_info(user)
+    end
     respond_to do |format|
-      format.json { render json: users.to_json.html_safe}
+      format.json { render json: users.to_json.html_safe }
     end
   end
 
@@ -43,8 +42,11 @@ class InstitutionsController < ApplicationController
     id = params[:id]
     user_ids = UsrInstnConnect.where("institution_id = #{id}").where("is_home_institution = false").map { |x| x.user_id }
     users = user_ids.map { |id| User.find(id) }.compact.sort_by(&:created_at).reverse
+    users.map! do |user|
+      restricted_info = restrict_user_info(user)
+    end
     respond_to do |format|
-      format.json { render json: users.to_json.html_safe}
+      format.json { render json: users.to_json.html_safe }
     end
   end
 
@@ -69,6 +71,32 @@ class InstitutionsController < ApplicationController
 
   def set_institution
     @institution = Institution.find(params[:id])
+  end
+
+  def restrict_user_info(user_hash)
+    restricted_hash = {}
+    restricted_hash[:id] = user_hash[:id]
+    restricted_hash[:first_name] = user_hash[:first_name]
+    restricted_hash[:last_name] = user_hash[:last_name]
+    restricted_hash[:username] = user_hash[:username]
+    restricted_hash[:image_url] = user_hash[:image_url]
+    restricted_hash[:home_institution_confirmed] = user_hash[:home_institution_confirmed]
+    restricted_hash[:exchange_institution_confirmed] = user_hash[:exchange_institution_confirmed]
+    restricted_hash[:course] = user_hash[:course]
+    restrictedExchangeRecord = getExchangeDuration(user_hash[:id])
+    restricted_hash[:start_month] = restrictedExchangeRecord[:start_month]
+    restricted_hash[:start_year] = restrictedExchangeRecord[:start_year]
+    restricted_hash[:duration_in_months] = restrictedExchangeRecord[:duration_in_months]
+    restricted_hash
+  end
+
+  def getExchangeDuration(user_id)
+    restrictedExchangeRecord = {}
+    userExchangeRecord = UsrInstnConnect.where(user_id: user_id, is_home_institution: false).first_or_initialize
+    restrictedExchangeRecord[:start_month] = userExchangeRecord[:start_month]
+    restrictedExchangeRecord[:start_year] = userExchangeRecord[:start_year]
+    restrictedExchangeRecord[:duration_in_months] = userExchangeRecord[:duration_in_months]
+    restrictedExchangeRecord
   end
 
 end

@@ -145,7 +145,7 @@ var UserProfileApp = React.createClass({
       return (
         <div>
           <b><span className="avenir-75 primary-text-color">ABOUT ME</span></b><br/>
-          <span>{this.props.user.bio}</span><br/>
+          <span><pre className="about-me">{this.props.user.bio}</pre></span><br/>
         </div>
       );
     }
