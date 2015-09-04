@@ -3,6 +3,9 @@ class PagesController < ApplicationController
   before_action :ensure_complete_registration
 
   def index
+    if user_signed_in? && current_user.oauth_token?
+      @facebook_friends = current_user.facebook_friends
+    end
   end
 
   def home

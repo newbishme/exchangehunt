@@ -34,15 +34,29 @@
 </div>
 
 
-<% if user_signed_in? && current_user.oauth_token? %>
+<% if user_signed_in? && @facebook_friends && !@facebook_friends.empty? %>
   <div class="container">
     <div class="section">
       <div class="row top-buffer center">
-        <ul>
-          <% current_user.facebook_friends.each do |friend| %>
-            <li><%= friend %></li>
-          <% end %>
-        </ul>
+        <% @facebook_friends.each do |friend| %>
+          <div class="col s12 m6 l4">
+            <div class="card">
+              <div class="card-image">
+                <% if friend.image_url.to_s.blank? %>
+                  <%= image_tag 'no_image_found.png', :class => "search-results-card-img" %>
+                <% else %>
+                  <%= image_tag friend.image_url, :class => "search-results-card-img" %>
+                <% end %>
+              </div>
+              <div class="card-content">
+                <span class="search-results-card-text truncate"><%= friend.full_name %></span>
+              </div>
+              <div class="card-action">
+                <%= link_to 'Visit profile', user_path(friend.username) %>
+              </div>
+            </div>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>
