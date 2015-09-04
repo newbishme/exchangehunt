@@ -5,7 +5,7 @@ Gan Mei Lan, A0102147W (Business)
 - Market research on current offerings and users' needs analysis 
 - Feedback on UI/UX to improve the frontend and logic flow of app
 
-Tan Sei Yee (Designer)
+Tan Sei Yee, A0111697B (Designer)
 - Responsible for all the design of the Web, design of logo, UI/UX
 - Feedback on UI/UX to improve the frontend and logic flow of app
 
