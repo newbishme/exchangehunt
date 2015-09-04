@@ -110,9 +110,12 @@ class UsersController < ApplicationController
   def share_affliation
     if user_signed_in? && current_user.oauth_token? && params[:institution]
       current_user.affliate_with_institution(params[:institution].to_i)
-      redirect_to institution_path(params[:institution].to_i)
     end
-    render :nothing => true
+    if params[:institution]
+      redirect_to institution_path(params[:institution].to_i)
+    else
+      redirect_to root_path
+    end
   end
 
   private
