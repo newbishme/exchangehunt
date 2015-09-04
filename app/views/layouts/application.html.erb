@@ -9,7 +9,11 @@
     <script src="https://maps.googleapis.com/maps/api/js?libraries=places&key=<%= ENV['GOOGLE_MAPS_TOKEN']%>" type="text/javascript"></script>
     <meta property="og:title" content="ExchangeHunt <%= '| ' + @title if @title %>" />
     <meta property="og:url" content="<%= request.original_url %>" />
-    <meta property="og:description" content="ExchangeHunt is a trusted community for exchange students all around the world to connect with each other and build friendships." />
+    <% if @og_description %>
+      <meta property="og:description" content="<%= @og_description %>"/>
+    <% else %>
+      <meta property="og:description" content="ExchangeHunt is a trusted community for exchange students all around the world to connect with each other and build friendships." />
+    <% end %>
     <meta property="og:image" content=<%= @img_url.nil? ? 'https://exchangehunt.io/assets/exchangehunt_og_image.png' : @img_url %> />
     <meta property="og:type" content="website" />
     <meta property="fb:app_id" content="<%= ENV["FACEBOOK_APP_ID"] %>">

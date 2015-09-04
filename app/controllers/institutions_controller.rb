@@ -60,7 +60,9 @@ class InstitutionsController < ApplicationController
   end
 
   def show
+    @og_description = "ExchangeHunt | #{@institution.name}"
     @title = @institution.name
+    @img_url = @institution.facebook_img_url unless @institution.facebook_img_url.to_s.blank?
     respond_to do |format|
       format.html
       format.json { render json: @institution.to_json.html_safe }
