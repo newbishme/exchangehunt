@@ -5,8 +5,7 @@
     <%= javascript_include_tag 'application'%>
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= csrf_meta_tags %>
-    <script src="https://maps.googleapis.com/maps/api/js?key="<%= ENV["GOOGLE_MAPS_TOKEN"] %>
-      type="text/javascript"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?libraries=places&key=<%= ENV['GOOGLE_MAPS_TOKEN']%>" type="text/javascript"></script>
     <meta property="og:title" content="ExchangeHunt <%= '| ' + @title if @title %>" />
     <meta property="og:url" content="<%= request.original_url %>" />
     <meta property="og:description" content="ExchangeHunt is a trusted community for exchange students all around the world to connect with each other and build friendships." />
