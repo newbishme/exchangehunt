@@ -53,7 +53,8 @@ var InstitutionApp = React.createClass({
       var mapOptions = {
         center: new google.maps.LatLng(lat, lng),
         zoom: 12,
-        mapTypeId: google.maps.MapTypeId.ROADMAP
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+        scrollwheel: false
       };
       map = new google.maps.Map(mapCanvas, mapOptions);
       var p = {lat: lat, lng: lng};
