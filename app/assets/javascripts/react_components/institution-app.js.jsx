@@ -60,7 +60,7 @@ var InstitutionApp = React.createClass({
       var p = {lat: lat, lng: lng};
       service = new google.maps.places.PlacesService(map);
       service.textSearch({
-        query: name 
+        query: name
       }, searchInstitution);
     }
   },
@@ -125,12 +125,10 @@ var InstitutionApp = React.createClass({
   renderMembersSection: function() {
     if (this.props.is_signed_in) {
       return (
-        <div className="section">
-          <div className="row">
-            <div className="col s11">
-              <h5 className="avenir-55 primary-text-color deep-orange-text">MEMBERS</h5>
-              <InstitutionUsersApp institution={this.state.institution} userId={this.props.current_user_id} username={this.props.username} isExchanging={this.props.is_on_exchange} />
-            </div>
+        <div className="row">
+          <div className="col s11">
+            <h5 className="avenir-55 primary-text-color deep-orange-text">MEMBERS</h5>
+            <InstitutionUsersApp institution={this.state.institution} userId={this.props.current_user_id} username={this.props.username} isExchanging={this.props.is_on_exchange} />
           </div>
         </div>
       );
@@ -145,7 +143,6 @@ var InstitutionApp = React.createClass({
           Loading..
         </div>
         <div ref="wrapper" className="hide">
-          <div className="section">
             <div className="container">
 
               {this.renderInstitutionImageBanner()}
@@ -228,9 +225,8 @@ var InstitutionApp = React.createClass({
                 </div>
               </div>
             </div>
-          </div>
 
-          <div className="section">
+
             <div className="container">
               <div className="row">
                 <div className="col">
@@ -241,7 +237,7 @@ var InstitutionApp = React.createClass({
                 <div id="map"></div>
               </div>
             </div>
-          </div>
+
         </div>
       </div>
     );
@@ -575,9 +571,7 @@ var InstitutionUsersApp = React.createClass({
             <div id="exchange_students" className="col s12"><ExchangeUsers institutionId={this.props.institution.id} /></div>
           </div>
 
-          <div className="section">
-            <div id="exchange_here_button"><ExchangeHereButton institutionId={this.props.institution.id} userId={this.props.userId} username={this.props.username} isExchanging={this.props.isExchanging} /></div>
-          </div>
+          <div id="exchange_here_button"><ExchangeHereButton institutionId={this.props.institution.id} userId={this.props.userId} username={this.props.username} isExchanging={this.props.isExchanging} /></div>
 
         </div>
       </div>
