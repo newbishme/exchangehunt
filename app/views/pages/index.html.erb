@@ -34,7 +34,7 @@
 </div>
 
 
-<% if user_signed_in? && @facebook_friends && !@facebook_friends.empty? %>
+<% if user_signed_in? && current_user && @facebook_friends && !@facebook_friends.empty? %>
   <div class="container">
     <div class="section">
       <div class="row top-buffer center">
