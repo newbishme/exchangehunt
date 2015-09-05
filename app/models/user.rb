@@ -29,17 +29,17 @@ class User < ActiveRecord::Base
     new_access_expires_at = DateTime.now + new_access_info["expires"].to_i.seconds
 
     where(provider: auth.provider, uid: auth.uid).first_or_initialize.tap do |user|
-      user.provider = auth.provider
-      user.uid = auth.uid
-      user.email = auth.info.email || ""
-      user.first_name = auth.info.first_name
-      user.last_name = auth.info.last_name
-      user.password = Devise.friendly_token[0, 30]
-      user.image_url = auth.info.image
-      user.gender = auth.extra.raw_info.gender
-      user.admin = false
-      user.home_institution_confirmed = false
-      user.exchange_institution_confirmed = false
+      user.provider = user.provider || auth.provider
+      user.uid = user.uid || auth.uid
+      user.email = user.email || auth.info.email || ""
+      user.first_name = user.first_name || auth.info.first_name
+      user.last_name = user.last_name || auth.info.last_name
+      user.password = user.password || Devise.friendly_token[0, 30]
+      user.image_url = user.image_url || auth.info.image
+      user.gender = user.gender || auth.extra.raw_info.gender
+      user.admin = user.admin || false
+      user.home_institution_confirmed = user.home_institution_confirmed || false
+      user.exchange_institution_confirmed = user.exchange_institution_confirmed || false
       user.oauth_token = new_access_token #originally auth.credentials.token
       user.oauth_expires_at = new_access_expires_at
       user.save!
