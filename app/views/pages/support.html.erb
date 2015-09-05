@@ -1,3 +1,15 @@
+<% if flash[:error] %>
+  <div class="red lighten-4">
+    <div class="container">
+      <div class="section">
+        <div class="center">
+          <%= flash[:error] %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+
 <div class="container">
   <div class="section">
     <div class="row valign-wrapper">
