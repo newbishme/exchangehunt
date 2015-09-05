@@ -42,21 +42,23 @@
       </div>
       <div class="row bottom-buffer">
         <% @facebook_friends.each do |friend| %>
-          <div class="col s12 m6 l3">
-            <div class="card">
-              <div class="card-image">
-                <% if friend.image_url.to_s.blank? %>
-                  <%= image_tag 'no_image_found.png', :class => "fb-friends-results-card-img" %>
-                <% else %>
-                  <%= image_tag "#{friend.image_url}?height=320", :class => "" %>
-                <% end %>
-              </div>
-              <div class="card-content">
-                <%= link_to friend.full_name, user_path(friend.username), :class => "facebook-card-profile-link search-results-card-text truncate" %>
-                <span class="truncate"><%= friend.home_institution.name %></span>
+          <% if friend.username? %>
+            <div class="col s12 m6 l3">
+              <div class="card">
+                <div class="card-image">
+                  <% if friend.image_url.to_s.blank? %>
+                    <%= image_tag 'no_image_found.png', :class => "fb-friends-results-card-img" %>
+                  <% else %>
+                    <%= image_tag "#{friend.image_url}?height=320", :class => "" %>
+                  <% end %>
+                </div>
+                <div class="card-content">
+                  <%= link_to friend.full_name, user_path(friend.username), :class => "facebook-card-profile-link search-results-card-text truncate" %>
+                  <span class="truncate"><%= friend.home_institution.name %></span>
+                </div>
               </div>
             </div>
-          </div>
+          <% end %>
         <% end %>
       </div>
     </div>
