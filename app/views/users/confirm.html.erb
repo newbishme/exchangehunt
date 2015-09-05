@@ -3,7 +3,7 @@
     <div class="center">
       <h3>Your email has been verified. <i class='material-icons verified-status'>verified_user</i></h3>
       <% if current_user && current_user.oauth_token? %>
-        <h6><%= link_to "Share this affliation with #{@instn.name} on Facebook", "/users/share_affliation?institution=#{@instn.id}",  :method => :post %></h6>
+        <h6><%= link_to "Share this affiliation with #{@instn.name} on Facebook", "/users/share_affliation?institution=#{@instn.id}",  :method => :post %></h6>
       <% end %>
       Redirecting to the home page in 10 seconds..
     </div>
