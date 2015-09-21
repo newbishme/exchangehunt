@@ -1,4 +1,4 @@
-# ExchangeHunt
+# ExchangeHunt (https://exchangehunt.io)
 
 ## Members' contributions
 Gan Mei Lan, A0102147W (Business)
